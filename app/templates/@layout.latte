@@ -1,0 +1,71 @@
+{**
+ * My Application layout template.
+ *
+ * @param string   $basePath web base path
+ * @param string   $robots   tell robots how to index the content of a page (optional)
+ * @param array    $flashes  flash messages
+ *}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="description" content="">
+	<meta name="robots" content="{$robots}" n:ifset="$robots">
+
+	<title>{block title|striptags}EduCenter{/block}</title>
+
+	<link rel="stylesheet" media="screen,projection,tv" href="{$basePath}/css/screen.css">
+	<link rel="stylesheet" media="print" href="{$basePath}/css/print.css">
+	<link rel="shortcut icon" href="{$basePath}/favicon.ico">
+	{block head}{/block}
+</head>
+
+<body>
+	<script> document.documentElement.className+=' js' </script>
+
+    <div id="header">
+	<div id="header-inner">
+	    <div class="title"><a href="{link Homepage:}"><img src="{$basePath}/images/check_box.png" height="24" />EduCenter</a></div>
+
+	    <div class="user" n:if="$user->isLoggedIn()">
+		<span class="icon user">{$user->getIdentity()->name}</span> |
+		<a n:href="User:settings">Nastavení</a> |
+		<a n:href="Sign:out">Odhlásit se</a>
+	    </div>
+	</div>
+    </div>
+
+    <div id="container">
+	{if $user->isLoggedIn()}
+	<div id="sidebar">
+	    <ul>
+		<li><a n:href="Homepage:">Domů</a></li>
+		<li><a n:href="Question:add">Přidat otázku</a></li>
+		<li><a n:href="Question:edit 2">Editovat otázku</a></li>
+		<li><a n:href="Test:">Testování</a></li>
+		<li><a n:href="Question:">Procházení otázek</a></li>
+	    </ul>
+	</div>
+	{/if}
+	<div id="content">
+		{snippet flashMessages}
+		<div n:foreach="$flashes as $flash" class="flash {$flash->type}">{$flash->message}</div>
+		{/snippet}
+
+		{include #content}
+	</div>
+
+	<div id="footer">
+	(c) Filip Klimeš 2013, powered by <a href="http://nette.org">Nette Framework</a>
+	</div>
+</div>
+
+{block scripts}
+<script src="{$basePath}/js/jquery.js"></script>
+<script src="{$basePath}/js/netteForms.js"></script>
+<script src="{$basePath}/js/nette.ajax.js"></script> {* Nette Ajax depens on jQuery *}
+<script src="{$basePath}/js/main.js"></script>
+{/block}
+</body>
+</html>

@@ -1,0 +1,58 @@
+{block content}
+
+<h1>Přidat otázku</h1>
+
+{form newQuestionForm}
+<div class="new-question-form">
+    {control $form errors}
+    <div class="pair">
+	{label text /}
+	<div class="input">{input text}</div>
+    </div>
+
+    <div class="pair">
+	{label img /} <div class="input">{input img}</div>
+    </div>
+
+    <div class="pair">
+	{label unit /} <div class="input">{input unit}</div>
+    </div>
+
+    <div class="pair">
+	{label points /} <div class="input">{input points}</div>
+    </div>
+
+    <div class="spacer"></div>
+
+    <div class="pair">
+	{label answer1 /}
+	<div class="input">{input answer1}</div>
+	<div class="input">{input answer1correct} {label answer1correct /}</div>
+    </div>
+
+    <div class="pair">
+	{label answer2 /}
+	<div class="input">{input answer2}</div>
+	<div class="input">{input answer2correct} {label answer2correct /}</div>
+    </div>
+
+    <div class="pair">
+	{label answer3 /}
+	<div class="input">{input answer3}</div>
+	<div class="input">{input answer3correct} {label answer3correct /}</div>
+    </div>
+
+    <div class="pair">
+	{label answer4 /}
+	<div class="input">{input answer4}</div>
+	<div class="input">{input answer4correct} {label answer4correct /}</div>
+    </div>
+
+    <div class="pair">
+	<div class="input">{input insert}</div>
+    </div>
+
+</div>
+{/form}
+
+{/block}

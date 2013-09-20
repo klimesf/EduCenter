@@ -1,0 +1,24 @@
+{block content}
+<table class="units">
+<thead>
+	<tr>
+		<th>Název</th>
+		<th>Popis</th>
+		<th>Otázky</th>
+	</tr>
+</thead>
+<tbody>
+	{foreach $units as $unit}
+	<tr n:class="$iterator->odd ? odd : even">
+		<td><a n:href="Question:browseByUnit $unit->id">{$unit->name}</a></td>
+		<td>{$unit->description}</td>
+		<td class="number">{$questionRepository->countByUnit($unit->id)}</td>
+	</tr>
+	{/foreach}
+</tbody>
+</table>
+
+{/block}
+
+
+{dump}

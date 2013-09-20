@@ -1,0 +1,16 @@
+{snippet}
+<div class="question-viewer">
+	<div class="question">
+	    {$question->text}
+	    {if $question->img}
+	    <img src="{$www_dir . $question->img}" alt="Obrázek k otázce" />
+	    {/if}
+	</div>
+	{foreach $answers as $answer}
+	<div n:class="$iterator->odd ? odd : even">
+		<div class="checkbox"></div>
+		<div n:class="$answer->correct ? correct : answer" colspan="2">{$answer-text}</div>
+	</div>
+	{/foreach}
+</div>
+{/snippet}

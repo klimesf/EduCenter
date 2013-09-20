@@ -1,0 +1,42 @@
+#
+# SECURITY WARNING: it is CRITICAL that this file & directory are NOT accessible directly via a web browser!
+#
+# If you don't protect this directory from direct web access, anybody will be able to see your passwords.
+# http://nette.org/security-warning
+#
+common:
+	parameters:
+
+	php:
+		date.timezone: Europe/Prague
+		# zlib.output_compression: yes
+
+	nette:
+		application:
+			errorPresenter: Error
+
+		database:
+			dsn: 'mysql:host=localhost;dbname=educenter'
+			user: root
+			password:
+
+		session:
+			expiration: 30 days
+
+
+	services:
+		authenticator: EduCenter\Authenticator
+		routerFactory: RouterFactory
+		router: @routerFactory::createRouter
+
+		userRepository: EduCenter\UserRepository
+		unitRepository: EduCenter\UnitRepository
+		questionRepository: EduCenter\QuestionRepository
+		answerRepository: EduCenter\AnswerRepository
+
+	factories:
+
+
+production < common:
+
+development < common:
