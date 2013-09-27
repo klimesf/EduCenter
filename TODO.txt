@@ -1,0 +1,37 @@
+EduCenter
+
+Goals:
+1. Creating multiple-choice test questions sorted by categories
+    1.1 Dynamic number of answers per each question
+    1.2 More or any answer correct
+2. Browsing test-questions
+    2.1 Browsing categories
+3. Creating tests
+    3.1 Test has x questions from y categories 
+4. Taking a test
+    4.1 Browsing test questions
+    4.2 Results of the test chart by user
+    4.3 Evaluating the test
+5. Managing question categories
+    5.1 Editing, creating and merging categories
+
+
+Mottos:
+    - Try to take the advantage of Nette
+    - Work step-by-step with focus on doing one task right instead of doing more tasks wrong
+    - Add comments wherever needed
+    - When tired, work on the looks (CSS)
+    - Focus on reusability of your code
+
+
+
+
+Tasks:
+20-9-2013
+    - Remake all the MVC classes, start over, focus on keeping code simple and clean
+    - Add comments wherever needed
+    - Possibly make a chart of the application logic
+    - Think through the app logic - especially evaluating the test
+26-9-2013
+    + Create component QuestionDisplay
+    - Create component UnitList

@@ -21,6 +21,12 @@ class QuestionPresenter extends BasePresenter {
     
     /** @var EduCenter\UnitRepository */
     private $unitRepository;
+    
+    /**
+     * Id zobrazované otázky
+     * @var int(11) 
+     */
+    private $question_id;
 
     public function inject(EduCenter\UserRepository $userRepository, EduCenter\Authenticator $authenticator, EduCenter\QuestionRepository $questionRepository,
 	    EduCenter\AnswerRepository $answerRepository, EduCenter\UnitRepository $unitRepository)
@@ -32,20 +38,22 @@ class QuestionPresenter extends BasePresenter {
 	$this->answerRepository = $answerRepository;
     }
     
-    protected function startup()
-    {
+    protected function startup() {
 	parent::startup();
-
+	// Tento presenter je nepřístupný pro nepřihlášené uživatele
 	if (!$this->getUser()->isLoggedIn()) {
 	    $this->redirect('Sign:in');
 	}
     }
+
+    
+    /* --- AKCE --------------------------------------------------------------*/
+    
     
     public function actionDefault()
     {
 	$this->template->units = $this->unitRepository->findAll();
 	$this->template->questionRepository = $this->questionRepository;
-
     }
     
     public function actionBrowseByUnit($unit_id) {
@@ -60,8 +68,7 @@ class QuestionPresenter extends BasePresenter {
     
     public function actionBrowse($question_id)
     {
-	$this->template->question = $this->questionRepository->findBy(array('id' => $question_id))->fetch();
-	$this->template->answers = $this->answerRepository->findBy(array('id_question' => $question_id))->order('RAND()');
+	$this->question_id = $question_id;
     }
     
     public function actionAdd()
@@ -73,6 +80,22 @@ class QuestionPresenter extends BasePresenter {
 	$this->template->question_id = $question_id;
 	
     }
+    
+    
+    /* --- Továrničky --------------------------------------------------------*/
+    
+    /**
+     * Továrnička vytvářející komponentu QuestionDisplay
+     * @param type $id		id zobrazované otázky
+     * @param type $answered	volitelná proměnná - je otázka zodpovězena?
+     * @return \EduCenter\QuestionDisplayControl    vytvořená komponenta
+     */
+    protected function createComponentQuestionDisplay() {
+	return new EduCenter\QuestionDisplayControl($this->questionRepository, $this->answerRepository, $this->context->session, $this->question_id);
+    }
+    
+    
+    
     
     protected function createComponentNewQuestionForm()
     {
@@ -195,9 +218,6 @@ class QuestionPresenter extends BasePresenter {
 	
 	$this->flashMessage('Otázka upravena.', 'success');
     }
-    
-    $i = 1;
-    while(isSet()) {}
     
     protected function createComponentQuestionViewer() {
 	

@@ -1,30 +1,30 @@
-<?php //netteCache[01]000366a:2:{s:4:"time";s:21:"0.20966000 1379632223";s:9:"callbacks";a:2:{i:0;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:44:"D:\Web\EduCenter\app\templates\@layout.latte";i:2;i:1379632220;}i:1;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:10:"checkConst";}i:1;s:25:"Nette\Framework::REVISION";i:2;s:30:"80a7e46 released on 2013-08-08";}}}?><?php
+<?php //netteCache[01]000366a:2:{s:4:"time";s:21:"0.47136600 1379718558";s:9:"callbacks";a:2:{i:0;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:44:"D:\Web\EduCenter\app\templates\@layout.latte";i:2;i:1379718539;}i:1;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:10:"checkConst";}i:1;s:25:"Nette\Framework::REVISION";i:2;s:30:"80a7e46 released on 2013-08-08";}}}?><?php
 
 // source file: D:\Web\EduCenter\app\templates\@layout.latte
 
 ?><?php
 // prolog Nette\Latte\Macros\CoreMacros
-list($_l, $_g) = Nette\Latte\Macros\CoreMacros::initRuntime($template, '5rqlwalcug')
+list($_l, $_g) = Nette\Latte\Macros\CoreMacros::initRuntime($template, 'n54enptouy')
 ;
 // prolog Nette\Latte\Macros\UIMacros
 //
 // block title
 //
-if (!function_exists($_l->blocks['title'][] = '_lba90678b45b_title')) { function _lba90678b45b_title($_l, $_args) { extract($_args)
+if (!function_exists($_l->blocks['title'][] = '_lb3618c7b3d6_title')) { function _lb3618c7b3d6_title($_l, $_args) { extract($_args)
 ?>EduCenter<?php
 }}
 
 //
 // block head
 //
-if (!function_exists($_l->blocks['head'][] = '_lb1dd83c4017_head')) { function _lb1dd83c4017_head($_l, $_args) { extract($_args)
+if (!function_exists($_l->blocks['head'][] = '_lb15b45c298f_head')) { function _lb15b45c298f_head($_l, $_args) { extract($_args)
 ;
 }}
 
 //
 // block _flashMessages
 //
-if (!function_exists($_l->blocks['_flashMessages'][] = '_lbc356020a28__flashMessages')) { function _lbc356020a28__flashMessages($_l, $_args) { extract($_args); $_control->validateControl('flashMessages')
+if (!function_exists($_l->blocks['_flashMessages'][] = '_lba9c4d05f29__flashMessages')) { function _lba9c4d05f29__flashMessages($_l, $_args) { extract($_args); $_control->validateControl('flashMessages')
 ;$iterations = 0; foreach ($flashes as $flash): ?>		<div class="flash <?php echo htmlSpecialChars($flash->type) ?>
 "><?php echo Nette\Templating\Helpers::escapeHtml($flash->message, ENT_NOQUOTES) ?></div>
 <?php $iterations++; endforeach ;
@@ -33,7 +33,7 @@ if (!function_exists($_l->blocks['_flashMessages'][] = '_lbc356020a28__flashMess
 //
 // block scripts
 //
-if (!function_exists($_l->blocks['scripts'][] = '_lb3d64fa0950_scripts')) { function _lb3d64fa0950_scripts($_l, $_args) { extract($_args)
+if (!function_exists($_l->blocks['scripts'][] = '_lb40e488e578_scripts')) { function _lb40e488e578_scripts($_l, $_args) { extract($_args)
 ?><script src="<?php echo htmlSpecialChars($basePath) ?>/js/jquery.js"></script>
 <script src="<?php echo htmlSpecialChars($basePath) ?>/js/netteForms.js"></script>
 <script src="<?php echo htmlSpecialChars($basePath) ?>/js/nette.ajax.js"></script> 
@@ -80,7 +80,7 @@ ob_start(); call_user_func(reset($_l->blocks['title']), $_l, get_defined_vars())
 </head>
 
 <body>
-	<script> document.documentElement.className+=' js' </script>
+    <script> document.documentElement.className+=' js' </script>
 
     <div id="header">
 	<div id="header-inner">

@@ -1,0 +1,28 @@
+<div class="question-viewer">
+	<div class="question">
+	    {$question->text}
+	    {if $question->img}
+	    <img src="{$www_dir . $question->img}" alt="Obrázek k otázce" />
+	    {/if}
+	</div>
+	{foreach $answers as $answer}
+	<div n:class="$iterator->odd ? odd : even">
+		{if !$answered}
+		<div n:class="$checkedAnswers->isAnswerChecked($answer->id) ? checkbox-checked : checkbox">
+		    {if $checkedAnswers->isAnswerChecked($answer->id)}
+		    <a n:href="uncheckAnswer! $answer->id">{$iterator->getCounter()}</a>
+		    {else}
+		    <a n:href="checkAnswer! $answer->id">{$iterator->getCounter()}</a>
+		    {/if}
+		</div>
+		<div n:class="answer" colspan="2">{$answer->text}</div>
+		{else}
+		<div n:class="$checkedAnswers->isAnswerChecked($answer->id) ? checkbox-checked : checkbox"><a>{$iterator->getCounter()}</a></div>
+		<div n:class="$answer->correct ? correct : answer" colspan="2">{$answer->text}</div>
+		{/if}
+	</div>
+	{/foreach}
+	{if !$answered}
+	<a n:href="evaluate!">Vyhodnotit</a>
+	{/if}
+</div>

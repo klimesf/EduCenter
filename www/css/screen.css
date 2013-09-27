@@ -121,7 +121,7 @@ a {
 	border-radius: 3px;
 }
 
-a:hover, a:active, a:focus {
+a[href]:hover, a:active, a:focus {
 	background-color: #3484D2;
 	color: #ffffff;
 }
@@ -216,7 +216,7 @@ div.question-viewer div.correct {
     padding: 7px 3px;
 }
 
-div.question-viewer div.checkbox {
+div.question-viewer div.checkbox, div.question-viewer div.checkbox-checked {
 
     width: 26px;
     float: left;
@@ -229,6 +229,20 @@ div.question-viewer div.checkbox a {
     text-align: center;
 }
 
+div.question-viewer div.checkbox-checked a {
+    width: 20px;
+    padding: 7px 3px;
+    display: block;
+    text-align: center;
+    background: #3484D2;
+    color: #fff;
+}
+
+/*div.question-viewer div.checkbox a:not([href]):hover {
+    background: none;
+    color: #3484D2;
+}
+*/
 /*** Forms ***/
 fieldset {
 	font-size: smaller;

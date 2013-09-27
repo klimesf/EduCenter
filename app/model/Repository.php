@@ -45,6 +45,11 @@ abstract class Repository extends Nette\Object {
 	return $this->getTable()->where($by);
     }
     
+    /**
+     * Přepisuje řádky v tabulce
+     * @param array $where Podmínka where pro sql dotaz
+     * @param array $data Data, která měníme
+     */
     public function update($where, $data) {
 	$this->getTable()->where($where)->update($data);
     }

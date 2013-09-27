@@ -24,10 +24,9 @@ class UserPresenter extends BasePresenter {
 
 
 
-    protected function startup()
-    {
+    protected function startup() {
 	parent::startup();
-
+	// Tento presenter je nepřístupný pro nepřihlášené uživatele
 	if (!$this->getUser()->isLoggedIn()) {
 	    $this->redirect('Sign:in');
 	}
