@@ -1,30 +1,30 @@
-<?php //netteCache[01]000366a:2:{s:4:"time";s:21:"0.47136600 1379718558";s:9:"callbacks";a:2:{i:0;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:44:"D:\Web\EduCenter\app\templates\@layout.latte";i:2;i:1379718539;}i:1;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:10:"checkConst";}i:1;s:25:"Nette\Framework::REVISION";i:2;s:30:"80a7e46 released on 2013-08-08";}}}?><?php
+<?php //netteCache[01]000366a:2:{s:4:"time";s:21:"0.39343300 1380396937";s:9:"callbacks";a:2:{i:0;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:44:"D:\Web\EduCenter\app\templates\@layout.latte";i:2;i:1380396935;}i:1;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:10:"checkConst";}i:1;s:25:"Nette\Framework::REVISION";i:2;s:30:"80a7e46 released on 2013-08-08";}}}?><?php
 
 // source file: D:\Web\EduCenter\app\templates\@layout.latte
 
 ?><?php
 // prolog Nette\Latte\Macros\CoreMacros
-list($_l, $_g) = Nette\Latte\Macros\CoreMacros::initRuntime($template, 'n54enptouy')
+list($_l, $_g) = Nette\Latte\Macros\CoreMacros::initRuntime($template, '0jsvco7x83')
 ;
 // prolog Nette\Latte\Macros\UIMacros
 //
 // block title
 //
-if (!function_exists($_l->blocks['title'][] = '_lb3618c7b3d6_title')) { function _lb3618c7b3d6_title($_l, $_args) { extract($_args)
+if (!function_exists($_l->blocks['title'][] = '_lbecf59766d6_title')) { function _lbecf59766d6_title($_l, $_args) { extract($_args)
 ?>EduCenter<?php
 }}
 
 //
 // block head
 //
-if (!function_exists($_l->blocks['head'][] = '_lb15b45c298f_head')) { function _lb15b45c298f_head($_l, $_args) { extract($_args)
+if (!function_exists($_l->blocks['head'][] = '_lb75dbdb500b_head')) { function _lb75dbdb500b_head($_l, $_args) { extract($_args)
 ;
 }}
 
 //
 // block _flashMessages
 //
-if (!function_exists($_l->blocks['_flashMessages'][] = '_lba9c4d05f29__flashMessages')) { function _lba9c4d05f29__flashMessages($_l, $_args) { extract($_args); $_control->validateControl('flashMessages')
+if (!function_exists($_l->blocks['_flashMessages'][] = '_lb5d21559da0__flashMessages')) { function _lb5d21559da0__flashMessages($_l, $_args) { extract($_args); $_control->validateControl('flashMessages')
 ;$iterations = 0; foreach ($flashes as $flash): ?>		<div class="flash <?php echo htmlSpecialChars($flash->type) ?>
 "><?php echo Nette\Templating\Helpers::escapeHtml($flash->message, ENT_NOQUOTES) ?></div>
 <?php $iterations++; endforeach ;
@@ -33,7 +33,7 @@ if (!function_exists($_l->blocks['_flashMessages'][] = '_lba9c4d05f29__flashMess
 //
 // block scripts
 //
-if (!function_exists($_l->blocks['scripts'][] = '_lb40e488e578_scripts')) { function _lb40e488e578_scripts($_l, $_args) { extract($_args)
+if (!function_exists($_l->blocks['scripts'][] = '_lbe442c8ba71_scripts')) { function _lbe442c8ba71_scripts($_l, $_args) { extract($_args)
 ?><script src="<?php echo htmlSpecialChars($basePath) ?>/js/jquery.js"></script>
 <script src="<?php echo htmlSpecialChars($basePath) ?>/js/netteForms.js"></script>
 <script src="<?php echo htmlSpecialChars($basePath) ?>/js/nette.ajax.js"></script> 
@@ -102,8 +102,7 @@ ob_start(); call_user_func(reset($_l->blocks['title']), $_l, get_defined_vars())
 	    <ul>
 		<li><a href="<?php echo htmlSpecialChars($_control->link("Homepage:")) ?>">Domů</a></li>
 		<li><a href="<?php echo htmlSpecialChars($_control->link("Question:add")) ?>">Přidat otázku</a></li>
-		<li><a href="<?php echo htmlSpecialChars($_control->link("Question:edit", array(2))) ?>
-">Editovat otázku</a></li>
+		<!-- <li><a n:href="Question:edit 2">Editovat otázku</a></li> -->
 		<li><a href="<?php echo htmlSpecialChars($_control->link("Test:")) ?>">Testování</a></li>
 		<li><a href="<?php echo htmlSpecialChars($_control->link("Question:")) ?>">Procházení otázek</a></li>
 	    </ul>

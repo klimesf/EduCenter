@@ -25,4 +25,13 @@ class AnswerRepository extends Repository {
 		'id_question' => $question_id
 	));
     }
+    
+    public function updateAnswer($id, $text, $correct)
+    {
+	$data = array(
+	    'text' => $text,
+	    'correct' => $correct
+	);
+	return $this->getTable()->where(array('id' => $id))->update($data);
+    }
 }

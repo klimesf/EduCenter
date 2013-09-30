@@ -22,11 +22,12 @@ class QuestionPresenter extends BasePresenter {
     /** @var EduCenter\UnitRepository */
     private $unitRepository;
     
-    /**
-     * Id zobrazované otázky
-     * @var int(11) 
-     */
-    private $question_id;
+    /** Id zobrazované otázky @var int(11) */
+    private $questionId = null;
+    
+    /** @var Nette\Database\Table\Selection */
+    private $selection;
+    
 
     public function inject(EduCenter\UserRepository $userRepository, EduCenter\Authenticator $authenticator, EduCenter\QuestionRepository $questionRepository,
 	    EduCenter\AnswerRepository $answerRepository, EduCenter\UnitRepository $unitRepository)
@@ -56,29 +57,34 @@ class QuestionPresenter extends BasePresenter {
 	$this->template->questionRepository = $this->questionRepository;
     }
     
-    public function actionBrowseByUnit($unit_id) {
-	$select = $this->questionRepository->findBy(array('id_unit' => $unit_id))->order('id ASC')->fetch();
-	if($select) {
-	    $this->redirect('Question:browse', $select->id);
-	} else {
+    public function actionBrowseByUnit($unitId) {
+	// Vybereme otázky dané kategorie
+	$this->selection = $this->questionRepository->findBy(array('id_unit' => $unitId))->order('id ASC');
+	// Pokud kategorie nemá otázky, přesměrujeme zpět na výběr kategorií
+	if(!$this->selection) {
 	    $this->flashMessage ('Tato kategorie neobsahuje žádné otázky.', 'error');
 	    $this->redirect('Question:');
 	}
     }
     
-    public function actionBrowse($question_id)
-    {
-	$this->question_id = $question_id;
+    public function actionBrowse($questionId) {
+	$this->selection = $this->questionRepository->findBy(array('id' => $questionId));
+	//$this->questionId = $questionId;
+	if(!$this->selection) {
+	    $this->flashMessage ('Otázka neexistuje.', 'error');
+	    $this->redirect('Question:');
+	}
     }
     
-    public function actionAdd()
-    {
+    public function actionAdd() {
 
     }
     
-    public function actionEdit($question_id) {
-	$this->template->question_id = $question_id;
-	
+    public function actionEdit($questionId) {
+	if (!$this->getUser()->isInRole('admin')) {
+	    $this->redirect('Question:');
+	}
+	$this->questionId = $questionId;
     }
     
     
@@ -91,14 +97,17 @@ class QuestionPresenter extends BasePresenter {
      * @return \EduCenter\QuestionDisplayControl    vytvořená komponenta
      */
     protected function createComponentQuestionDisplay() {
-	return new EduCenter\QuestionDisplayControl($this->questionRepository, $this->answerRepository, $this->context->session, $this->question_id);
+	return new EduCenter\QuestionDisplayControl($this->questionRepository, $this->answerRepository,
+		$this->context->session, $this->unitRepository, $this->selection, $this->questionId);
     }
     
     
     
-    
-    protected function createComponentNewQuestionForm()
-    {
+    /**
+     * Továrnička pro formulář, který vytváří a edituje otázku a její odpovědi
+     * @return \Nette\Application\UI\Form
+     */
+    protected function createComponentQuestionForm() {
 	$unitPairs = $this->unitRepository->findAll()->fetchPairs('id', 'name');
 	
 	$form = new UI\Form;
@@ -130,16 +139,44 @@ class QuestionPresenter extends BasePresenter {
 		->setRequired('Prosím vyplňte znění odpovědi.');
 	$form->addCheckbox('answer4correct', 'Správná odpověď');
 
-	$form->addSubmit('insert', 'Vložit');
+	$form->addSubmit('insert', 'Uložit');
 
-	// call method signInFormSucceeded() on success
-	$form->onSuccess[] = $this->newQuestionFormSucceeded;
+		
+	// Pokud editujeme otázku, načteme data
+	if($this->questionId != null) {
+	    $form->addHidden('questionId', $this->questionId);
+	    
+	    $question = $this->questionRepository->findBy(array('id' => $this->questionId))->fetch();
+	    if(!$question) {	// Pokud nám někdo podstrčil špatné id
+		throw Nette\Application\BadRequestException;
+	    }
+	    $answers = $this->answerRepository->findBy(array('id_question' => $this->questionId));
+	    
+	    // Naplnění defaultních hodnot
+	    $defaults = array(
+		'text' => $question->text,
+		'unit' => $question->id_unit,
+		'points' => $question->points
+	    );
+	    $i = 1;
+	    foreach($answers as $answer) {  // a pro každou odpověď
+		$form->addHidden('answer'.$i.'id', $answer->id);
+		$defaults['answer'.$i] = $answer->text;
+		$defaults['answer'.$i.'correct'] = $answer->correct;
+		$i++;
+	    }
+	    
+	    $form->setDefaults($defaults);
+	    $form->onSuccess[] = $this->questionFormEditSucceeded;
+	} else {
+	    $form->onSuccess[] = $this->questionFormSucceeded;
+	}
 	return $form;
     }
     
     
     
-    public function newQuestionFormSucceeded(Form $form) {
+    public function questionFormSucceeded(Form $form) {
 	$file = $form['img']->getValue();
 	$file_name = NULL;
 	
@@ -159,67 +196,29 @@ class QuestionPresenter extends BasePresenter {
 	$this->answerRepository->addAnswer($form->values->answer4, $form->values->answer4correct, $question_id);
 	$this->flashMessage('Otázka přidána.', 'success');
     }
-    
-    
-    
-    protected function createComponentEditQuestionForm()
-    {
-	$question = $this->questionRepository->findBy(array('id' => $this->template->question_id))->fetch();
-	$answers = $this->answerRepository->findBy(array('id_question' => $this->template->question_id));
-	if(!$question) {
-	    throw new BadRequestException;
-	}
-	$unitPairs = $this->unitRepository->findAll()->fetchPairs('id', 'name');
-	
-	$form = new UI\Form;
-	$form->addHidden('id')->setValue($question->id);
-	$form->addTextArea('text', 'Zadání otázky:')
-		->setRequired('Prosím vyplňte zadání otázky.')
-		->setValue($question->text);
-	
-	$form->addUpload('img', 'Obrázek k otázce:')
-		->addCondition(Form::FILLED)
-		->addRule(Form::IMAGE, 'Soubor musí být obrázek.');
-	
-	$form->addSelect('unit', 'Kategorie:', $unitPairs)
-		->setDefaultValue($question->id_unit)
-		->addRule(Form::FILLED, 'Je nutné vybrat do jaké kategorie otázka patří.');
-	
-	$form->addText('points', 'Počet bodů:', 3)
-		->addRule(Form::INTEGER, 'Počet bodů musí být číslo.')
-		->setValue($question->points);
-	
-	
-	$i = 1;
-	foreach($answers as $answer) {
-	    $form->addHidden('answer'.$i.'id')->setValue($answer->id);
-	    $form->addText("answer".$i, 'První odpověď:', 50, 255)
-		    ->setRequired('Prosím vyplňte znění odpovědi.')
-		    ->setValue($answer->text);
-	    $form->addCheckbox("answer".$i."correct", 'Správná odpověď');
-	    
-	    $i++;
-	}
 
-	$form->addSubmit('save', 'Uložit');
-
-	// call method signInFormSucceeded() on success
-	$form->onSuccess[] = $this->editQuestionFormSucceeded;
-	return $form;
-    }
-    
-    public function editQuestionFormSucceeded(Form $form) {
-	$update = array(
-	    'text' => $form->values->text,
-	    'id_unit' => $form->values->unit,
-	    'points' => $form->values->points
-	);
-	$this->questionRepository->update(array('id' => $form->values->id), $update);
+    public function questionFormEditSucceeded(Form $form) {
+	$file = $form['img']->getValue();
+	$file_name = NULL;
 	
+	if ($file->isOK()) {
+	    $file_name=Strings::lower($file->name);
+            $file->move($this->context->parameters['wwwDir'] . "/images/questions/". $file_name);
+	}
+	
+	$this->questionId = $form->values->questionId;
+	
+	// Uložení otázky
+	if(!$this->questionRepository->updateQuestion($this->questionId, $form->values->text, $file_name, $form->values->points, $form->values->unit)) {
+	    $this->flashMessage('Úprava otázky se nezdařila.', 'error');
+	}
+	
+	// Uložení odpovědí
+	$this->answerRepository->updateAnswer($form->values->answer1id, $form->values->answer1, $form->values->answer1correct);
+	$this->answerRepository->updateAnswer($form->values->answer2id, $form->values->answer2, $form->values->answer2correct);
+	$this->answerRepository->updateAnswer($form->values->answer3id, $form->values->answer3, $form->values->answer3correct);
+	$this->answerRepository->updateAnswer($form->values->answer4id, $form->values->answer4, $form->values->answer4correct);
 	$this->flashMessage('Otázka upravena.', 'success');
-    }
+    }    
     
-    protected function createComponentQuestionViewer() {
-	
-    }
 }

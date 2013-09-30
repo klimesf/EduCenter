@@ -16,7 +16,7 @@ common:
 			errorPresenter: Error
 
 		database:
-			dsn: 'mysql:host=localhost;dbname=educenter'
+			dsn: 'mysql:host=127.0.0.1;dbname=educenter'
 			user: root
 			password:
 

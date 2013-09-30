@@ -1,4 +1,4 @@
-EduCenter
+--* EduCenter *--
 
 Goals:
 1. Creating multiple-choice test questions sorted by categories
@@ -31,7 +31,14 @@ Tasks:
     - Remake all the MVC classes, start over, focus on keeping code simple and clean
     - Add comments wherever needed
     - Possibly make a chart of the application logic
-    - Think through the app logic - especially evaluating the test
+    + Think through the app logic - especially evaluating the test
+
 26-9-2013
     + Create component QuestionDisplay
     - Create component UnitList
+
+27-9-2013
+    + Implement QuestionDisplay->checkedAnswers->areCorrect()
+    - Instead of handing $questionId to QuestionDisplay, handle the whole selection,
+	that would help browsing by unit and also would be nice to have prepared
+	such feature for implementing testing module

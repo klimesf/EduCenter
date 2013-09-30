@@ -1,28 +1,44 @@
 <div class="question-viewer">
-	<div class="question">
-	    {$question->text}
-	    {if $question->img}
-	    <img src="{$www_dir . $question->img}" alt="Obrázek k otázce" />
+    {if $displayNav}
+	Procházení otázek -> {$unitName}
+	<div class="nav">
+	    Otázka {$numberOfCurrentQuestion} z {$numberOfQuestions}</br>
+	    {if $hasPrevious}
+		<a n:href="goTo! $previousId" accesskey="q">&lt; Předchozí otázka</a>
+	    {/if}
+	    {if $hasNext}
+		<a n:href="goTo! $nextId" accesskey="w">Následující otázka &gt;</a>
 	    {/if}
 	</div>
-	{foreach $answers as $answer}
-	<div n:class="$iterator->odd ? odd : even">
-		{if !$answered}
-		<div n:class="$checkedAnswers->isAnswerChecked($answer->id) ? checkbox-checked : checkbox">
-		    {if $checkedAnswers->isAnswerChecked($answer->id)}
-		    <a n:href="uncheckAnswer! $answer->id">{$iterator->getCounter()}</a>
-		    {else}
-		    <a n:href="checkAnswer! $answer->id">{$iterator->getCounter()}</a>
-		    {/if}
-		</div>
-		<div n:class="answer" colspan="2">{$answer->text}</div>
-		{else}
-		<div n:class="$checkedAnswers->isAnswerChecked($answer->id) ? checkbox-checked : checkbox"><a>{$iterator->getCounter()}</a></div>
-		<div n:class="$answer->correct ? correct : answer" colspan="2">{$answer->text}</div>
-		{/if}
-	</div>
-	{/foreach}
-	{if !$answered}
-	<a n:href="evaluate!">Vyhodnotit</a>
+    {/if}
+    <div class="question">
+	{!$question->text}
+	{if $question->img}
+	<img src="{$www_dir . $question->img}" alt="Obrázek k otázce" />
 	{/if}
+    </div>
+    {foreach $answers as $answer}
+    <div n:class="$iterator->odd ? odd : even">
+	{if !$answered}
+	<div n:class="$checkedAnswers->isAnswerChecked($answer->id) ? checkbox-checked : checkbox">
+	    {if $checkedAnswers->isAnswerChecked($answer->id)}
+	    <a n:href="uncheckAnswer! $answer->id">{$iterator->getCounter()}</a>
+	    {else}
+	    <a n:href="checkAnswer! $answer->id">{$iterator->getCounter()}</a>
+	    {/if}
+	</div>
+	<div n:class="answer" colspan="2">{!$answer->text}</div>
+	{else}
+	<div n:class="$checkedAnswers->isAnswerChecked($answer->id) ? checkbox-checked : checkbox"><a>{$iterator->getCounter()}</a></div>
+	<div n:class="$answer->correct ? correct : answer" colspan="2">{!$answer->text}</div>
+	{/if}
+    </div>
+    {/foreach}
+    {if !$answered}
+    <a n:href="evaluate!" accesskey="a">Vyhodnotit</a>
+    {/if}
+    <div n:foreach="$flashes as $flash" class="flash {$flash->type}">{$flash->message}</div>
+    {if $user->isInRole('admin')}
+	<a href="{plink Question:edit $question->id}">Upravit otázku</a>
+    {/if}
 </div>

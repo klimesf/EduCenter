@@ -1,0 +1,1 @@
+<?php //netteCache[01]000070a:2:{s:4:"time";s:21:"0.93826000 1380397388";s:10:"serialized";b:1;}?>a:3:{s:7:"primary";a:4:{s:4:"unit";s:2:"id";s:8:"question";s:2:"id";s:6:"answer";s:2:"id";s:4:"user";s:2:"id";}s:9:"belongsTo";a:1:{s:8:"question";a:1:{s:7:"id_unit";s:4:"unit";}}s:7:"hasMany";a:1:{s:4:"unit";a:1:{s:15:"id_unitquestion";a:2:{i:0;s:7:"id_unit";i:1;s:8:"question";}}}}

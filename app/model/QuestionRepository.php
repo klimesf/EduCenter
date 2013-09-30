@@ -26,6 +26,27 @@ class QuestionRepository extends Repository {
 		'id_unit' => $unit
 	));
     }
+   
+    /**
+     * 
+     * @param type $id
+     * @param type $text
+     * @param type $img
+     * @param type $points
+     * @param type $unit
+     */
+    public function updateQuestion($id, $text, $img, $points, $unit)
+    {
+	$data = array(
+	    'text' => $text,
+	    'points' => $points,
+	    'id_unit' => $unit
+	);
+	if($img != null) {  // Pokud uživatel vložil obrázek, uložíme ho
+	    $data['img'] = $img;
+	}
+	return $this->getTable()->where(array('id' => $id))->update($data);
+    }
     
     public function countByUnit($unit_id)
     {

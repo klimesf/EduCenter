@@ -1,19 +1,19 @@
-<?php //netteCache[01]000372a:2:{s:4:"time";s:21:"0.01900000 1379638733";s:9:"callbacks";a:2:{i:0;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:50:"D:\Web\EduCenter\app\templates\Question\edit.latte";i:2;i:1379638730;}i:1;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:10:"checkConst";}i:1;s:25:"Nette\Framework::REVISION";i:2;s:30:"80a7e46 released on 2013-08-08";}}}?><?php
+<?php //netteCache[01]000372a:2:{s:4:"time";s:21:"0.67773300 1380396907";s:9:"callbacks";a:2:{i:0;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:50:"D:\Web\EduCenter\app\templates\Question\edit.latte";i:2;i:1380396900;}i:1;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:10:"checkConst";}i:1;s:25:"Nette\Framework::REVISION";i:2;s:30:"80a7e46 released on 2013-08-08";}}}?><?php
 
 // source file: D:\Web\EduCenter\app\templates\Question\edit.latte
 
 ?><?php
 // prolog Nette\Latte\Macros\CoreMacros
-list($_l, $_g) = Nette\Latte\Macros\CoreMacros::initRuntime($template, 'idiksaow50')
+list($_l, $_g) = Nette\Latte\Macros\CoreMacros::initRuntime($template, 'lkcqtkhdcs')
 ;
 // prolog Nette\Latte\Macros\UIMacros
 //
 // block content
 //
-if (!function_exists($_l->blocks['content'][] = '_lb4417fd7334_content')) { function _lb4417fd7334_content($_l, $_args) { extract($_args)
+if (!function_exists($_l->blocks['content'][] = '_lb1e6eb1be3f_content')) { function _lb1e6eb1be3f_content($_l, $_args) { extract($_args)
 ?><h1>Upravit otázku</h1>
 
-<?php Nette\Latte\Macros\FormMacros::renderFormBegin($form = $_form = (is_object("editQuestionForm") ? "editQuestionForm" : $_control["editQuestionForm"]), array()) ?>
+<?php Nette\Latte\Macros\FormMacros::renderFormBegin($form = $_form = (is_object("questionForm") ? "questionForm" : $_control["questionForm"]), array()) ?>
 <div class="new-question-form">
 <?php if (is_object($form)) $_ctrl = $form; else $_ctrl = $_control->getComponent($form); if ($_ctrl instanceof Nette\Application\UI\IRenderable) $_ctrl->validateControl(); $_ctrl->render('errors') ?>
     <div class="pair">
@@ -67,7 +67,7 @@ if (!function_exists($_l->blocks['content'][] = '_lb4417fd7334_content')) { func
     </div>
 
     <div class="pair">
-	<div class="input"><?php $_input = (is_object("save") ? "save" : $_form["save"]); echo $_input->getControl()->addAttributes(array()) ?></div>
+	<div class="input"><?php $_input = (is_object("insert") ? "insert" : $_form["insert"]); echo $_input->getControl()->addAttributes(array()) ?></div>
     </div>
 
 </div>
