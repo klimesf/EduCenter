@@ -7,6 +7,14 @@ use Nette;
 class QuestionRepository extends Repository {
     
     /**
+     * Vrací otázku podle id
+     * @param type $id
+     */
+    public function getById($id) {
+	return $this->getTable()->get($id);
+    }
+    
+    /**
      * Vrací řádky otázek patřící do jedné kategorie
      * 
      * @param $id id kategorie

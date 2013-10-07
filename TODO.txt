@@ -28,7 +28,7 @@ Mottos:
 
 Tasks:
 20-9-2013
-    - Remake all the MVC classes, start over, focus on keeping code simple and clean
+    + Remake all the MVC classes, start over, focus on keeping code simple and clean
     - Add comments wherever needed
     - Possibly make a chart of the application logic
     + Think through the app logic - especially evaluating the test
@@ -42,3 +42,11 @@ Tasks:
     - Instead of handing $questionId to QuestionDisplay, handle the whole selection,
 	that would help browsing by unit and also would be nice to have prepared
 	such feature for implementing testing module
+
+01-10-2013
+    - Vytvořit třídu Question a podtřídu Answer
+    - Loadovat do nich z databáze
+    - Zapouzdřit databázi
+
+03-10-2013
+    - Remake QuestionDisplay

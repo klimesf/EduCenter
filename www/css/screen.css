@@ -58,14 +58,14 @@ body {
 
 #sidebar {
 	float: left;
-	width: 210px;
-	padding: 10px 0 0 0;
+	width: 13em;
+	padding: 1em;
 	/*border-right: 2px dotted #3484D2;*/
 }
 
 #content {
-	margin-left: 220px;
-	padding: 10px;
+	margin-left: 15em;
+	padding: 1em;
 	border-left: 1px dashed #88B9E9;
 }
 
@@ -160,33 +160,7 @@ tr.odd {
 	background-color: #f3f3f3;
 }
 
-table.tasks tr.done {
-	color: #888;
-	text-decoration: line-through;
-}
-
-table.tasks .created {
-	font-size: smaller;
-	width: 70px;
-	text-align: right;
-	white-space: nowrap;
-	color: #A07D1F;
-}
-
-table.tasks .list {
-	width: 65px;
-}
-
-table.tasks .user {
-	font-size: smaller;
-}
-
-table.tasks .action {
-	width: 75px;
-}
-
-
-/*** Questions ***/
+/*** Question-viewer ***/
 div.question-viewer {
 
 }
@@ -197,12 +171,28 @@ div.question-viewer div.nav {
     padding: 0.5em;
     border-radius: 0.4em;
     text-align: center;
+    margin: 1em 0 2em 0;
+    background: #f5f5f5;
+    overflow: hidden;
+    line-height: 190%;
+}
+
+div.question-viewer div.nav a {
+    /*border: 1px dashed #d3d3d3;*/
+    padding: 0.3em 0.5em;
+    margin: 0 auto;
+    color: #606060;
+}
+
+div.question-viewer div.nav a:hover {
+    background: #606060;
+    color: #fff;
 }
 
 div.question-viewer div.question {
     margin: 0 0 0 0;
     padding: 10px 10px 20px 10px;
-    font-size: 110%;
+    font-size: 115%;
     border-bottom: 1px dashed silver;
 }
 
@@ -227,7 +217,6 @@ div.question-viewer div.correct {
 }
 
 div.question-viewer div.checkbox, div.question-viewer div.checkbox-checked {
-
     width: 26px;
     float: left;
 }
@@ -237,6 +226,7 @@ div.question-viewer div.checkbox a {
     padding: 7px 3px;
     display: block;
     text-align: center;
+    border-radius: 0;
 }
 
 div.question-viewer div.checkbox-checked a {
@@ -246,6 +236,15 @@ div.question-viewer div.checkbox-checked a {
     text-align: center;
     background: #3484D2;
     color: #fff;
+    border-radius: 0;
+}
+
+div.question-viewer div.bottom-bar {
+    margin: 2em 0 0 0;
+    padding: 0.5em;
+    border-top: 1px dashed #909090;
+    background: #f5f5f5;
+    text-align: center;
 }
 
 /*div.question-viewer div.checkbox a:not([href]):hover {

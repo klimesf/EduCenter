@@ -3,7 +3,6 @@ namespace EduCenter;
 use Nette\Application\UI\Control;
 use Nette\Object;
 use Nette\Http\Session;
-use Nette\Diagnostics\Debugger;
 
 class QuestionDisplayControl extends Control {
     /**
@@ -41,6 +40,10 @@ class QuestionDisplayControl extends Control {
      * @var boolean
      */
     private $displayNav = true;
+    /**
+     * Příznak
+     */
+    private $testMode = false;
     
     /**
      * Konstuktor
@@ -48,12 +51,16 @@ class QuestionDisplayControl extends Control {
      * @param EduCenter\QuestionRepository $questionRepository
      * @param EduCenter\AnswerRepository $answerRepository
      */
-    public function __construct(QuestionRepository $questionRepository, AnswerRepository $answerRepository, Session $session, UnitRepository $unitRepository, \Nette\Database\Table\Selection $selection, $questionId = NULL, $answered = NULL) {
+    public function __construct(QuestionRepository $questionRepository, AnswerRepository $answerRepository, Session $session, UnitRepository $unitRepository, \Nette\Database\Table\Selection $selection, $questionId = NULL, $testMode = NULL, $answered = NULL) {
 	parent::__construct();
 	$this->questionRepository = $questionRepository;
 	$this->answerRepository = $answerRepository;
 	$this->unitRepository = $unitRepository;
-	
+	if($testMode != null)
+	    $this->testMode = $testMode;
+	else
+	    $this->testMode = false;
+		
 	// Práce se sessions
 	$this->session = $session->getSection('QuestionDisplay');
 	$this->session->setExpiration(0);
@@ -92,7 +99,7 @@ class QuestionDisplayControl extends Control {
 	}
     }
     
-    
+    /* --- Obsluha signálů ---------------------------------------------------*/
     /**
      * Obsluha signálu checkAnswer
      * @param int(11) $answerId
@@ -138,39 +145,20 @@ class QuestionDisplayControl extends Control {
 	$this->questionId = $questionId;
 	$this->session->questionId = $questionId;
     }
-    
-    /**
-     * Zjistí, zda existuje předchozí otázka
-     * @return boolean
-     */
-    protected function hasPrevious() {
-	$key = array_search($this->questionId, $this->questionArray);
-	if(isSet($this->questionArray[$key-1])) {
-	    return true;
-	} else {
-	    return false;
-	}
-    }
-    
-    /**
-     * Zjistí, zda existuje následující otázka
-     * @return boolean
-     */
-    protected function hasNext() {
-	$key = array_search($this->questionId, $this->questionArray);
-	if(isSet($this->questionArray[$key+1])) {
-	    return true;
-	} else {
-	    return false;
-	}
-    }
+    /* -----------------------------------------------------------------------*/
     
     /**
      * Vrátí id otázky
-     * @param int $jump posun od stávající otázky
-     * @return boolean
+     * @param int $jump relativní posun od aktuálně zvolené otázky, nebo klíčová slova 'last' a 'first'
+     * @return mixed Vrátí id otázky nebo false, pokud otázka neexistuje
      */
     protected function getQuestionId($jump = null) {
+	if($jump == 'last') {
+	    return $this->questionArray[sizeof($this->questionArray)-1];
+	}
+	if($jump == 'first') {
+	    return $this->questionArray[0];
+	}
 	$key = array_search($this->questionId, $this->questionArray);
 	if(isSet($this->questionArray[$key+$jump])) {
 	    return $this->questionArray[$key+$jump];
@@ -188,8 +176,8 @@ class QuestionDisplayControl extends Control {
 	$template->setFile(__DIR__ . '/QuestionDisplay.latte');
 	
 	// Získáme data pro vykreslování
-	$question = $this->questionRepository->findBy(array('id' => $this->questionId))->fetch();
-	$answers = $this->answerRepository->findBy(array('id_question' => $this->questionId));
+	$question = $this->questionRepository->getById($this->questionId);
+	$answers = $this->answerRepository->findByQuestion($this->questionId);
 	
 	// Předáme veškerá potřebná data šabloně
 	$this->template->question = $question;
@@ -197,15 +185,28 @@ class QuestionDisplayControl extends Control {
 	$this->template->answered = $this->answered;
 	$this->template->checkedAnswers = $this->checkedAnswers;
 	$this->template->displayNav = $this->displayNav;
-	$this->template->hasPrevious = $this->hasPrevious();
 	$this->template->previousId = $this->getQuestionId(-1);
-	$this->template->hasNext = $this->hasNext();
 	$this->template->nextId = $this->getQuestionId(+1);
 	$this->template->numberOfQuestions = sizeof($this->questionArray);
 	$this->template->numberOfCurrentQuestion = array_search($this->questionId, $this->questionArray)+1;
+	// Předáme odkaz na první a poslední otázku, pokud jsme na první nebo poslední, odkaz nepředáme
+	if($this->getQuestionId('last') != $this->questionId) {
+	    $this->template->lastId = $this->getQuestionId('last');
+	} else {
+	    $this->template->lastId = false;
+	}
+	if($this->getQuestionId('first') != $this->questionId) {
+	    $this->template->firstId = $this->getQuestionId('first');
+	} else {
+	    $this->template->firstId = false;
+	}
+	// Skok dolů a nahorů
+	$this->template->skipDownId = $this->getQuestionId(-10);
+	$this->template->skipUpId = $this->getQuestionId(10);
 	
 	$unit = $this->unitRepository->findBy(array('id' => $question->id_unit))->fetch();
 	$this->template->unitName = $unit->name;
+	$this->template->AnswerIteratorMask = new AnswerIteratorMask;
 	
 	// Vykreslíme šablonu
 	$template->render();
@@ -294,5 +295,22 @@ class CheckedAnswers extends Object implements \Serializable {
      */
     public function unserialize($array) {
 	$this->array = unserialize($array);
+    }
+}
+
+/**
+ * Třída nahrazující čísla otázek za písmena
+ */
+class AnswerIteratorMask extends \Nette\Object {
+    /**
+     * Vrátí místo čísla písmeno A-Z
+     * @param int Pořadí prvku
+     * @return char Výsledné písmeno
+     */
+    public static function getChar($i) {
+	// Potřeba předělat
+	//  Po Z jde @ a pak znova A (iterátor začíná od 1)
+	$i = ($i % 27)+64;
+	return chr($i);
     }
 }

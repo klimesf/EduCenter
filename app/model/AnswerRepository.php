@@ -17,6 +17,30 @@ class AnswerRepository extends Repository {
 	return $this->findBy(array('id_question' => $id));
     }
     
+    /**
+     * Vrátí odpověď podle daného Id
+     * @param int $id Id hledané odpovědi
+     * @return EduCenter\Answer
+     */
+    public function getById($id) {
+	$sel = $this->getTable()->get($id);
+	return new Answer($sel->id, $sel->text, $sel->correct, $sel->questionId);
+    }
+    
+    /**
+     * Vrátí pole odpovědí patřící otázce s daným Id
+     * @param int $questionId
+     * @return array EduCenter\Answer
+     */
+    /*public function findByQuestion($questionId) {
+	$sel = $this->getTable()->findBy(array('id_question' => $questionId));
+	$arr = array();
+	foreach($sel as $sel) {
+	    $arr[] = new Answer($sel->id, $sel->text, $sel->correct, $sel->questionId);
+	}
+	return $arr;
+    }*/
+     
     public function addAnswer($text, $correct, $question_id)
     {
 	return $this->getTable()->insert(array(

@@ -3,11 +3,23 @@
 	Procházení otázek -> {$unitName}
 	<div class="nav">
 	    Otázka {$numberOfCurrentQuestion} z {$numberOfQuestions}</br>
-	    {if $hasPrevious}
-		<a n:href="goTo! $previousId" accesskey="q">&lt; Předchozí otázka</a>
+	    {if $firstId}
+		<a n:href="goTo! $firstId">|&lt;</a>
 	    {/if}
-	    {if $hasNext}
-		<a n:href="goTo! $nextId" accesskey="w">Následující otázka &gt;</a>
+	    {if $skipDownId}
+		<a n:href="goTo! $skipDownId">&lt;&lt;</a>
+	    {/if}
+	    {if $previousId}
+		<a n:href="goTo! $previousId" accesskey="q">&lt; Předchozí</a>
+	    {/if}
+	    {if $nextId}
+		<a n:href="goTo! $nextId" accesskey="w">Další &gt;</a>
+	    {/if}
+	    {if $skipUpId}
+		<a n:href="goTo! $skipUpId">&gt;&gt;</a>
+	    {/if}
+	    {if $lastId}
+		<a n:href="goTo! $lastId">&gt;|</a>
 	    {/if}
 	</div>
     {/if}
@@ -22,9 +34,9 @@
 	{if !$answered}
 	<div n:class="$checkedAnswers->isAnswerChecked($answer->id) ? checkbox-checked : checkbox">
 	    {if $checkedAnswers->isAnswerChecked($answer->id)}
-	    <a n:href="uncheckAnswer! $answer->id">{$iterator->getCounter()}</a>
+	    <a n:href="uncheckAnswer! $answer->id">{$AnswerIteratorMask::getChar($iterator->getCounter())}</a>
 	    {else}
-	    <a n:href="checkAnswer! $answer->id">{$iterator->getCounter()}</a>
+	    <a n:href="checkAnswer! $answer->id">{$AnswerIteratorMask::getChar($iterator->getCounter())}</a>
 	    {/if}
 	</div>
 	<div n:class="answer" colspan="2">{!$answer->text}</div>
@@ -34,11 +46,13 @@
 	{/if}
     </div>
     {/foreach}
+    <div class="bottom-bar">
     {if !$answered}
     <a n:href="evaluate!" accesskey="a">Vyhodnotit</a>
     {/if}
-    <div n:foreach="$flashes as $flash" class="flash {$flash->type}">{$flash->message}</div>
     {if $user->isInRole('admin')}
-	<a href="{plink Question:edit $question->id}">Upravit otázku</a>
+    <a href="{plink Question:edit $question->id}">Upravit otázku</a>
+    </div>
     {/if}
+    <div n:foreach="$flashes as $flash" class="flash {$flash->type}">{$flash->message}</div>
 </div>

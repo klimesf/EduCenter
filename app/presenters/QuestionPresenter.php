@@ -59,7 +59,7 @@ class QuestionPresenter extends BasePresenter {
     
     public function actionBrowseByUnit($unitId) {
 	// Vybereme otázky dané kategorie
-	$this->selection = $this->questionRepository->findBy(array('id_unit' => $unitId))->order('id ASC');
+	$this->selection = $this->questionRepository->findByUnit($unitId)->order('id ASC');
 	// Pokud kategorie nemá otázky, přesměrujeme zpět na výběr kategorií
 	if(!$this->selection) {
 	    $this->flashMessage ('Tato kategorie neobsahuje žádné otázky.', 'error');
