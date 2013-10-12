@@ -50,3 +50,9 @@ Tasks:
 
 03-10-2013
     - Remake QuestionDisplay
+	- Optimized some of the methods, rework rescheduled (no need too fiddle while it works flawlessly)
+
+07-10-2013
+    - Add option to report a problem with a question
+    - Add option to response to the reported problem and mark it (un)resolved
+    - For the report, make either a JS pop-up window or independent action either in QuestionDisplay or QuestionPresenter

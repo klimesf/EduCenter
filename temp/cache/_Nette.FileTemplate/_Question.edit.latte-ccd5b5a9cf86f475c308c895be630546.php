@@ -1,16 +1,16 @@
-<?php //netteCache[01]000372a:2:{s:4:"time";s:21:"0.67773300 1380396907";s:9:"callbacks";a:2:{i:0;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:50:"D:\Web\EduCenter\app\templates\Question\edit.latte";i:2;i:1380396900;}i:1;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:10:"checkConst";}i:1;s:25:"Nette\Framework::REVISION";i:2;s:30:"80a7e46 released on 2013-08-08";}}}?><?php
+<?php //netteCache[01]000372a:2:{s:4:"time";s:21:"0.11247100 1381601166";s:9:"callbacks";a:2:{i:0;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:50:"D:\Web\EduCenter\app\templates\Question\edit.latte";i:2;i:1381601164;}i:1;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:10:"checkConst";}i:1;s:25:"Nette\Framework::REVISION";i:2;s:30:"80a7e46 released on 2013-08-08";}}}?><?php
 
 // source file: D:\Web\EduCenter\app\templates\Question\edit.latte
 
 ?><?php
 // prolog Nette\Latte\Macros\CoreMacros
-list($_l, $_g) = Nette\Latte\Macros\CoreMacros::initRuntime($template, 'lkcqtkhdcs')
+list($_l, $_g) = Nette\Latte\Macros\CoreMacros::initRuntime($template, 'mjny25toea')
 ;
 // prolog Nette\Latte\Macros\UIMacros
 //
 // block content
 //
-if (!function_exists($_l->blocks['content'][] = '_lb1e6eb1be3f_content')) { function _lb1e6eb1be3f_content($_l, $_args) { extract($_args)
+if (!function_exists($_l->blocks['content'][] = '_lbbd784281ac_content')) { function _lbbd784281ac_content($_l, $_args) { extract($_args)
 ?><h1>Upravit otázku</h1>
 
 <?php Nette\Latte\Macros\FormMacros::renderFormBegin($form = $_form = (is_object("questionForm") ? "questionForm" : $_control["questionForm"]), array()) ?>
@@ -72,6 +72,10 @@ if (!function_exists($_l->blocks['content'][] = '_lb1e6eb1be3f_content')) { func
 
 </div>
 <?php Nette\Latte\Macros\FormMacros::renderFormEnd($_form) ?>
+
+
+<h2>Nahlášené problémy</h2>
+<?php $_ctrl = $_control->getComponent("questionReportList"); if ($_ctrl instanceof Nette\Application\UI\IRenderable) $_ctrl->validateControl(); $_ctrl->renderByQuestion() ?>
 
 <?php
 }}

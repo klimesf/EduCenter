@@ -41,18 +41,37 @@
 	</div>
 	<div n:class="answer" colspan="2">{!$answer->text}</div>
 	{else}
-	<div n:class="$checkedAnswers->isAnswerChecked($answer->id) ? checkbox-checked : checkbox"><a>{$iterator->getCounter()}</a></div>
+	<div n:class="$checkedAnswers->isAnswerChecked($answer->id) ? checkbox-checked : checkbox"><a>{$AnswerIteratorMask::getChar($iterator->getCounter())}</a></div>
 	<div n:class="$answer->correct ? correct : answer" colspan="2">{!$answer->text}</div>
 	{/if}
     </div>
     {/foreach}
     <div class="bottom-bar">
-    {if !$answered}
-    <a n:href="evaluate!" accesskey="a">Vyhodnotit</a>
-    {/if}
-    {if $user->isInRole('admin')}
-    <a href="{plink Question:edit $question->id}">Upravit otázku</a>
-    </div>
+    {if !$answered && ($user->isInRole('member') || $user->isInRole('admin'))}
+	<a class="evaluate" n:href="evaluate!" accesskey="a">Vyhodnotit</a>
     {/if}
     <div n:foreach="$flashes as $flash" class="flash {$flash->type}">{$flash->message}</div>
+    </div>
+    {if $user->isInRole('admin')}
+    <span class="smaller"><a href="{plink Question:edit $question->id}">Upravit otázku</a> | <a href="{plink Question:reportsByQuestion $question->id}">Vypsat nahlášení</a> | Počet nevyřešených problémů: {$numberOfUnresolvedReports}</span><br />
+    {/if}
+    <span class="smaller">Je v otázce chyba? <a href="#report-form" class="topopup">Nahlašte</a> ji.</span>
+
+    <div id="toPopup">
+    <div id="report-form" class="">
+	<h2>Nahlášení problému s otázkou</h2>
+	{form reportForm}
+	    {control $form errors}
+	    <div class="pair">
+		{label text /}
+		<div class="input">{input text}</div>
+	    </div>
+	    <div class="pair">
+		<div class="input">{input report}</div>
+	    </div>
+	{/form}
+    </div>
+    </div>
+    <div class="loader"></div>
+    <div id="backgroundPopup"></div>
 </div>

@@ -33,6 +33,8 @@ common:
 		unitRepository: EduCenter\UnitRepository
 		questionRepository: EduCenter\QuestionRepository
 		answerRepository: EduCenter\AnswerRepository
+		testRepository: EduCenter\TestRepository
+		questionReportRepository: EduCenter\QuestionReportRepository
 
 	factories:
 

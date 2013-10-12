@@ -1,19 +1,22 @@
-<?php //netteCache[01]000375a:2:{s:4:"time";s:21:"0.51194200 1380421108";s:9:"callbacks";a:2:{i:0;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:53:"D:\Web\EduCenter\app\templates\Homepage\default.latte";i:2;i:1380421106;}i:1;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:10:"checkConst";}i:1;s:25:"Nette\Framework::REVISION";i:2;s:30:"80a7e46 released on 2013-08-08";}}}?><?php
+<?php //netteCache[01]000375a:2:{s:4:"time";s:21:"0.86879900 1381183761";s:9:"callbacks";a:2:{i:0;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:53:"D:\Web\EduCenter\app\templates\Homepage\default.latte";i:2;i:1381183755;}i:1;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:10:"checkConst";}i:1;s:25:"Nette\Framework::REVISION";i:2;s:30:"80a7e46 released on 2013-08-08";}}}?><?php
 
 // source file: D:\Web\EduCenter\app\templates\Homepage\default.latte
 
 ?><?php
 // prolog Nette\Latte\Macros\CoreMacros
-list($_l, $_g) = Nette\Latte\Macros\CoreMacros::initRuntime($template, '5y2mh2jcko')
+list($_l, $_g) = Nette\Latte\Macros\CoreMacros::initRuntime($template, '916ea6idqv')
 ;
 // prolog Nette\Latte\Macros\UIMacros
 //
 // block content
 //
-if (!function_exists($_l->blocks['content'][] = '_lba4fc04c775_content')) { function _lba4fc04c775_content($_l, $_args) { extract($_args)
+if (!function_exists($_l->blocks['content'][] = '_lb53e808892a_content')) { function _lb53e808892a_content($_l, $_args) { extract($_args)
 ?><h1>EduCenter</h1>
 
-<p>Zdravím Mišáka a přeji příjemné učení :P</p>
+<h2>O projektu</h2>
+<p>Projekt vznikl za účelem snadného e-testování. Podnětem bylo blížící se studium k přijmacím zkouškám na medicínu. První databáze otázek jsou tedy modelové otázky pro přijímací zkoušky na <i>2. Lékařskou Fakultu Univerzity Karlovy</i>.
+Dále bych chtěl databázi rozšířit o další sady otázek k přijímacím zkouškám.</p>
+<h2>Zdravím Mišáka a přeji příjemné učení :P</2>
 
 <?php
 }}

@@ -37,27 +37,35 @@
     </div>
 
     <div id="container">
+	{snippet flashMessages}
+	<div n:foreach="$flashes as $flash" class="flash {$flash->type}">{$flash->message}</div>
+	{/snippet}
 	{if $user->isLoggedIn()}
 	<div id="sidebar">
 	    <ul>
+		<ul>
+		<h3>Navigace</h3>
 		<li><a n:href="Homepage:">Domů</a></li>
-		<li><a n:href="Question:add">Přidat otázku</a></li>
 		<!-- <li><a n:href="Question:edit 2">Editovat otázku</a></li> -->
 		<li><a n:href="Test:">Testování</a></li>
 		<li><a n:href="Question:">Procházení otázek</a></li>
+		</ul>
+		{if $user->isInRole('admin')}
+		<ul>
+		<h3>Administrace</h3>
+		<li><a n:href="Question:add">Přidat otázku</a></li>
+		<li><a n:href="Question:reports">Procházet nahlášené</a></li>
+		</ul>
+		{/if}
 	    </ul>
 	</div>
 	{/if}
 	<div id="content">
-		{snippet flashMessages}
-		<div n:foreach="$flashes as $flash" class="flash {$flash->type}">{$flash->message}</div>
-		{/snippet}
-
 		{include #content}
 	</div>
 
 	<div id="footer">
-	(c) Filip Klimeš 2013, powered by <a href="http://nette.org">Nette Framework</a>
+	<span class="smaller">(c) Filip Klimeš 2013, powered by <a href="http://nette.org">Nette Framework</a></span>
 	</div>
 </div>
 

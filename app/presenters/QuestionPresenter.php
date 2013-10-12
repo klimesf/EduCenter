@@ -22,6 +22,9 @@ class QuestionPresenter extends BasePresenter {
     /** @var EduCenter\UnitRepository */
     private $unitRepository;
     
+    /** @var EduCenter\QuestionReportRepository */
+    private $questionReportRepository;
+    
     /** Id zobrazované otázky @var int(11) */
     private $questionId = null;
     
@@ -30,13 +33,14 @@ class QuestionPresenter extends BasePresenter {
     
 
     public function inject(EduCenter\UserRepository $userRepository, EduCenter\Authenticator $authenticator, EduCenter\QuestionRepository $questionRepository,
-	    EduCenter\AnswerRepository $answerRepository, EduCenter\UnitRepository $unitRepository)
+	    EduCenter\AnswerRepository $answerRepository, EduCenter\UnitRepository $unitRepository, EduCenter\QuestionReportRepository $questionReportRepository)
     {
 	$this->userRepository = $userRepository;
 	$this->authenticator = $authenticator;
 	$this->questionRepository = $questionRepository;
 	$this->unitRepository = $unitRepository;
 	$this->answerRepository = $answerRepository;
+	$this->questionReportRepository = $questionReportRepository;
     }
     
     protected function startup() {
@@ -87,25 +91,62 @@ class QuestionPresenter extends BasePresenter {
 	$this->questionId = $questionId;
     }
     
+    public function actionReports() {
+	if (!$this->getUser()->isInRole('admin')) {
+	    $this->redirect('Question:');
+	}
+    }
+    
+    public function actionReportsByQuestion($questionId) {
+	if (!$this->getUser()->isInRole('admin')) {
+	    $this->redirect('Question:');
+	}
+	$this->questionId = $questionId;
+	// Vybereme otázku, abychom ji mohli vypsat
+	$this->selection = $this->questionRepository->findBy(array('id' => $questionId));
+	if(!$this->selection) {
+	    $this->flashMessage ('Otázka neexistuje.', 'error');
+	    $this->redirect('Question:');
+	}
+    }
+    
+    public function actionAddReport($questionId) {
+	if (!$this->getUser()->isInRole('admin')) {
+	    $this->redirect('Question:');
+	}
+	$this->questionId = $questionId;
+	$this->selection = $this->questionRepository->findBy(array('id' => $questionId));
+	if(!$this->selection) {
+	    $this->flashMessage ('Otázka neexistuje.', 'error');
+	    $this->redirect('Question:');
+	}
+    }
     
     /* --- Továrničky --------------------------------------------------------*/
     
     /**
      * Továrnička vytvářející komponentu QuestionDisplay
-     * @param type $id		id zobrazované otázky
-     * @param type $answered	volitelná proměnná - je otázka zodpovězena?
      * @return \EduCenter\QuestionDisplayControl    vytvořená komponenta
      */
     protected function createComponentQuestionDisplay() {
 	return new EduCenter\QuestionDisplayControl($this->questionRepository, $this->answerRepository,
-		$this->context->session, $this->unitRepository, $this->selection, $this->questionId);
+		$this->context->session, $this->unitRepository, $this->questionReportRepository, $this->selection, $this->questionId);
     }
     
-    
+    /**
+     * Továrnička vytvářející komponentu QuestionReportList
+     * @return \EduCenter\QuestionReportListControl	vytvořená komponenta
+     */
+    protected function createComponentQuestionReportList() {
+	if($this->questionId === null)
+	    return new EduCenter\QuestionReportListControl($this->questionReportRepository);
+	else
+	    return new EduCenter\QuestionReportListControl($this->questionReportRepository, $this->questionId);
+    }
     
     /**
      * Továrnička pro formulář, který vytváří a edituje otázku a její odpovědi
-     * @return \Nette\Application\UI\Form
+     * @return \Nette\Application\UI\Form   vytvořený formulář
      */
     protected function createComponentQuestionForm() {
 	$unitPairs = $this->unitRepository->findAll()->fetchPairs('id', 'name');
@@ -174,8 +215,6 @@ class QuestionPresenter extends BasePresenter {
 	return $form;
     }
     
-    
-    
     public function questionFormSucceeded(Form $form) {
 	$file = $form['img']->getValue();
 	$file_name = NULL;
@@ -209,9 +248,7 @@ class QuestionPresenter extends BasePresenter {
 	$this->questionId = $form->values->questionId;
 	
 	// Uložení otázky
-	if(!$this->questionRepository->updateQuestion($this->questionId, $form->values->text, $file_name, $form->values->points, $form->values->unit)) {
-	    $this->flashMessage('Úprava otázky se nezdařila.', 'error');
-	}
+	$this->questionRepository->updateQuestion($this->questionId, $form->values->text, $file_name, $form->values->points, $form->values->unit);
 	
 	// Uložení odpovědí
 	$this->answerRepository->updateAnswer($form->values->answer1id, $form->values->answer1, $form->values->answer1correct);
@@ -220,5 +257,4 @@ class QuestionPresenter extends BasePresenter {
 	$this->answerRepository->updateAnswer($form->values->answer4id, $form->values->answer4, $form->values->answer4correct);
 	$this->flashMessage('Otázka upravena.', 'success');
     }    
-    
 }

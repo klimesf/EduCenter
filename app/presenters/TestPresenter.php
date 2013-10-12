@@ -1,6 +1,7 @@
 <?php
 
 class TestPresenter extends BasePresenter {
+    private $testRepository;
     private $testId;
     
     protected function startup() {
@@ -11,8 +12,12 @@ class TestPresenter extends BasePresenter {
 	}
     }
     
+    public function inject(EduCenter\TestRepository $testRepository) {
+	$this->testRepository = $testRepository;
+    }
+    
     public function actionDefault() {
-	
+	$this->template->tests = $this->testRepository->findAll();
     }
     
     public function actionBrowse($testId) {

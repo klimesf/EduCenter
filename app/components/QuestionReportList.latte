@@ -1,0 +1,15 @@
+{block content}
+    <div class="report-list">
+	{foreach $reports as $report}
+	<div n:class="$iterator->odd ? odd : even, $report->resolved ? resolved">
+	    <div class="text"><strong>Popis problému:</strong> {$report->text}</div>
+	    <div class="commentary">{$report->commentary}</div>
+	    <div class="date"><strong>Přidáno:</strong> {$report->date->format("d.m.Y")}</div>
+	    <a href="{plink Question:edit $report->questionId}">Zobrazit otázku</a>
+	    {if !$report->resolved}
+	    | <a n:href="markResolved! $report->id">Označit jako vyřešené</a>
+	    {/if}
+	</div>
+	{/foreach}
+    </div>
+{/block}

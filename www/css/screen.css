@@ -1,85 +1,87 @@
 body {
-	font-size: 10pt;
+	font-size: 12pt;
 	line-height: 1.6;
 	color: #333;
-	background: #fff;
+	background: #f5f5f5;
 	padding: 0;
 	margin: 0;
-	font-family: Gotham, Verdana;
+	font-family: Tahoma, Geneva, sans-serif;
 }
 
 #header {
-	background: #88B9E9;
+	background: #6FAFE9;
 	/*border-bottom: 0.2em solid #114E89;*/
 	margin: 0;
 }
 
 #header div.title {
 	color: white;
-	padding: 8px 0;
+	padding: 0.5em 0.5em;
 	font-size: 150%;
 	/* text-shadow: rgba(0, 0, 0, 0.5) 1px 1px 2px; */
 }
 
 #header a {
-	color: #fff
+    color: #fff
 }
 
 #header a img {
-    vertical-align:text-top;
-
+    vertical-align: text-top;
+    border: 0;
     
 }
 
 #header div.user {
-	padding: 12px 1em;
-	color: #FFF;
-	position: absolute;
-	top: 0;
-	right: 0;
+    padding: 1.1em 1em 0;
+    color: #FFF;
+    position: absolute;
+    top: 0;
+    right: 0;
 }
 
 #header div.user a {
-	color: #FFF;
+    color: #FFF;
 }
 
 #header-inner {
-	width: 900px;
-	margin: 0 auto;
-	position: relative;
+    width: 70em;
+    margin: 0 auto;
+    position: relative;
 }
 #container {
-	overflow: hidden;
-	width: 900px;
-	margin: 0 auto 0 auto;
-	/*background: #fff;*/
-	padding: 20px;
+    overflow: hidden;
+    width: 70em;
+    margin: 0 auto 0 auto;
+    /*background: #fff;*/
+    padding: 2em 1em;
 }
 
 #sidebar {
 	float: left;
-	width: 13em;
-	padding: 1em;
+	width: 15em;
+	padding: 0 0 1em;
 	/*border-right: 2px dotted #3484D2;*/
 }
 
 #content {
-	margin-left: 15em;
-	padding: 1em;
-	border-left: 1px dashed #88B9E9;
+	margin-left: 16em;
+	padding: 2em;
+	/*border-left: 1px dashed #88B9E9;*/
+	border-radius: 0.5em;
+	background: #fff;
+	/*box-shadow: 0 0 8px rgba(0,0,0,0.3);*/
+	border: 1px solid #d0d0d0;
 }
 
 #footer {
-	margin: 0;
 	text-align: center;
-	font-size: smaller;
-	background: #eaeaea;
-
+	background: #fff;
+	margin: 7em auto 0;
 	padding: 1em;
-	position: fixed;
-	bottom: 0;
-	right: 0;
-	width: 100%;
+	width: 68em;
+	border-radius: 0.5em;
+	border: 1px solid #d0d0d0;
+	clear: both;
 }
 
 
@@ -89,6 +91,14 @@ div#sidebar ul {
 	padding: 0;
 	list-style: none;
 	display: block;
+	border-radius: 0.5em;
+}
+
+div#sidebar ul ul {
+    padding: 1em 0 1em 0;
+    margin: 0 0 3em 0;
+    background: #fff;
+    border: 1px solid #d0d0d0;
 }
 
 div#sidebar li {
@@ -99,45 +109,68 @@ div#sidebar a {
 	text-decoration: none;
 	display: block;
 	padding: 0 0.5em;
+	margin: 0 0.5em;
 	font-size: 100%;
+	border-radius: 0.4em;
 }
 
+div#sidebar a:hover {
+    background-color: #3484D2;
+    color: #fff;
+}
+
+div#sidebar h3 {
+    font-size: 1em;
+    padding: 0 1em 0.3em;
+    margin: 0 0 0.3em 0;
+    font-weight: normal;
+    border-radius: 0.5em;
+}
 
 /*** Typo ***/
 h1 {
-	font-size: 130%;
-	font-weight: bold;
-	margin: 0 0 .6em;
+    font-size: 130%;
+    font-weight: bold;
+    margin: 0 0 .6em;
+    padding: 0.5em 1em;
+    border-radius: 0.5em;
+    background: #f3f3f3;
 }
 
 h2 {
 	font-size: 115%;
 	font-weight: bold;
-	margin: 1em 0 .6em;
+	margin: 1.5em 0 0.5em;
+	padding: 0 1em;
+}
+
+p {
+    padding: 1em;
 }
 
 a {
-	color: #3484D2;
-	text-decoration: none;
-	border-radius: 0.4em;
-	padding: 0 0.4em;
+    color: #3484D2;
+    text-decoration: none;
+    padding: 0;
 }
 
 a[href]:hover, a:active, a:focus {
-	background-color: #3484D2;
-	color: #ffffff;
+	background-color: rgba(0,0,0,0.1);
+	color: #000;
 }
 
 table {
 	width: 100%;
 	border-collapse: separate;
 	border-spacing: 0;
-	margin: 1em 0 2em;
+	margin: 2em 0 2em;
+	font-size: 95%;
 }
 
 thead th {
 	text-align: left;
 	color: #666;
+	border-bottom: 1px solid #d0d0d0;
 }
 
 th, td {
@@ -145,11 +178,17 @@ th, td {
 }
 
 td {
-	border-top: 1px solid #F2EEE1;
+	/*border-top: 1px solid #F2EEE1;*/
 }
 
 td.number {
     text-align: right;
+}
+
+tr.even:hover, tr.odd:hover {
+   cursor: pointer;
+   background-color: #CEE0F0;
+   /* whatever other hover styles you want */
 }
 
 tr.even {
@@ -160,24 +199,33 @@ tr.odd {
 	background-color: #f3f3f3;
 }
 
+tr a {
+    color: #000;
+}
+
+span.smaller {
+    font-size: 90%;
+}
+
 /*** Question-viewer ***/
 div.question-viewer {
-
+    padding: 1em;
 }
 
 div.question-viewer div.nav {
     background: #fff;
-    border-bottom: 1px dashed #909090;
+    border-bottom: 1px solid #d0d0d0;
     padding: 0.5em;
-    border-radius: 0.4em;
     text-align: center;
-    margin: 1em 0 2em 0;
-    background: #f5f5f5;
+    margin: 1em 0 3em 0;
+    background: #fff;
     overflow: hidden;
     line-height: 190%;
+    color: #606060;
 }
 
 div.question-viewer div.nav a {
+    font-size: 90%;
     /*border: 1px dashed #d3d3d3;*/
     padding: 0.3em 0.5em;
     margin: 0 auto;
@@ -185,15 +233,14 @@ div.question-viewer div.nav a {
 }
 
 div.question-viewer div.nav a:hover {
-    background: #606060;
-    color: #fff;
+    background: #f3f3f3;
+    color: #000;
 }
 
 div.question-viewer div.question {
     margin: 0 0 0 0;
     padding: 10px 10px 20px 10px;
-    font-size: 115%;
-    border-bottom: 1px dashed silver;
+    border-bottom: 1px solid #d0d0d0;
 }
 
 div.question-viewer div.even {
@@ -205,33 +252,40 @@ div.question-viewer div.odd {
 }
 
 div.question-viewer div.answer {
-    margin: 0 0 0 26px;
-    padding: 7px 3px;
+    margin: 0 0 0 2em;
+    padding: 0.5em;
     
 }
 
-div.question-viewer div.correct {
-    background: #ABF26D;
-    margin: 0 0 0 26px;
-    padding: 7px 3px;
+div.question-viewer div.even div.correct, div.question-viewer div.odd div.correct {
+    margin: 0 0 0 2em;
+    padding: 0.5em;
+}
+
+div.question-viewer div.even div.correct {
+    background: #C6D880;
+}
+
+div.question-viewer div.odd div.correct {
+    background: #DDECA4;
 }
 
 div.question-viewer div.checkbox, div.question-viewer div.checkbox-checked {
-    width: 26px;
+    width: 1em;
     float: left;
 }
 
 div.question-viewer div.checkbox a {
-    width: 20px;
-    padding: 7px 3px;
+    width: 1em;
+    padding: 0.5em;
     display: block;
     text-align: center;
     border-radius: 0;
 }
 
 div.question-viewer div.checkbox-checked a {
-    width: 20px;
-    padding: 7px 3px;
+    width: 1em;
+    padding: 0.5em;
     display: block;
     text-align: center;
     background: #3484D2;
@@ -240,11 +294,23 @@ div.question-viewer div.checkbox-checked a {
 }
 
 div.question-viewer div.bottom-bar {
-    margin: 2em 0 0 0;
+    margin: 2em 0 3em 0;
     padding: 0.5em;
-    border-top: 1px dashed #909090;
-    background: #f5f5f5;
+    /*border-top: 1px dashed #909090;
+    background: #f5f5f5;*/
     text-align: center;
+}
+
+div.question-viewer div.bottom-bar a.evaluate {
+    background: #3484D2;
+    padding: 1em;
+    color: #fff;
+    font-weight: bold;
+    border-radius: 0.5em;
+}
+
+div.question-viewer div.bottom-bar a.evaluate:hover {
+    background: #6FAFE9;
 }
 
 /*div.question-viewer div.checkbox a:not([href]):hover {
@@ -252,6 +318,30 @@ div.question-viewer div.bottom-bar {
     color: #3484D2;
 }
 */
+
+/*** Report-list ***/
+div.report-list {
+    padding: 0;
+    margin: 2em 0;
+    border-top: 1px dashed #606060;
+}
+
+div.report-list div.even, div.report-list div.odd {
+    padding: 1em;
+}
+
+div.report-list div.even {
+    background-color: #f3f3f3;
+}
+
+div.report-list div.odd {
+    background-color: #f9f9f9;
+}
+
+div.report-list .resolved {
+   color: #909090;
+}
+
 /*** Forms ***/
 fieldset {
 	font-size: smaller;
@@ -278,26 +368,26 @@ form div.pair {
 form div.spacer {
     border-bottom: 1px dashed silver;
     height: 1px;
-    margin: 10px;
-    width: 600px;
-    float: left;
+    margin: 2em 1em;
+    clear: both;
 }
 
 form div.pair label {
 	display: block;
-	width: 130px;
+	width: 13em;
 	text-align: right;
 	float: left;
+	padding: 0 1em 0 0;
 	line-height: 2;
 	vertical-align: middle;
 }
 
 form div.pair div.input {
-	margin-left: 150px;
+	margin-left: 15em;
 }
 
 form div.pair div.input label {
-	width: 150px;
+	width: 15em;
 	display: inline;
 	float: none;
 	line-height: normal;
@@ -319,7 +409,7 @@ form ul.error li {
 }
 
 input[type=text], input[type=password], select {
-	border-radius: 3px;
+	border-radius: 0.5em;
 	border: 1px solid silver;
 	padding: .3em;
 	margin-right: .5em;
@@ -334,6 +424,7 @@ div.flash {
 	padding: .8em;
 	margin-bottom: 1em;
 	border: 2px solid #ddd;
+	border-radius: 0.5em;
 }
 
 div.flash.success {
@@ -353,6 +444,85 @@ div.flash.error {
 	color: #8a1f11;
 	border-color: #FBC2C4;
 }
+
+/*** Pop-up ***/
+#backgroundPopup {
+    z-index:1;
+    position: fixed;
+    display:none;
+    height:100%;
+    width:100%;
+    background:#000000;
+    top:0px;
+    left:0px;
+}
+#toPopup {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border: 0.4em solid #d3d3d3;
+    border-radius: 0.4em;
+    display: none;
+    left: 50%;
+    margin-left: -20em;
+    position: fixed;
+    top: 20%;
+    width: 40em;
+    padding: 2em ;
+    z-index: 2;
+}
+#toPopup h2 {
+    text-align: center;
+    margin: 0 0 2em 0;
+}
+div.loader {
+    background: url("../img/loading.gif") no-repeat scroll 0 0 transparent;
+    height: 32px;
+    width: 32px;
+    display: none;
+    z-index: 9999;
+    top: 40%;
+    left: 50%;
+    position: absolute;
+    margin-left: -10px;
+}
+div.close {
+    background: url("../img/closebox.png") no-repeat scroll 0 0 transparent;
+    cursor: pointer;
+    height: 30px;
+    position: absolute;
+    right: -27px;
+    top: -24px;
+    width: 30px;
+}
+span.ecs_tooltip {
+    background: none repeat scroll 0 0 #000000;
+    border-radius: 2px 2px 2px 2px;
+    color: #FFFFFF;
+    display: none;
+    font-size: 11px;
+    height: 16px;
+    opacity: 0.7;
+    padding: 4px 3px 2px 5px;
+    position: absolute;
+    right: -62px;
+    text-align: center;
+    top: -51px;
+    width: 93px;
+}
+span.arrow {
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 7px solid #000000;
+    display: block;
+    height: 1px;
+    left: 40px;
+    position: relative;
+    top: 3px;
+    width: 1px;
+}
+div#popup_content {
+    margin: 4px 7px;
+}
+
 
 
 /*** Icons ***/

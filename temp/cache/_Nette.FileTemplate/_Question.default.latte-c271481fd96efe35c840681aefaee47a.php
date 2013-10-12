@@ -1,22 +1,23 @@
-<?php //netteCache[01]000375a:2:{s:4:"time";s:21:"0.12080400 1378530613";s:9:"callbacks";a:2:{i:0;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:53:"D:\Web\EduCenter\app\templates\Question\default.latte";i:2;i:1378530610;}i:1;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:10:"checkConst";}i:1;s:25:"Nette\Framework::REVISION";i:2;s:30:"80a7e46 released on 2013-08-08";}}}?><?php
+<?php //netteCache[01]000375a:2:{s:4:"time";s:21:"0.33406500 1381184483";s:9:"callbacks";a:2:{i:0;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:53:"D:\Web\EduCenter\app\templates\Question\default.latte";i:2;i:1381184481;}i:1;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:10:"checkConst";}i:1;s:25:"Nette\Framework::REVISION";i:2;s:30:"80a7e46 released on 2013-08-08";}}}?><?php
 
 // source file: D:\Web\EduCenter\app\templates\Question\default.latte
 
 ?><?php
 // prolog Nette\Latte\Macros\CoreMacros
-list($_l, $_g) = Nette\Latte\Macros\CoreMacros::initRuntime($template, '0d6v5yefyr')
+list($_l, $_g) = Nette\Latte\Macros\CoreMacros::initRuntime($template, 'lprp66bfs2')
 ;
 // prolog Nette\Latte\Macros\UIMacros
 //
 // block content
 //
-if (!function_exists($_l->blocks['content'][] = '_lb9442aac720_content')) { function _lb9442aac720_content($_l, $_args) { extract($_args)
-?><table class="units">
+if (!function_exists($_l->blocks['content'][] = '_lbf594f3a89f_content')) { function _lbf594f3a89f_content($_l, $_args) { extract($_args)
+?><h1>Procházení otázek</h1>
+<table class="units">
 <thead>
 	<tr>
 		<th>Název</th>
 		<th>Popis</th>
-		<th>Otázky</th>
+		<th>#</th>
 	</tr>
 </thead>
 <tbody>

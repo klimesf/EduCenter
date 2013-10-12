@@ -3,6 +3,7 @@ namespace EduCenter;
 use Nette\Application\UI\Control;
 use Nette\Object;
 use Nette\Http\Session;
+use Nette\Application\UI\Form;
 
 class QuestionDisplayControl extends Control {
     /**
@@ -23,6 +24,8 @@ class QuestionDisplayControl extends Control {
     protected $answerRepository;
     /** @var EduCenter\UnitRepository */
     protected $unitRepository;
+    /** @var EduCenter\QuestoinReportRepository */
+    protected $questionReportRepository;
     /** @var session */
     private $session;
     /**
@@ -51,11 +54,12 @@ class QuestionDisplayControl extends Control {
      * @param EduCenter\QuestionRepository $questionRepository
      * @param EduCenter\AnswerRepository $answerRepository
      */
-    public function __construct(QuestionRepository $questionRepository, AnswerRepository $answerRepository, Session $session, UnitRepository $unitRepository, \Nette\Database\Table\Selection $selection, $questionId = NULL, $testMode = NULL, $answered = NULL) {
+    public function __construct(QuestionRepository $questionRepository, AnswerRepository $answerRepository, Session $session, UnitRepository $unitRepository, QuestionReportRepository $questionReportRepository,\Nette\Database\Table\Selection $selection, $questionId = NULL, $testMode = NULL, $answered = NULL) {
 	parent::__construct();
 	$this->questionRepository = $questionRepository;
 	$this->answerRepository = $answerRepository;
 	$this->unitRepository = $unitRepository;
+	$this->questionReportRepository = $questionReportRepository;
 	if($testMode != null)
 	    $this->testMode = $testMode;
 	else
@@ -97,6 +101,24 @@ class QuestionDisplayControl extends Control {
 	} else {
 	    $this->answered = false;
 	}
+    }
+    
+    /* --- Formuláře ---------------------------------------------------------*/
+    protected function createComponentReportForm() {
+	$form = new \Nette\Application\UI\Form;
+	$form->addTextArea('text', 'Popis problému')
+		->setRequired('Prosím vyplňte popis problému.');
+	$form->addHidden('questionId', $this->questionId);
+	$form->addSubmit('report', 'Nahlásit problém');
+	
+	$form->onSuccess[] = $this->reportFormSucceeded;
+	
+	return $form;
+    }
+    
+    public function reportFormSucceeded(\Nette\Application\UI\Form $form) {
+	$this->questionReportRepository->addReport($form->values->text, $this->getPresenter()->getUser()->getId(), $form->values->questionId);
+	$this->flashMessage('Problém nahlášen', 'success');
     }
     
     /* --- Obsluha signálů ---------------------------------------------------*/
@@ -170,10 +192,10 @@ class QuestionDisplayControl extends Control {
     /**
      * Vykreslení komponenty
      */
-    public function render() {
+    public function renderByUnit() {
 	// Nastavení šablony
 	$template = $this->template;
-	$template->setFile(__DIR__ . '/QuestionDisplay.latte');
+	$template->setFile(__DIR__ . '/QuestionDisplayByUnit.latte');
 	
 	// Získáme data pro vykreslování
 	$question = $this->questionRepository->getById($this->questionId);
@@ -203,12 +225,30 @@ class QuestionDisplayControl extends Control {
 	// Skok dolů a nahorů
 	$this->template->skipDownId = $this->getQuestionId(-10);
 	$this->template->skipUpId = $this->getQuestionId(10);
+	$this->template->numberOfUnresolvedReports = $this->questionReportRepository->findByQuestion($this->questionId)->count();
+	
 	
 	$unit = $this->unitRepository->findBy(array('id' => $question->id_unit))->fetch();
 	$this->template->unitName = $unit->name;
 	$this->template->AnswerIteratorMask = new AnswerIteratorMask;
 	
 	// Vykreslíme šablonu
+	$template->render();
+    }
+    
+    public function renderById() {
+	$template = $this->template;
+	$template->setFile(__DIR__ . '/QuestionDisplayById.latte');
+	
+	$question = $this->questionRepository->getById($this->questionId);
+	$answers = $this->answerRepository->findByQuestion($this->questionId);
+	
+	$this->template->question = $question;
+	$this->template->answers = $answers;
+	$this->template->answered = true;
+	$this->template->displayNav = false;
+	$this->template->AnswerIteratorMask = new AnswerIteratorMask;
+	
 	$template->render();
     }
 }
