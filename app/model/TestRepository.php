@@ -6,6 +6,6 @@ use Nette;
 
 class TestRepository extends Repository {
     public function getById($id) {
-	$this->getTable()->get($id);
+	return $this->getTable()->get($id);
     }
 }

@@ -1,17 +1,17 @@
-<?php //netteCache[01]000371a:2:{s:4:"time";s:21:"0.16130100 1380389959";s:9:"callbacks";a:2:{i:0;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:49:"D:\Web\EduCenter\app\templates\Question\add.latte";i:2;i:1380389957;}i:1;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:10:"checkConst";}i:1;s:25:"Nette\Framework::REVISION";i:2;s:30:"80a7e46 released on 2013-08-08";}}}?><?php
+<?php //netteCache[01]000371a:2:{s:4:"time";s:21:"0.10811700 1381851793";s:9:"callbacks";a:2:{i:0;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:49:"D:\Web\EduCenter\app\templates\Question\add.latte";i:2;i:1381851789;}i:1;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:10:"checkConst";}i:1;s:25:"Nette\Framework::REVISION";i:2;s:30:"80a7e46 released on 2013-08-08";}}}?><?php
 
 // source file: D:\Web\EduCenter\app\templates\Question\add.latte
 
 ?><?php
 // prolog Nette\Latte\Macros\CoreMacros
-list($_l, $_g) = Nette\Latte\Macros\CoreMacros::initRuntime($template, 'y4n7fv3k7b')
+list($_l, $_g) = Nette\Latte\Macros\CoreMacros::initRuntime($template, '8ahgq8en5c')
 ;
 // prolog Nette\Latte\Macros\UIMacros
 //
 // block content
 //
-if (!function_exists($_l->blocks['content'][] = '_lbaef5b4609c_content')) { function _lbaef5b4609c_content($_l, $_args) { extract($_args)
-?><h1>Přidat otázku</h1>
+if (!function_exists($_l->blocks['content'][] = '_lbb19c5087f3_content')) { function _lbb19c5087f3_content($_l, $_args) { extract($_args)
+;call_user_func(reset($_l->blocks['title']), $_l, get_defined_vars())  ?>
 
 <?php Nette\Latte\Macros\FormMacros::renderFormBegin($form = $_form = (is_object("questionForm") ? "questionForm" : $_control["questionForm"]), array()) ?>
 <div class="new-question-form">
@@ -73,6 +73,14 @@ if (!function_exists($_l->blocks['content'][] = '_lbaef5b4609c_content')) { func
 </div>
 <?php Nette\Latte\Macros\FormMacros::renderFormEnd($_form) ?>
 
+<?php
+}}
+
+//
+// block title
+//
+if (!function_exists($_l->blocks['title'][] = '_lb176093b487_title')) { function _lb176093b487_title($_l, $_args) { extract($_args)
+?><h1>Přidat otázku</h1>
 <?php
 }}
 

@@ -1,16 +1,16 @@
-<?php //netteCache[01]000366a:2:{s:4:"time";s:21:"0.15750800 1378345317";s:9:"callbacks";a:2:{i:0;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:44:"D:\Web\EduCenter\app\templates\Sign\in.latte";i:2;i:1378272994;}i:1;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:10:"checkConst";}i:1;s:25:"Nette\Framework::REVISION";i:2;s:30:"80a7e46 released on 2013-08-08";}}}?><?php
+<?php //netteCache[01]000366a:2:{s:4:"time";s:21:"0.60571800 1381850754";s:9:"callbacks";a:2:{i:0;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:44:"D:\Web\EduCenter\app\templates\Sign\in.latte";i:2;i:1381850751;}i:1;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:10:"checkConst";}i:1;s:25:"Nette\Framework::REVISION";i:2;s:30:"80a7e46 released on 2013-08-08";}}}?><?php
 
 // source file: D:\Web\EduCenter\app\templates\Sign\in.latte
 
 ?><?php
 // prolog Nette\Latte\Macros\CoreMacros
-list($_l, $_g) = Nette\Latte\Macros\CoreMacros::initRuntime($template, 'fm8e97ghsw')
+list($_l, $_g) = Nette\Latte\Macros\CoreMacros::initRuntime($template, '47n69jzulo')
 ;
 // prolog Nette\Latte\Macros\UIMacros
 //
 // block content
 //
-if (!function_exists($_l->blocks['content'][] = '_lb68751227b3_content')) { function _lb68751227b3_content($_l, $_args) { extract($_args)
+if (!function_exists($_l->blocks['content'][] = '_lb37c3c1e0cf_content')) { function _lb37c3c1e0cf_content($_l, $_args) { extract($_args)
 ;call_user_func(reset($_l->blocks['title']), $_l, get_defined_vars())  ?>
 
 <?php Nette\Latte\Macros\FormMacros::renderFormBegin($form = $_form = (is_object("signInForm") ? "signInForm" : $_control["signInForm"]), array()) ?>
@@ -42,8 +42,8 @@ if (!function_exists($_l->blocks['content'][] = '_lb68751227b3_content')) { func
 //
 // block title
 //
-if (!function_exists($_l->blocks['title'][] = '_lb82f652b7b4_title')) { function _lb82f652b7b4_title($_l, $_args) { extract($_args)
-?><h1>Sign in</h1>
+if (!function_exists($_l->blocks['title'][] = '_lb1301817592_title')) { function _lb1301817592_title($_l, $_args) { extract($_args)
+?><h1>Přihlášení</h1>
 <?php
 }}
 

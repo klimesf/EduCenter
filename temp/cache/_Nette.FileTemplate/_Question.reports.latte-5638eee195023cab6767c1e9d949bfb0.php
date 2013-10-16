@@ -1,18 +1,25 @@
-<?php //netteCache[01]000375a:2:{s:4:"time";s:21:"0.04862600 1381579192";s:9:"callbacks";a:2:{i:0;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:53:"D:\Web\EduCenter\app\templates\Question\reports.latte";i:2;i:1381579190;}i:1;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:10:"checkConst";}i:1;s:25:"Nette\Framework::REVISION";i:2;s:30:"80a7e46 released on 2013-08-08";}}}?><?php
+<?php //netteCache[01]000375a:2:{s:4:"time";s:21:"0.59002900 1381851756";s:9:"callbacks";a:2:{i:0;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:53:"D:\Web\EduCenter\app\templates\Question\reports.latte";i:2;i:1381851721;}i:1;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:10:"checkConst";}i:1;s:25:"Nette\Framework::REVISION";i:2;s:30:"80a7e46 released on 2013-08-08";}}}?><?php
 
 // source file: D:\Web\EduCenter\app\templates\Question\reports.latte
 
 ?><?php
 // prolog Nette\Latte\Macros\CoreMacros
-list($_l, $_g) = Nette\Latte\Macros\CoreMacros::initRuntime($template, 'vi4srsraha')
+list($_l, $_g) = Nette\Latte\Macros\CoreMacros::initRuntime($template, '7w58shxf23')
 ;
 // prolog Nette\Latte\Macros\UIMacros
 //
 // block content
 //
-if (!function_exists($_l->blocks['content'][] = '_lb1a1dca2ad0_content')) { function _lb1a1dca2ad0_content($_l, $_args) { extract($_args)
+if (!function_exists($_l->blocks['content'][] = '_lbfca0d7feb2_content')) { function _lbfca0d7feb2_content($_l, $_args) { extract($_args)
+;call_user_func(reset($_l->blocks['title']), $_l, get_defined_vars()) ; $_ctrl = $_control->getComponent("questionReportList"); if ($_ctrl instanceof Nette\Application\UI\IRenderable) $_ctrl->validateControl(); $_ctrl->renderAll() ;
+}}
+
+//
+// block title
+//
+if (!function_exists($_l->blocks['title'][] = '_lbd658d73839_title')) { function _lbd658d73839_title($_l, $_args) { extract($_args)
 ?><h1>Procházení všech nahlášených problémů</h1>
-<?php $_ctrl = $_control->getComponent("questionReportList"); if ($_ctrl instanceof Nette\Application\UI\IRenderable) $_ctrl->validateControl(); $_ctrl->renderAll() ;
+<?php
 }}
 
 //

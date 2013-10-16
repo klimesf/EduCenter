@@ -1,0 +1,12 @@
+{block content}
+<h1 n:block="title">Přehled testu - {$test->name}</h1>
+<h2>{$test->desc}</h2>
+<p>{$test->about}</p>
+<h2>Obsah testu</h2>
+<p>
+{foreach $settings as $setting}
+<strong>{$setting->number_of_questions} otázek</strong> z kategorie <strong>{$setting->unit->name}</strong> s časovým <strong>limitem {$setting->time} minut.</strong><br />
+{/foreach}
+</p>
+<p class="center"><a n:href="Test:run $test->id" class="button">Spustit test</a></div>
+{/block}

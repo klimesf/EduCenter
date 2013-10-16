@@ -34,6 +34,7 @@ common:
 		questionRepository: EduCenter\QuestionRepository
 		answerRepository: EduCenter\AnswerRepository
 		testRepository: EduCenter\TestRepository
+		testSettingRepository: EduCenter\TestSettingRepository
 		questionReportRepository: EduCenter\QuestionReportRepository
 
 	factories:

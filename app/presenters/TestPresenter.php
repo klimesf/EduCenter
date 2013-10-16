@@ -2,6 +2,7 @@
 
 class TestPresenter extends BasePresenter {
     private $testRepository;
+    private $testSettingRepository;
     private $testId;
     
     protected function startup() {
@@ -12,15 +13,21 @@ class TestPresenter extends BasePresenter {
 	}
     }
     
-    public function inject(EduCenter\TestRepository $testRepository) {
+    public function inject(EduCenter\TestRepository $testRepository, EduCenter\TestSettingRepository $testSettingRepository) {
 	$this->testRepository = $testRepository;
+	$this->testSettingRepository = $testSettingRepository;
     }
     
     public function actionDefault() {
 	$this->template->tests = $this->testRepository->findAll();
     }
     
-    public function actionBrowse($testId) {
+    public function actionOverview($testId) {
+	$this->template->test = $this->testRepository->getById($testId);
+	$this->template->settings = $this->testSettingRepository->findByTest($testId);
+    }
+    
+    public function actionRun($testId) {
 	// Zjistíme, zda už byl test vytvořen
 	$session = $this->session->getSection('Test');
 	if(!isset($session->test)) {
@@ -32,8 +39,12 @@ class TestPresenter extends BasePresenter {
      * Sestaví test podle zadaného Id
      * @param type $testId
      */
-    public function assembleTest($testId) {
+    protected function assembleTest($testId) {
 	$this->testId = $testId;
+	$session = $this->session->getNamespace('Test');
+	if(isset($session->testId)) {
+	    
+	}
     }
     
     

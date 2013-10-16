@@ -1,16 +1,23 @@
-<?php //netteCache[01]000375a:2:{s:4:"time";s:21:"0.86879900 1381183761";s:9:"callbacks";a:2:{i:0;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:53:"D:\Web\EduCenter\app\templates\Homepage\default.latte";i:2;i:1381183755;}i:1;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:10:"checkConst";}i:1;s:25:"Nette\Framework::REVISION";i:2;s:30:"80a7e46 released on 2013-08-08";}}}?><?php
+<?php //netteCache[01]000375a:2:{s:4:"time";s:21:"0.47008500 1381851862";s:9:"callbacks";a:2:{i:0;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:53:"D:\Web\EduCenter\app\templates\Homepage\default.latte";i:2;i:1381851846;}i:1;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:10:"checkConst";}i:1;s:25:"Nette\Framework::REVISION";i:2;s:30:"80a7e46 released on 2013-08-08";}}}?><?php
 
 // source file: D:\Web\EduCenter\app\templates\Homepage\default.latte
 
 ?><?php
 // prolog Nette\Latte\Macros\CoreMacros
-list($_l, $_g) = Nette\Latte\Macros\CoreMacros::initRuntime($template, '916ea6idqv')
+list($_l, $_g) = Nette\Latte\Macros\CoreMacros::initRuntime($template, 'wqp8fm4hy9')
 ;
 // prolog Nette\Latte\Macros\UIMacros
 //
+// block title
+//
+if (!function_exists($_l->blocks['title'][] = '_lb7be282d83c_title')) { function _lb7be282d83c_title($_l, $_args) { extract($_args)
+?>Domovská stránka<?php
+}}
+
+//
 // block content
 //
-if (!function_exists($_l->blocks['content'][] = '_lb53e808892a_content')) { function _lb53e808892a_content($_l, $_args) { extract($_args)
+if (!function_exists($_l->blocks['content'][] = '_lb44ac875b84_content')) { function _lb44ac875b84_content($_l, $_args) { extract($_args)
 ?><h1>EduCenter</h1>
 
 <h2>O projektu</h2>
@@ -40,7 +47,9 @@ if ($_l->extends) {
 //
 // main template
 //
-?>
+if ($_l->extends) { ob_end_clean(); return Nette\Latte\Macros\CoreMacros::includeTemplate($_l->extends, get_defined_vars(), $template)->render(); }
+call_user_func(reset($_l->blocks['title']), $_l, get_defined_vars())  ?>
 
-<?php if ($_l->extends) { ob_end_clean(); return Nette\Latte\Macros\CoreMacros::includeTemplate($_l->extends, get_defined_vars(), $template)->render(); }
-call_user_func(reset($_l->blocks['content']), $_l, get_defined_vars()) ; 
+
+
+<?php call_user_func(reset($_l->blocks['content']), $_l, get_defined_vars()) ; 

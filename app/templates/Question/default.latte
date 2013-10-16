@@ -1,25 +1,15 @@
 {block content}
-<h1>Procházení otázek</h1>
-<table class="units">
-<thead>
-	<tr>
-		<th>Název</th>
-		<th>Popis</th>
-		<th>#</th>
-	</tr>
-</thead>
-<tbody>
-	{foreach $units as $unit}
-	<tr n:class="$iterator->odd ? odd : even">
-		<td><a n:href="Question:browseByUnit $unit->id">{$unit->name}</a></td>
-		<td>{$unit->description}</td>
-		<td class="number">{$questionRepository->countByUnit($unit->id)}</td>
-	</tr>
-	{/foreach}
-</tbody>
-</table>
-
+<h1 n:block=title>Procházení otázek</h1>
+<div class="unit-list">
+{foreach $units as $unit}
+<a n:href="Question:browseByUnit $unit->id">
+<div class="unit">
+    <img src="{$basePath}/images/units/{$unit->img}" alt="{$unit->name}" />
+    <div class="name">{$unit->name}</div>
+    <div class="desc">{$unit->description}</div>
+    <div class="numberOfQuestions">Počet otázek: {$questionRepository->countByUnit($unit->id)}</div>
+</div>
+</a>
+{/foreach}
+</div>
 {/block}
-
-
-{dump}

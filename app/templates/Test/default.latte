@@ -1,16 +1,17 @@
 {block content}
 
-<h1>Spustit testování</h1>
+<h1 n:block=title>Seznam dostupných testů</h1>
 
-<h2>Seznam dostupných testů</h2>
-
+<div class="unit-list">
 {foreach $tests as $test}
+<a n:href="Test:overview $test->id">
+<div class="unit">
+    <img src="{$basePath}/images/tests/{$test->img}" alt="{$test->name}" />
+    <div class="name">{$test->name}</div>
+    <div class="desc">{$test->desc}</div>
+</div>
+</a>
 {/foreach}
-
-{* component testList *}
-
-<h2>Vytvořit test</h2>
-
-{* component createTestForm *}
+</div>
 
 {/block}

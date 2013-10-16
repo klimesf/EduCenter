@@ -13,7 +13,7 @@
 	<meta name="description" content="">
 	<meta name="robots" content="{$robots}" n:ifset="$robots">
 
-	<title>{block title|striptags}EduCenter{/block}</title>
+	<title>{block title|striptags}{/block} | EduCenter</title>
 
 	<link rel="stylesheet" media="screen,projection,tv" href="{$basePath}/css/screen.css">
 	<link rel="stylesheet" media="print" href="{$basePath}/css/print.css">
@@ -24,15 +24,48 @@
 <body>
     <script> document.documentElement.className+=' js' </script>
 
-    <div id="header">
-	<div id="header-inner">
-	    <div class="title"><a href="{link Homepage:}"><img src="{$basePath}/images/check_box.png" height="24" />EduCenter</a></div>
+    <div id="panel">
+	<div id="header">
+	    <div id="header-inner">
+		<div class="title"><a href="{link Homepage:}"><img src="{$basePath}/images/check_box.png" height="24" />EduCenter</a></div>
 
-	    <div class="user" n:if="$user->isLoggedIn()">
-		<span class="icon user">{$user->getIdentity()->name}</span> |
-		<a n:href="User:settings">Nastavení</a> |
-		<a n:href="Sign:out">Odhlásit se</a>
+		<div class="user">
+		    {if $user->isLoggedIn()}
+		    <span class="icon user"><a n:href="User:">{$user->getIdentity()->name}</a></span> |
+		    <a n:href="User:settings">Nastavení</a> |
+		    <a n:href="Sign:out">Odhlásit se</a>
+		    {else}
+		    <a n:href="Sign:in">Přihlásit se</a> |
+		    <a n:href="User:register">Registrovat</a>
+		    {/if}
+		</div>
 	    </div>
+	</div>
+    </div>
+
+    <div id="horizontal-menu-container">
+	<div id="horizontal-menu">
+	    {if $user->isLoggedIn()}
+	    <ul>
+		<li><a n:href="Homepage:">Domů</a></li>
+		<li><a n:href="Test:">Testování</a></li>
+		<li><a n:href="Question:">Procházení otázek</a></li>
+		{if $user->isInRole('admin')}
+		<!--<li><a>Administrace</a>
+		    <ul>
+			<li><a n:href="Question:add">Přidat otázku</a></li>
+			<li><a n:href="Question:reports">Procházet nahlášené</a></li>
+		    </ul>
+		</li>-->
+		<li><a n:href="Question:add">Přidat otázku</a></li>
+		<li><a n:href="Question:reports">Procházet nahlášené</a></li>
+		{/if}
+	    </ul>
+	    {else}
+	    <ul>
+		<li><a n:href="Homepage:">Domů</a></li>
+	    </ul>
+	    {/if}
 	</div>
     </div>
 
@@ -41,12 +74,11 @@
 	<div n:foreach="$flashes as $flash" class="flash {$flash->type}">{$flash->message}</div>
 	{/snippet}
 	{if $user->isLoggedIn()}
-	<div id="sidebar">
+	<!-- <div id="sidebar">
 	    <ul>
 		<ul>
 		<h3>Navigace</h3>
 		<li><a n:href="Homepage:">Domů</a></li>
-		<!-- <li><a n:href="Question:edit 2">Editovat otázku</a></li> -->
 		<li><a n:href="Test:">Testování</a></li>
 		<li><a n:href="Question:">Procházení otázek</a></li>
 		</ul>
@@ -58,16 +90,17 @@
 		</ul>
 		{/if}
 	    </ul>
-	</div>
+	</div> -->
 	{/if}
 	<div id="content">
 		{include #content}
 	</div>
-
+    </div>
+    <div id="footer-container">
 	<div id="footer">
-	<span class="smaller">(c) Filip Klimeš 2013, powered by <a href="http://nette.org">Nette Framework</a></span>
+	    <span class="smaller">(c) Filip Klimeš 2013, powered by <a href="http://nette.org">Nette Framework</a></span>
 	</div>
-</div>
+    </div>
 
 {block scripts}
 <script src="{$basePath}/js/jquery.js"></script>

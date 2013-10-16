@@ -1,37 +1,39 @@
-<?php //netteCache[01]000375a:2:{s:4:"time";s:21:"0.33406500 1381184483";s:9:"callbacks";a:2:{i:0;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:53:"D:\Web\EduCenter\app\templates\Question\default.latte";i:2;i:1381184481;}i:1;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:10:"checkConst";}i:1;s:25:"Nette\Framework::REVISION";i:2;s:30:"80a7e46 released on 2013-08-08";}}}?><?php
+<?php //netteCache[01]000375a:2:{s:4:"time";s:21:"0.71812100 1381851740";s:9:"callbacks";a:2:{i:0;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:53:"D:\Web\EduCenter\app\templates\Question\default.latte";i:2;i:1381851734;}i:1;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:10:"checkConst";}i:1;s:25:"Nette\Framework::REVISION";i:2;s:30:"80a7e46 released on 2013-08-08";}}}?><?php
 
 // source file: D:\Web\EduCenter\app\templates\Question\default.latte
 
 ?><?php
 // prolog Nette\Latte\Macros\CoreMacros
-list($_l, $_g) = Nette\Latte\Macros\CoreMacros::initRuntime($template, 'lprp66bfs2')
+list($_l, $_g) = Nette\Latte\Macros\CoreMacros::initRuntime($template, 'ce7ytto751')
 ;
 // prolog Nette\Latte\Macros\UIMacros
 //
 // block content
 //
-if (!function_exists($_l->blocks['content'][] = '_lbf594f3a89f_content')) { function _lbf594f3a89f_content($_l, $_args) { extract($_args)
-?><h1>Procházení otázek</h1>
-<table class="units">
-<thead>
-	<tr>
-		<th>Název</th>
-		<th>Popis</th>
-		<th>#</th>
-	</tr>
-</thead>
-<tbody>
-<?php $iterations = 0; foreach ($iterator = $_l->its[] = new Nette\Iterators\CachingIterator($units) as $unit): ?>
-	<tr<?php if ($_l->tmp = array_filter(array($iterator->odd ? 'odd' : 'even'))) echo ' class="' . htmlSpecialChars(implode(" ", array_unique($_l->tmp))) . '"' ?>>
-		<td><a href="<?php echo htmlSpecialChars($_control->link("Question:browseByUnit", array($unit->id))) ?>
-"><?php echo Nette\Templating\Helpers::escapeHtml($unit->name, ENT_NOQUOTES) ?></a></td>
-		<td><?php echo Nette\Templating\Helpers::escapeHtml($unit->description, ENT_NOQUOTES) ?></td>
-		<td class="number"><?php echo Nette\Templating\Helpers::escapeHtml($questionRepository->countByUnit($unit->id), ENT_NOQUOTES) ?></td>
-	</tr>
-<?php $iterations++; endforeach; array_pop($_l->its); $iterator = end($_l->its) ?>
-</tbody>
-</table>
+if (!function_exists($_l->blocks['content'][] = '_lb0776a74c9c_content')) { function _lb0776a74c9c_content($_l, $_args) { extract($_args)
+;call_user_func(reset($_l->blocks['title']), $_l, get_defined_vars())  ?>
+<div class="unit-list">
+<?php $iterations = 0; foreach ($units as $unit): ?>
+<a href="<?php echo htmlSpecialChars($_control->link("Question:browseByUnit", array($unit->id))) ?>
+">
+<div class="unit">
+    <img src="<?php echo htmlSpecialChars($basePath) ?>/images/units/<?php echo htmlSpecialChars($unit->img) ?>
+" alt="<?php echo htmlSpecialChars($unit->name) ?>" />
+    <div class="name"><?php echo Nette\Templating\Helpers::escapeHtml($unit->name, ENT_NOQUOTES) ?></div>
+    <div class="desc"><?php echo Nette\Templating\Helpers::escapeHtml($unit->description, ENT_NOQUOTES) ?></div>
+    <div class="numberOfQuestions">Počet otázek: <?php echo Nette\Templating\Helpers::escapeHtml($questionRepository->countByUnit($unit->id), ENT_NOQUOTES) ?></div>
+</div>
+</a>
+<?php $iterations++; endforeach ?>
+</div>
+<?php
+}}
 
+//
+// block title
+//
+if (!function_exists($_l->blocks['title'][] = '_lb3ee33597ea_title')) { function _lb3ee33597ea_title($_l, $_args) { extract($_args)
+?><h1>Procházení otázek</h1>
 <?php
 }}
 
@@ -55,7 +57,4 @@ if ($_l->extends) {
 // main template
 //
 if ($_l->extends) { ob_end_clean(); return Nette\Latte\Macros\CoreMacros::includeTemplate($_l->extends, get_defined_vars(), $template)->render(); }
-call_user_func(reset($_l->blocks['content']), $_l, get_defined_vars())  ?>
-
-
-<?php Nette\Diagnostics\Debugger::barDump(get_defined_vars(), "Template " . str_replace(dirname(dirname($template->getFile())), "\xE2\x80\xA6", $template->getFile())) ;
+call_user_func(reset($_l->blocks['content']), $_l, get_defined_vars()) ; 

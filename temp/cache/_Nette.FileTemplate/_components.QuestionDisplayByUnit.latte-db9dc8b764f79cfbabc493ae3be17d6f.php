@@ -1,25 +1,47 @@
-<?php //netteCache[01]000381a:2:{s:4:"time";s:21:"0.50314200 1381595705";s:9:"callbacks";a:2:{i:0;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:59:"D:\Web\EduCenter\app\components\QuestionDisplayByUnit.latte";i:2;i:1381595657;}i:1;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:10:"checkConst";}i:1;s:25:"Nette\Framework::REVISION";i:2;s:30:"80a7e46 released on 2013-08-08";}}}?><?php
+<?php //netteCache[01]000381a:2:{s:4:"time";s:21:"0.49232800 1381947497";s:9:"callbacks";a:2:{i:0;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:59:"D:\Web\EduCenter\app\components\QuestionDisplayByUnit.latte";i:2;i:1381947495;}i:1;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:10:"checkConst";}i:1;s:25:"Nette\Framework::REVISION";i:2;s:30:"80a7e46 released on 2013-08-08";}}}?><?php
 
 // source file: D:\Web\EduCenter\app\components\QuestionDisplayByUnit.latte
 
 ?><?php
 // prolog Nette\Latte\Macros\CoreMacros
-list($_l, $_g) = Nette\Latte\Macros\CoreMacros::initRuntime($template, 'syzfvdxjaw')
+list($_l, $_g) = Nette\Latte\Macros\CoreMacros::initRuntime($template, 's9bzzzo07n')
 ;
 // prolog Nette\Latte\Macros\UIMacros
+//
+// block title
+//
+if (!function_exists($_l->blocks['title'][] = '_lb4d3847f2b2_title')) { function _lb4d3847f2b2_title($_l, $_args) { extract($_args)
+?>Procházení otázek &gt; <?php echo Nette\Templating\Helpers::escapeHtml($question->unit->name, ENT_NOQUOTES) ?>
+ &gt; <?php echo Nette\Templating\Helpers::escapeHtml($numberOfCurrentQuestion, ENT_NOQUOTES) ?>
+/<?php echo Nette\Templating\Helpers::escapeHtml($numberOfQuestions, ENT_NOQUOTES) ;
+}}
 
-// snippets support
-if (!empty($_control->snippetMode)) {
+//
+// end of blocks
+//
+
+// template extending and snippets support
+
+$_l->extends = empty($template->_extended) && isset($_control) && $_control instanceof Nette\Application\UI\Presenter ? $_control->findLayoutTemplateFile() : NULL; $template->_extended = $_extended = TRUE;
+
+
+if ($_l->extends) {
+	ob_start();
+
+} elseif (!empty($_control->snippetMode)) {
 	return Nette\Latte\Macros\UIMacros::renderSnippets($_control, $_l, get_defined_vars());
 }
 
 //
 // main template
 //
-?>
+if ($_l->extends) { ob_end_clean(); return Nette\Latte\Macros\CoreMacros::includeTemplate($_l->extends, get_defined_vars(), $template)->render(); }
+call_user_func(reset($_l->blocks['title']), $_l, get_defined_vars())  ?>
+
+
 <div class="question-viewer">
 <?php if ($displayNav): ?>
-	Procházení otázek -> <?php echo Nette\Templating\Helpers::escapeHtml($unitName, ENT_NOQUOTES) ?>
+	<h1>Procházení otázek > <?php echo Nette\Templating\Helpers::escapeHtml($question->unit->name, ENT_NOQUOTES) ?></h1>
 
 	<div class="nav">
 	    Otázka <?php echo Nette\Templating\Helpers::escapeHtml($numberOfCurrentQuestion, ENT_NOQUOTES) ?>
@@ -76,7 +98,7 @@ if (!empty($_control->snippetMode)) {
 <?php $iterations++; endforeach; array_pop($_l->its); $iterator = end($_l->its) ?>
     <div class="bottom-bar">
 <?php if (!$answered && ($user->isInRole('member') || $user->isInRole('admin'))): ?>
-	<a class="evaluate" accesskey="a" href="<?php echo htmlSpecialChars($_control->link("evaluate!")) ?>
+	<a class="button" accesskey="a" href="<?php echo htmlSpecialChars($_control->link("evaluate!")) ?>
 ">Vyhodnotit</a>
 <?php endif ;$iterations = 0; foreach ($flashes as $flash): ?>    <div class="flash <?php echo htmlSpecialChars($flash->type) ?>
 "><?php echo Nette\Templating\Helpers::escapeHtml($flash->message, ENT_NOQUOTES) ?></div>

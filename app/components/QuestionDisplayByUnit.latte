@@ -1,6 +1,9 @@
+{block title}Procházení otázek &gt; {$question->unit->name} &gt; {$numberOfCurrentQuestion}/{$numberOfQuestions}{/block}
+
 <div class="question-viewer">
     {if $displayNav}
-	Procházení otázek -> {$unitName}
+	<h1>Procházení otázek > {$question->unit->name}</h1>
+
 	<div class="nav">
 	    Otázka {$numberOfCurrentQuestion} z {$numberOfQuestions}</br>
 	    {if $firstId}
@@ -48,7 +51,7 @@
     {/foreach}
     <div class="bottom-bar">
     {if !$answered && ($user->isInRole('member') || $user->isInRole('admin'))}
-	<a class="evaluate" n:href="evaluate!" accesskey="a">Vyhodnotit</a>
+	<a class="button" n:href="evaluate!" accesskey="a">Vyhodnotit</a>
     {/if}
     <div n:foreach="$flashes as $flash" class="flash {$flash->type}">{$flash->message}</div>
     </div>

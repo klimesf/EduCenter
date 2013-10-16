@@ -60,10 +60,13 @@ class QuestionDisplayControl extends Control {
 	$this->answerRepository = $answerRepository;
 	$this->unitRepository = $unitRepository;
 	$this->questionReportRepository = $questionReportRepository;
-	if($testMode != null)
+	
+	// Pokud jsme v testovacím módu, znamená to pro nás změnu některých nastavení
+	if($testMode != null) {
 	    $this->testMode = $testMode;
-	else
+	} else {
 	    $this->testMode = false;
+	}
 		
 	// Práce se sessions
 	$this->session = $session->getSection('QuestionDisplay');
@@ -75,6 +78,10 @@ class QuestionDisplayControl extends Control {
 	    $this->checkedAnswers->unserialize($this->session->checkedAnswers);
 
 	$this->selection = $selection;
+	
+	// TODO: $this->getPresenter()->getAction(); něco s timhle vymysli, chytrolíne
+	// TODO: a namaluj si graf závislostí, dementíku
+	// TODO: Změna, načtení selection ze session, ověření podle id unit nebo takněco
 	
 	foreach($this->selection as $question) {
 	    $this->questionArray[] = $question->id;
@@ -197,6 +204,8 @@ class QuestionDisplayControl extends Control {
 	$template = $this->template;
 	$template->setFile(__DIR__ . '/QuestionDisplayByUnit.latte');
 	
+	
+	
 	// Získáme data pro vykreslování
 	$question = $this->questionRepository->getById($this->questionId);
 	$answers = $this->answerRepository->findByQuestion($this->questionId);
@@ -228,8 +237,6 @@ class QuestionDisplayControl extends Control {
 	$this->template->numberOfUnresolvedReports = $this->questionReportRepository->findByQuestion($this->questionId)->count();
 	
 	
-	$unit = $this->unitRepository->findBy(array('id' => $question->id_unit))->fetch();
-	$this->template->unitName = $unit->name;
 	$this->template->AnswerIteratorMask = new AnswerIteratorMask;
 	
 	// Vykreslíme šablonu
