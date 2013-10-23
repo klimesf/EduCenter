@@ -30,7 +30,8 @@ class QuestionPresenter extends BasePresenter {
     
     /** @var Nette\Database\Table\Selection */
     private $selection;
-    
+    /** @var boolean Zobrazujeme zodpovězenou otázku? */
+    private $answered = false;
 
     public function inject(EduCenter\UserRepository $userRepository, EduCenter\Authenticator $authenticator, EduCenter\QuestionRepository $questionRepository,
 	    EduCenter\AnswerRepository $answerRepository, EduCenter\UnitRepository $unitRepository, EduCenter\QuestionReportRepository $questionReportRepository)
@@ -55,20 +56,30 @@ class QuestionPresenter extends BasePresenter {
     /* --- AKCE --------------------------------------------------------------*/
     
     
-    public function actionDefault()
-    {
+    public function actionDefault() {
+    }
+    
+    public function renderDefault() {
 	$this->template->units = $this->unitRepository->findAll();
 	$this->template->questionRepository = $this->questionRepository;
     }
     
     public function actionBrowseByUnit($unitId) {
-	// Vybereme otázky dané kategorie
-	$this->selection = $this->questionRepository->findByUnit($unitId)->order('id ASC');
-	// Pokud kategorie nemá otázky, přesměrujeme zpět na výběr kategorií
+	// Nastavení paginatoru
+	$eduPaginator = new EduCenter\QuestionPaginator($this, 'questionPaginator');
+	$paginator = $eduPaginator->getPaginator();
+	$paginator->setItemCount($this->questionRepository->findByUnit($unitId)->count());
+	$paginator->setItemsPerPage(1);
+	
+	$this->selection = $this->questionRepository->findByUnit($unitId)->limit($paginator->getLength(), $paginator->getOffset());
 	if(!$this->selection) {
 	    $this->flashMessage ('Tato kategorie neobsahuje žádné otázky.', 'error');
 	    $this->redirect('Question:');
-	}
+	}	
+    }
+    
+    public function renderBrowseByUnit($unitId) {
+	$this->template->unitName = $this->unitRepository->getUnitName($unitId);
     }
     
     public function actionBrowse($questionId) {
@@ -102,12 +113,7 @@ class QuestionPresenter extends BasePresenter {
 	    $this->redirect('Question:');
 	}
 	$this->questionId = $questionId;
-	// Vybereme otázku, abychom ji mohli vypsat
-	$this->selection = $this->questionRepository->findBy(array('id' => $questionId));
-	if(!$this->selection) {
-	    $this->flashMessage ('Otázka neexistuje.', 'error');
-	    $this->redirect('Question:');
-	}
+	$this->answered = true;
     }
     
     public function actionAddReport($questionId) {
@@ -115,11 +121,6 @@ class QuestionPresenter extends BasePresenter {
 	    $this->redirect('Question:');
 	}
 	$this->questionId = $questionId;
-	$this->selection = $this->questionRepository->findBy(array('id' => $questionId));
-	if(!$this->selection) {
-	    $this->flashMessage ('Otázka neexistuje.', 'error');
-	    $this->redirect('Question:');
-	}
     }
     
     /* --- Továrničky --------------------------------------------------------*/
@@ -129,8 +130,8 @@ class QuestionPresenter extends BasePresenter {
      * @return \EduCenter\QuestionDisplayControl    vytvořená komponenta
      */
     protected function createComponentQuestionDisplay() {
-	return new EduCenter\QuestionDisplayControl($this->questionRepository, $this->answerRepository,
-		$this->context->session, $this->unitRepository, $this->questionReportRepository, $this->selection, $this->questionId);
+	return new EduCenter\QuestionDisplayControl($this->answerRepository,
+		$this->context->session, $this->questionReportRepository, $this->selection, $this->questionId);
     }
     
     /**

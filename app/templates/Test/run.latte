@@ -1,2 +1,23 @@
+{block title}
+Testování
+{/block}
+
 {block content}
+<div class="paginator left">
+{foreach $questionArray as $question}
+{if $questionNo==$iterator->getCounter()}
+<a class="active">{$iterator->getCounter()}</a>
+{else}
+<a n:href="Test:run $testId,$iterator->getCounter()" {if $checkedAnswers->isQuestionAnswered($questionArray[$iterator->getCounter()-1])} class="answered"{/if}>{$iterator->getCounter()}</a>
+{/if}
+{/foreach}
+</div>
+{control questionDisplay}
+<p class="center">
+{if !$isLastQuestion}
+<a n:href="Test:run $testId,$questionNo+1" class="button">Další otázka</a>
+{else}
+<a n:href="Test:evaluate $testId" class="button">Vyhodnotit</a>
+{/if}
+</p>
 {/block}

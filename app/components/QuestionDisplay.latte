@@ -1,31 +1,4 @@
-{block title}Procházení otázek &gt; {$question->unit->name} &gt; {$numberOfCurrentQuestion}/{$numberOfQuestions}{/block}
-
 <div class="question-viewer">
-    {if $displayNav}
-	<h1>Procházení otázek > {$question->unit->name}</h1>
-
-	<div class="nav">
-	    Otázka {$numberOfCurrentQuestion} z {$numberOfQuestions}</br>
-	    {if $firstId}
-		<a n:href="goTo! $firstId">|&lt;</a>
-	    {/if}
-	    {if $skipDownId}
-		<a n:href="goTo! $skipDownId">&lt;&lt;</a>
-	    {/if}
-	    {if $previousId}
-		<a n:href="goTo! $previousId" accesskey="q">&lt; Předchozí</a>
-	    {/if}
-	    {if $nextId}
-		<a n:href="goTo! $nextId" accesskey="w">Další &gt;</a>
-	    {/if}
-	    {if $skipUpId}
-		<a n:href="goTo! $skipUpId">&gt;&gt;</a>
-	    {/if}
-	    {if $lastId}
-		<a n:href="goTo! $lastId">&gt;|</a>
-	    {/if}
-	</div>
-    {/if}
     <div class="question">
 	{!$question->text}
 	{if $question->img}
@@ -35,8 +8,8 @@
     {foreach $answers as $answer}
     <div n:class="$iterator->odd ? odd : even">
 	{if !$answered}
-	<div n:class="$checkedAnswers->isAnswerChecked($answer->id) ? checkbox-checked : checkbox">
-	    {if $checkedAnswers->isAnswerChecked($answer->id)}
+	<div n:class="$checkedAnswers->isAnswerChecked($answer->id, $question->id) ? checkbox-checked : checkbox">
+	    {if $checkedAnswers->isAnswerChecked($answer->id, $question->id)}
 	    <a n:href="uncheckAnswer! $answer->id">{$AnswerIteratorMask::getChar($iterator->getCounter())}</a>
 	    {else}
 	    <a n:href="checkAnswer! $answer->id">{$AnswerIteratorMask::getChar($iterator->getCounter())}</a>
@@ -44,13 +17,13 @@
 	</div>
 	<div n:class="answer" colspan="2">{!$answer->text}</div>
 	{else}
-	<div n:class="$checkedAnswers->isAnswerChecked($answer->id) ? checkbox-checked : checkbox"><a>{$AnswerIteratorMask::getChar($iterator->getCounter())}</a></div>
+	<div n:class="$checkedAnswers->isAnswerChecked($answer->id, $question->id) ? checkbox-checked : checkbox"><a>{$AnswerIteratorMask::getChar($iterator->getCounter())}</a></div>
 	<div n:class="$answer->correct ? correct : answer" colspan="2">{!$answer->text}</div>
 	{/if}
     </div>
     {/foreach}
     <div class="bottom-bar">
-    {if !$answered && ($user->isInRole('member') || $user->isInRole('admin'))}
+    {if (!$answered && ($user->isInRole('member') || $user->isInRole('admin'))  && !$testMode)}
 	<a class="button" n:href="evaluate!" accesskey="a">Vyhodnotit</a>
     {/if}
     <div n:foreach="$flashes as $flash" class="flash {$flash->type}">{$flash->message}</div>
@@ -78,3 +51,5 @@
     <div class="loader"></div>
     <div id="backgroundPopup"></div>
 </div>
+
+{dump $checkedAnswers->getArray()}

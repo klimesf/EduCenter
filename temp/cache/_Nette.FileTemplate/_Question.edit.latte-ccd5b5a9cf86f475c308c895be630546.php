@@ -1,17 +1,17 @@
-<?php //netteCache[01]000372a:2:{s:4:"time";s:21:"0.11247100 1381601166";s:9:"callbacks";a:2:{i:0;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:50:"D:\Web\EduCenter\app\templates\Question\edit.latte";i:2;i:1381601164;}i:1;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:10:"checkConst";}i:1;s:25:"Nette\Framework::REVISION";i:2;s:30:"80a7e46 released on 2013-08-08";}}}?><?php
+<?php //netteCache[01]000372a:2:{s:4:"time";s:21:"0.32544200 1382033206";s:9:"callbacks";a:2:{i:0;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:50:"D:\Web\EduCenter\app\templates\Question\edit.latte";i:2;i:1382033203;}i:1;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:10:"checkConst";}i:1;s:25:"Nette\Framework::REVISION";i:2;s:30:"80a7e46 released on 2013-08-08";}}}?><?php
 
 // source file: D:\Web\EduCenter\app\templates\Question\edit.latte
 
 ?><?php
 // prolog Nette\Latte\Macros\CoreMacros
-list($_l, $_g) = Nette\Latte\Macros\CoreMacros::initRuntime($template, 'mjny25toea')
+list($_l, $_g) = Nette\Latte\Macros\CoreMacros::initRuntime($template, '7t47p3okqu')
 ;
 // prolog Nette\Latte\Macros\UIMacros
 //
 // block content
 //
-if (!function_exists($_l->blocks['content'][] = '_lbbd784281ac_content')) { function _lbbd784281ac_content($_l, $_args) { extract($_args)
-?><h1>Upravit otázku</h1>
+if (!function_exists($_l->blocks['content'][] = '_lb8a5cccd5d4_content')) { function _lb8a5cccd5d4_content($_l, $_args) { extract($_args)
+;call_user_func(reset($_l->blocks['title']), $_l, get_defined_vars())  ?>
 
 <?php Nette\Latte\Macros\FormMacros::renderFormBegin($form = $_form = (is_object("questionForm") ? "questionForm" : $_control["questionForm"]), array()) ?>
 <div class="new-question-form">
@@ -73,10 +73,19 @@ if (!function_exists($_l->blocks['content'][] = '_lbbd784281ac_content')) { func
 </div>
 <?php Nette\Latte\Macros\FormMacros::renderFormEnd($_form) ?>
 
+<div class="spacer"></div>
 
 <h2>Nahlášené problémy</h2>
 <?php $_ctrl = $_control->getComponent("questionReportList"); if ($_ctrl instanceof Nette\Application\UI\IRenderable) $_ctrl->validateControl(); $_ctrl->renderByQuestion() ?>
 
+<?php
+}}
+
+//
+// block title
+//
+if (!function_exists($_l->blocks['title'][] = '_lb06bca9cf2a_title')) { function _lb06bca9cf2a_title($_l, $_args) { extract($_args)
+?><h1>Upravit otázku</h1>
 <?php
 }}
 

@@ -1,5 +1,8 @@
 {block content}
 
-{control questionDisplay:byUnit}
+<h1 n:block=title>Procházení otázek &gt; {$unitName}</h1>
+
+{control questionPaginator}
+{control questionDisplay}
 
 {/block}

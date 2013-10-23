@@ -15,15 +15,13 @@ class QuestionDisplayControl extends Control {
      * Id zobrazované otázky
      * @var type int(11)
      */
-    private $selection;
+    private $question;
     /** @var int(11) */
     protected $questionId;
     /** @var EduCenter\QuestionRepository */
     protected $questionRepository;
     /** @var EduCenter\AnswerRepository */
     protected $answerRepository;
-    /** @var EduCenter\UnitRepository */
-    protected $unitRepository;
     /** @var EduCenter\QuestoinReportRepository */
     protected $questionReportRepository;
     /** @var session */
@@ -33,11 +31,6 @@ class QuestionDisplayControl extends Control {
      * @var EduCenter\CheckedAnswers
      */
     private $checkedAnswers;
-    /**
-     * Pole obsahující výběr otázek
-     * @var array
-     */
-    private $questionArray = array();
     /**
      * Příznak zobrazování navigace mezi otázkami
      * @var boolean
@@ -54,19 +47,13 @@ class QuestionDisplayControl extends Control {
      * @param EduCenter\QuestionRepository $questionRepository
      * @param EduCenter\AnswerRepository $answerRepository
      */
-    public function __construct(QuestionRepository $questionRepository, AnswerRepository $answerRepository, Session $session, UnitRepository $unitRepository, QuestionReportRepository $questionReportRepository,\Nette\Database\Table\Selection $selection, $questionId = NULL, $testMode = NULL, $answered = NULL) {
+    public function __construct(AnswerRepository $answerRepository, Session $session, QuestionReportRepository $questionReportRepository, \Nette\Database\Table\Selection $selection, $testMode = NULL, $answered = NULL) {
 	parent::__construct();
-	$this->questionRepository = $questionRepository;
 	$this->answerRepository = $answerRepository;
-	$this->unitRepository = $unitRepository;
 	$this->questionReportRepository = $questionReportRepository;
 	
 	// Pokud jsme v testovacím módu, znamená to pro nás změnu některých nastavení
-	if($testMode != null) {
-	    $this->testMode = $testMode;
-	} else {
-	    $this->testMode = false;
-	}
+	$this->testMode = ($testMode == null) ? false : $testMode;
 		
 	// Práce se sessions
 	$this->session = $session->getSection('QuestionDisplay');
@@ -77,32 +64,12 @@ class QuestionDisplayControl extends Control {
 	if(isset($this->session->checkedAnswers))
 	    $this->checkedAnswers->unserialize($this->session->checkedAnswers);
 
-	$this->selection = $selection;
+	$this->question = $selection->fetch();
 	
-	// TODO: $this->getPresenter()->getAction(); něco s timhle vymysli, chytrolíne
-	// TODO: a namaluj si graf závislostí, dementíku
-	// TODO: Změna, načtení selection ze session, ověření podle id unit nebo takněco
-	
-	foreach($this->selection as $question) {
-	    $this->questionArray[] = $question->id;
-	}
-	
-	// Zvolíme id otázky, kterou budeme zobrazovat
-	if($questionId != null) {
-	    $this->questionId = $questionId;	// Primárně bereme z parametru
-	} else if(isset($this->session->questionId) && array_search($this->session->questionId, $this->questionArray) != null){
-	    $this->questionId = $this->session->questionId;
-	} else {
-	    $this->questionId = $this->questionArray[0];
-	}
 	// Nakonec předáme do session
-	$this->session->questionId = $this->questionId;
+	$this->session->questionId = $this->question->id;
 	
-	// Nastavíme zda zobrazovat navigaci
-	if(count($this->questionArray) < 2) {
-	    $this->displayNav = false;
-	}
-	
+	// Zobrazujeme zodpovězenou otázku?
 	if($answered) {
 	    $this->answered = $answered;
 	} else {
@@ -115,7 +82,7 @@ class QuestionDisplayControl extends Control {
 	$form = new \Nette\Application\UI\Form;
 	$form->addTextArea('text', 'Popis problému')
 		->setRequired('Prosím vyplňte popis problému.');
-	$form->addHidden('questionId', $this->questionId);
+	$form->addHidden('questionId', $this->question->id);
 	$form->addSubmit('report', 'Nahlásit problém');
 	
 	$form->onSuccess[] = $this->reportFormSucceeded;
@@ -134,19 +101,26 @@ class QuestionDisplayControl extends Control {
      * @param int(11) $answerId
      */
     public function handleCheckAnswer($answerId) {
-	// Obsluha
+	// TODO-----------------------------------------------------------------
+	// - Spojit answeredQuestions a checkedAnswers
+	//	    + umožní oddělení vyhodnocení samotných otázek a celého testu
+	//	    + promazávání checkedAnswers v Question:browse při přechodu
+	//		na jinou otázku
+	// /TODO ---------------------------------------------------------------	    
+	    
+	// Zápis do zaškrtnutých odpovědí
 	if(isset($this->session->checkedAnswers))
 	    $this->checkedAnswers->unserialize($this->session->checkedAnswers);
-	$this->checkedAnswers->addCheckedAnswer($answerId);
+	$this->checkedAnswers->addCheckedAnswer($answerId, $this->question->id);
 	
-	$this->session->checkedAnswers = $this->checkedAnswers->serialize();
+	$this->session->checkedAnswers = $this->checkedAnswers->serialize();	
     }
 
     public function handleUncheckAnswer($answerId) {
 	// Obsluha
 	if(isset($this->session->checkedAnswers))
 	    $this->checkedAnswers->unserialize($this->session->checkedAnswers);
-	$this->checkedAnswers->deleteCheckedAnswer($answerId);
+	$this->checkedAnswers->deleteCheckedAnswer($answerId, $this->question->id);
 	
 	$this->session->checkedAnswers = $this->checkedAnswers->serialize();
     }
@@ -159,20 +133,17 @@ class QuestionDisplayControl extends Control {
 	
 	// Kontrola, zda je otázka správně zodpovězena
 	//  načteme data
-	$correctAnswers = $this->answerRepository->findBy(array('id_question' => $this->questionId, 'correct' => 1));
-	if($this->checkedAnswers->areCorrect($correctAnswers)) {
+	$correctAnswers = $this->answerRepository->findBy(array('id_question' => $this->question->id, 'correct' => 1));
+	if($this->checkedAnswers->isQuestionCorrect($correctAnswers, $this->question->id)) {
 	    $this->flashMessage('Otázka byla zodpovězena správně', 'success');
 	} else {
 	    $this->flashMessage('Otázka byla zodpovězena nesprávně', 'error');
 	}
 	
-	// Vymažeme data o zaškrtnutých odpovědích
-	unset($this->session->checkedAnswers);
-    }
-
-    public function handleGoTo($questionId) {
-	$this->questionId = $questionId;
-	$this->session->questionId = $questionId;
+	// Pokud nejsme v test-mode, vymažeme data o zaškrtnutých odpovědích
+	if(!$this->testMode) {
+	    unset($this->session->checkedAnswers);
+	}
     }
     /* -----------------------------------------------------------------------*/
     
@@ -181,81 +152,31 @@ class QuestionDisplayControl extends Control {
      * @param int $jump relativní posun od aktuálně zvolené otázky, nebo klíčová slova 'last' a 'first'
      * @return mixed Vrátí id otázky nebo false, pokud otázka neexistuje
      */
-    protected function getQuestionId($jump = null) {
-	if($jump == 'last') {
-	    return $this->questionArray[sizeof($this->questionArray)-1];
-	}
-	if($jump == 'first') {
-	    return $this->questionArray[0];
-	}
-	$key = array_search($this->questionId, $this->questionArray);
-	if(isSet($this->questionArray[$key+$jump])) {
-	    return $this->questionArray[$key+$jump];
-	} else {
-	    return false;
-	}
+    protected function getQuestionId() {
+	return $this->question->id;
     }
     
     /**
      * Vykreslení komponenty
      */
-    public function renderByUnit() {
+    public function render() {
 	// Nastavení šablony
 	$template = $this->template;
-	$template->setFile(__DIR__ . '/QuestionDisplayByUnit.latte');
-	
-	
+	$template->setFile(__DIR__ . '/QuestionDisplay.latte');
 	
 	// Získáme data pro vykreslování
-	$question = $this->questionRepository->getById($this->questionId);
-	$answers = $this->answerRepository->findByQuestion($this->questionId);
+	$answers = $this->answerRepository->findByQuestion($this->question->id);
 	
 	// Předáme veškerá potřebná data šabloně
-	$this->template->question = $question;
+	$this->template->question = $this->question;
 	$this->template->answers = $answers;
+	$this->template->testMode = $this->testMode;
 	$this->template->answered = $this->answered;
 	$this->template->checkedAnswers = $this->checkedAnswers;
-	$this->template->displayNav = $this->displayNav;
-	$this->template->previousId = $this->getQuestionId(-1);
-	$this->template->nextId = $this->getQuestionId(+1);
-	$this->template->numberOfQuestions = sizeof($this->questionArray);
-	$this->template->numberOfCurrentQuestion = array_search($this->questionId, $this->questionArray)+1;
-	// Předáme odkaz na první a poslední otázku, pokud jsme na první nebo poslední, odkaz nepředáme
-	if($this->getQuestionId('last') != $this->questionId) {
-	    $this->template->lastId = $this->getQuestionId('last');
-	} else {
-	    $this->template->lastId = false;
-	}
-	if($this->getQuestionId('first') != $this->questionId) {
-	    $this->template->firstId = $this->getQuestionId('first');
-	} else {
-	    $this->template->firstId = false;
-	}
-	// Skok dolů a nahorů
-	$this->template->skipDownId = $this->getQuestionId(-10);
-	$this->template->skipUpId = $this->getQuestionId(10);
-	$this->template->numberOfUnresolvedReports = $this->questionReportRepository->findByQuestion($this->questionId)->count();
-	
-	
+	$this->template->numberOfUnresolvedReports = $this->questionReportRepository->findByQuestion($this->question->id)->count();
 	$this->template->AnswerIteratorMask = new AnswerIteratorMask;
 	
 	// Vykreslíme šablonu
-	$template->render();
-    }
-    
-    public function renderById() {
-	$template = $this->template;
-	$template->setFile(__DIR__ . '/QuestionDisplayById.latte');
-	
-	$question = $this->questionRepository->getById($this->questionId);
-	$answers = $this->answerRepository->findByQuestion($this->questionId);
-	
-	$this->template->question = $question;
-	$this->template->answers = $answers;
-	$this->template->answered = true;
-	$this->template->displayNav = false;
-	$this->template->AnswerIteratorMask = new AnswerIteratorMask;
-	
 	$template->render();
     }
 }
@@ -266,38 +187,56 @@ class QuestionDisplayControl extends Control {
  */
 class CheckedAnswers extends Object implements \Serializable {
     /**
-     * Pole držící data o zaškrtnutých odpovědích
+     * Dvojrozměrné pole držící data o zaškrtnutých odpovědích
+     *	array[id_otázky][id_zaškrtnunté_odpovědi]
      * @var type 
      */
-    private $array = array();
+    private $checkedAnswers = array();
+    
+    // TEMPORARYY
+    public function getArray() {
+	return $this->checkedAnswers;
+    }
     
     /**
      * Přidá zaškrtnutou odpověď
      * @param int(11) $answerId
      */
-    public function addCheckedAnswer($answerId) {
+    public function addCheckedAnswer($answerId, $questionId) {
 	// Zabráníme duplicitě záznamů kvůli pozdějšímu porovnávání polí
-	$key = array_search($answerId, $this->array);
-	if($key === false)
-	    $this->array[] = $answerId;	// Vložíme záznam na konec pole
+	if(array_key_exists($questionId, $this->checkedAnswers) === false) {
+	    $this->checkedAnswers[$questionId] = array();	// Vložíme záznam
+	}
+	    
+	// Přidání odpovědi
+	if((array_search($answerId, $this->checkedAnswers[$questionId]) === false))
+		$this->checkedAnswers[$questionId][] = $answerId;
     }
     
     /**
      * Vymaže záznam o zaškrtnuté odpovědi
      * @param int(11) $answerId
      */
-    public function deleteCheckedAnswer($answerId) {
-	$key = array_search($answerId, $this->array);
-	unset($this->array[$key]);
+    public function deleteCheckedAnswer($answerId, $questionId) {
+	// Pokud nám zbývá poslední zaškrtnutá odpověď, smažeme celou otázku 
+	if(sizeof($this->checkedAnswers[$questionId]) < 2) {
+	    unset($this->checkedAnswers[$questionId]);
+	} else {
+	    $key = array_search($answerId, $this->checkedAnswers[$questionId]);
+	    unset($this->checkedAnswers[$questionId][$key]);
+	}
     }
     
     /**
      * Vrátí příznak o tom, zda je odpověď zaškrtnuta
-     * @param int(11) $answerId
+     * @param id $answerId
      * @return boolean
      */
-    public function isAnswerChecked($answerId) {
-	foreach($this->array as $array) {
+    public function isAnswerChecked($answerId, $questionId) {
+	if(!isset($this->checkedAnswers[$questionId]))
+	    return false;
+
+	foreach($this->checkedAnswers[$questionId] as $array) {
 	    if($array == $answerId)
 		return true;
 	}
@@ -305,27 +244,73 @@ class CheckedAnswers extends Object implements \Serializable {
     }
     
     /**
+     * Vrátí příznak o tom, zda je u otázky zaškrtnuta alespoň jedna odpověď
+     * @param id $questionId
+     * @return boolean
+     */
+    public function isQuestionAnswered($questionId) {
+	if(!isset($this->checkedAnswers[$questionId]))
+	    return false;
+	else
+	    return true;
+    }
+    
+    /**
      * Zjistí, zda jsou zaškrtnuté odpovědi správné
      */
-    public function areCorrect($correctAnswers) {
+    public function isQuestionCorrect($correctAnswers, $questionId) {
 	// Vytvoříme pole obsahující správné otázky
 	$corAnsIds = array();
+	$checkAnsIds = (isset($this->checkedAnswers[$questionId])) ? $this->checkedAnswers[$questionId] : array();
 	foreach($correctAnswers as $answer) {
 	    $corAnsIds[] = $answer->id;
 	}
 	
 	// Porovnáme pole se správnými otázkami s polem zaškrtnutých otázek
 	//  nejprve obě pole seřadíme
-	sort($this->array, SORT_NUMERIC);
+	sort($checkAnsIds, SORT_NUMERIC);
 	sort($corAnsIds, SORT_NUMERIC);
 	
 	/*DEBUGGER::Dump($this->array);
 	DEBUGGER::Dump($corAnsIds);*/
 	
-	if($this->array == $corAnsIds)
+	if($checkAnsIds == $corAnsIds)
 	    return true;
 	else
 	    return false;
+    }
+    
+    /**
+     * Funkce, která vyhodnotí test
+     * @param array $correctArray pole správných odpovědí [id_otázky][id_správné_odpovědi]
+     * @return array $answeredWrong pole špatně zodpovězených otázek [id_otázky][id_zaškrtnuté odpovědi]
+     * ! časově náročná operace
+     */
+    public function evaluateTest($correctArray) {
+	$answeredWrong = array();   // Pole pro správně zodpovězené otázky
+	
+	// Projíždíme pole správných odpovědí
+	foreach($correctArray as $question => $answers) {
+	    // Pokud nebyla otázka vůbec zodpovězena
+	    if(!array_key_exists($question, $this->checkedAnswers)) {
+		$answeredWrong[$question] = array();	// Přidáme ji celou do špatně odpovězených
+	    } else {	// Pokud byla otázka zodpovězena, zkontrolujeme, zda byla zodpovězena správně
+		// Seřadíme, abychom mohli porovnat
+		sort($correctArray[$question], SORT_NUMERIC);
+		sort($this->checkedAnswers[$question], SORT_NUMERIC);
+		// Pokud nejsou stejné, přidáme do špatně zodpovzených
+		if($correctArray[$question] === $this->checkedAnswers[$question]) {
+		    $answeredWrong[$question] = $answers;
+		}
+	    }
+	}
+	// Nakonec vrátíme množinu špatných odpovědí, nebo true pokud byl test
+	//  splněn na 100%;
+	if(empty($answeredWrong)) {
+	    return true;
+	} else {
+	    return $answeredWrong;
+	}
     }
     
     /**
@@ -333,7 +318,7 @@ class CheckedAnswers extends Object implements \Serializable {
      * @return array
      */
     public function serialize() {
-        return serialize($this->array);
+        return serialize($this->checkedAnswers);
     }
     
     /**
@@ -341,7 +326,7 @@ class CheckedAnswers extends Object implements \Serializable {
      * @param CheckedAnswers::Array $array
      */
     public function unserialize($array) {
-	$this->array = unserialize($array);
+	$this->checkedAnswers = unserialize($array);
     }
 }
 

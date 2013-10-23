@@ -14,6 +14,10 @@ class QuestionRepository extends Repository {
 	return $this->getTable()->get($id);
     }
     
+    public function findById($id) {
+	return $this->getTable()->where(array('id' => $id));
+    }
+    
     /**
      * Vrací řádky otázek patřící do jedné kategorie
      * 

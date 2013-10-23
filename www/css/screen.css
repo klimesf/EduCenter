@@ -27,6 +27,7 @@ body {
 
 #header a {
     color: #fff;
+    text-decoration: none;
 }
 
 #header a:hover {
@@ -36,6 +37,8 @@ body {
 #header a img {
     vertical-align: text-top;
     border: 0;
+    margin: 0;
+    float: none;
     
 }
 
@@ -180,7 +183,7 @@ div#horizontal-menu ul li ul li a {
 div#horizontal-menu li:hover > ul {display: block; background: #101010; padding: 0; margin: 0; border: 0;}
 
 /* --- */
-
+/*
 div#sidebar a:hover {
     background-color: #3484D2;
     color: #fff;
@@ -226,10 +229,10 @@ div#sidebar h3 {
     font-weight: normal;
     border-radius: 0.5em;
 }
-
+*/
 /*** Typo ***/
 h1 {
-    font-size: 120%;
+    font-size: 140%;
     font-weight: normal;
     margin: 0 0 2em;
     padding: 0 .5em 1em;
@@ -237,14 +240,21 @@ h1 {
 }
 
 h2 {
-	font-size: 110%;
-	font-weight: normal;
-	margin: 0 0 0.5em;
-	padding: 0 .5em;
+    font-size: 120%;
+    font-weight: normal;
+    margin: 0 0 0.5em;
+    padding: 0 .5em;
+}
+
+h3 {
+    font-size: 110%;
+    font-weight: normal;
+    margin: 0 0 0.2em;
+    padding: 0 .5em;
 }
 
 p {
-    padding: 1em 0.5em;
+    padding: 0.5em 0.5em 1em;
 }
 
 p.center {
@@ -253,13 +263,14 @@ p.center {
 
 a {
     color: #3484D2;
-    text-decoration: none;
+    text-decoration: underline;
     padding: 0;
 }
 
 a[href]:hover, a:active, a:focus {
-	background-color: rgba(0,0,0,0.1);
-	color: #000;
+    text-decoration: none;
+    background-color: #3484D2;
+    color: #fff;
 }
 
 a.button {
@@ -269,6 +280,7 @@ a.button {
     font-weight: bold;
     border-radius: 0.5em;
     text-align: center;
+    text-decoration: none;
 }
 
 a.button:hover {
@@ -276,6 +288,18 @@ a.button:hover {
     color: #fff;
 }
 
+div.spacer {
+    clear: both;
+    width: 100%;
+    border-bottom: 1px dashed silver;
+    margin: 1em 0;
+}
+
+img {
+    float: right;
+    margin: 1em;
+}
+/*
 table {
 	width: 100%;
 	border-collapse: separate;
@@ -295,7 +319,7 @@ th, td {
 }
 
 td {
-	/*border-top: 1px solid #F2EEE1;*/
+
 }
 
 td.number {
@@ -305,7 +329,7 @@ td.number {
 tr.even:hover, tr.odd:hover {
    cursor: pointer;
    background-color: #CEE0F0;
-   /* whatever other hover styles you want */
+
 }
 
 tr.even {
@@ -319,11 +343,71 @@ tr.odd {
 tr a {
     color: #000;
 }
-
+*/
 span.smaller {
     font-size: 90%;
 }
 
+/*** Paginator ***/
+.paginator {
+    margin: 0 1em 2em;
+    padding: 0 0 2em;
+    font-size: 90%;
+    text-align: center;
+    border-bottom: 1px solid #d0d0d0;
+    line-height: 200%;
+}
+
+.paginator .heading {
+    margin: 0;
+    padding: 0.1em 0.5em;
+    font-size: 1.1em;
+    color: #606060;
+}
+
+.paginator a, .paginator span {
+    margin-right: 0.1em;
+    padding: 0.2em 0.3em;
+    color: #a0a0a0;
+}
+
+.paginator a {
+    border: 1px solid #a0a0a0;
+    text-decoration: none;
+    color: #505050;
+}
+
+.paginator a:hover {
+    background-color: #e0e0e0;
+    color: black;
+}
+
+.paginator a.active {
+    border: 1px solid #000;
+    color: #fff;
+    background: #3484D2;
+}
+
+.paginator a.answered {
+    border: 1px solid #000;
+    color: #000;
+    background: #d3d3d3;
+}
+
+.paginator span.button {
+    border: 1px solid #DDDDDD;
+}
+
+.paginator .current {
+    background: #606060;
+    border: 1px solid #606060;
+    color: white;
+    font-weight: bold;
+}
+
+.left {
+    text-align: left;
+}
 /*** Question-viewer ***/
 div.question-viewer {
     padding: 1em;
@@ -336,31 +420,6 @@ div.question-viewer img {
     left: 1em;
     opacity: 0.6;
     float: none;
-}
-
-div.question-viewer div.nav {
-    background: #fff;
-    border-bottom: 1px solid #d0d0d0;
-    padding: 0.5em;
-    text-align: center;
-    margin: 1em 0 3em 0;
-    background: #fff;
-    overflow: hidden;
-    line-height: 190%;
-    color: #606060;
-}
-
-div.question-viewer div.nav a {
-    font-size: 90%;
-    /*border: 1px dashed #d3d3d3;*/
-    padding: 0.3em 0.5em;
-    margin: 0 auto;
-    color: #606060;
-}
-
-div.question-viewer div.nav a:hover {
-    background: #f3f3f3;
-    color: #000;
 }
 
 div.question-viewer div.question {
@@ -407,6 +466,7 @@ div.question-viewer div.checkbox a {
     display: block;
     text-align: center;
     border-radius: 0;
+    text-decoration: none;
 }
 
 div.question-viewer div.checkbox-checked a {
@@ -414,6 +474,7 @@ div.question-viewer div.checkbox-checked a {
     padding: 0.5em;
     display: block;
     text-align: center;
+    text-decoration: none;
     background: #3484D2;
     color: #fff;
     border-radius: 0;
@@ -427,8 +488,13 @@ div.question-viewer div.bottom-bar {
     text-align: center;
 }
 
+div.question-viewer div.flash {
+    margin: 0;
+}
+
 /*** Report-list ***/
 div.report-list {
+    border-top: 1px solid #d0d0d0;
     padding: 0;
     margin: 2em 0;
 }
@@ -502,19 +568,19 @@ label {
 }
 
 form div.pair {
-	margin-bottom: 1ex;
+    margin-bottom: 1ex;
 }
 
 form div.spacer {
     border-bottom: 1px dashed silver;
     height: 1px;
-    margin: 2em 1em;
+    margin: 2em 0;
     clear: both;
 }
 
 form div.pair label {
 	display: block;
-	width: 13em;
+	width: 15em;
 	text-align: right;
 	float: left;
 	padding: 0 1em 0 0;
@@ -523,7 +589,7 @@ form div.pair label {
 }
 
 form div.pair div.input {
-	margin-left: 15em;
+	margin-left: 17em;
 }
 
 form div.pair div.input label {
