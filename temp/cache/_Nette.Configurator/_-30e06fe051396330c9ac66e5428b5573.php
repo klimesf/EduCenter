@@ -1,4 +1,4 @@
-<?php //netteCache[01]007639a:2:{s:4:"time";s:21:"0.37383800 1380499358";s:9:"callbacks";a:50:{i:0;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:39:"D:\Web\EduCenter\app\config\config.neon";i:2;i:1380331269;}i:1;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:45:"D:\Web\EduCenter\app\config\config.local.neon";i:2;i:1375917387;}i:2;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:62:"D:\Web\EduCenter\libs\Nette\Config\Extensions\PhpExtension.php";i:2;i:1375917484;}i:3;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:68:"D:\Web\EduCenter\libs\Nette\Config\Extensions\ConstantsExtension.php";i:2;i:1375917484;}i:4;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:64:"D:\Web\EduCenter\libs\Nette\Config\Extensions\NetteExtension.php";i:2;i:1375917484;}i:5;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:45:"D:\Web\EduCenter\libs\Nette\common\Object.php";i:2;i:1375917484;}i:6;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:57:"D:\Web\EduCenter\libs\Nette\Caching\Storages\IJournal.php";i:2;i:1375917484;}i:7;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:60:"D:\Web\EduCenter\libs\Nette\Caching\Storages\FileJournal.php";i:2;i:1375917484;}i:8;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:48:"D:\Web\EduCenter\libs\Nette\Caching\IStorage.php";i:2;i:1375917484;}i:9;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:60:"D:\Web\EduCenter\libs\Nette\Caching\Storages\FileStorage.php";i:2;i:1375917484;}i:10;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:51:"D:\Web\EduCenter\libs\Nette\Http\RequestFactory.php";i:2;i:1375917484;}i:11;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:45:"D:\Web\EduCenter\libs\Nette\Http\IRequest.php";i:2;i:1375917484;}i:12;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:44:"D:\Web\EduCenter\libs\Nette\Http\Request.php";i:2;i:1375917484;}i:13;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:46:"D:\Web\EduCenter\libs\Nette\Http\IResponse.php";i:2;i:1375917484;}i:14;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:45:"D:\Web\EduCenter\libs\Nette\Http\Response.php";i:2;i:1375917484;}i:15;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:44:"D:\Web\EduCenter\libs\Nette\Http\Context.php";i:2;i:1375917484;}i:16;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:44:"D:\Web\EduCenter\libs\Nette\Http\Session.php";i:2;i:1375917484;}i:17;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:53:"D:\Web\EduCenter\libs\Nette\Security\IUserStorage.php";i:2;i:1375917484;}i:18;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:48:"D:\Web\EduCenter\libs\Nette\Http\UserStorage.php";i:2;i:1375917484;}i:19;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:45:"D:\Web\EduCenter\libs\Nette\Security\User.php";i:2;i:1375917484;}i:20;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:55:"D:\Web\EduCenter\libs\Nette\Application\Application.php";i:2;i:1375917484;}i:21;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:61:"D:\Web\EduCenter\libs\Nette\Application\IPresenterFactory.php";i:2;i:1375917484;}i:22;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:60:"D:\Web\EduCenter\libs\Nette\Application\PresenterFactory.php";i:2;i:1375917484;}i:23;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:51:"D:\Web\EduCenter\libs\Nette\Application\IRouter.php";i:2;i:1375917484;}i:24;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:44:"D:\Web\EduCenter\libs\Nette\Mail\IMailer.php";i:2;i:1375917484;}i:25;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:51:"D:\Web\EduCenter\libs\Nette\Mail\SendmailMailer.php";i:2;i:1375917484;}i:26;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:49:"D:\Web\EduCenter\libs\Nette\DI\NestedAccessor.php";i:2;i:1375917484;}i:27;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:51:"D:\Web\EduCenter\libs\Nette\Database\Connection.php";i:2;i:1375917484;}i:28;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:41:"D:\Web\EduCenter\app\model\Repository.php";i:2;i:1379718351;}i:29;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:49:"D:\Web\EduCenter\app\model\QuestionRepository.php";i:2;i:1380499349;}i:30;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:47:"D:\Web\EduCenter\app\model\AnswerRepository.php";i:2;i:1380499355;}i:31;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:45:"D:\Web\EduCenter\app\model\UnitRepository.php";i:2;i:1378336989;}i:32;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:45:"D:\Web\EduCenter\app\model\UserRepository.php";i:2;i:1378259766;}i:33;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:45:"D:\Web\EduCenter\app\router\RouterFactory.php";i:2;i:1375917387;}i:34;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:55:"D:\Web\EduCenter\libs\Nette\Security\IAuthenticator.php";i:2;i:1375917484;}i:35;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:44:"D:\Web\EduCenter\app\model\Authenticator.php";i:2;i:1378260494;}i:36;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:54:"D:\Web\EduCenter\libs\Nette\common\FreezableObject.php";i:2;i:1375917484;}i:37;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:49:"D:\Web\EduCenter\libs\Nette\common\IFreezable.php";i:2;i:1375917484;}i:38;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:45:"D:\Web\EduCenter\libs\Nette\DI\IContainer.php";i:2;i:1375917484;}i:39;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:44:"D:\Web\EduCenter\libs\Nette\DI\Container.php";i:2;i:1375917484;}i:40;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:68:"D:\Web\EduCenter\libs\Nette\Application\Diagnostics\RoutingPanel.php";i:2;i:1375917484;}i:41;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:42:"D:\Web\EduCenter\libs\Nette\Forms\Form.php";i:2;i:1375917484;}i:42;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:47:"D:\Web\EduCenter\libs\Nette\common\Callback.php";i:2;i:1375917484;}i:43;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:45:"D:\Web\EduCenter\libs\Nette\Caching\Cache.php";i:2;i:1375917484;}i:44;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:72:"D:\Web\EduCenter\libs\Nette\Database\Reflection\DiscoveredReflection.php";i:2;i:1375917484;}i:45;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:44:"D:\Web\EduCenter\libs\Nette\Latte\Engine.php";i:2;i:1375917484;}i:46;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:44:"D:\Web\EduCenter\libs\Nette\Mail\Message.php";i:2;i:1375917484;}i:47;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:55:"D:\Web\EduCenter\libs\Nette\Templating\FileTemplate.php";i:2;i:1375917484;}i:48;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:51:"D:\Web\EduCenter\libs\Nette\Templating\Template.php";i:2;i:1375917484;}i:49;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:62:"D:\Web\EduCenter\libs\Nette\Security\Diagnostics\UserPanel.php";i:2;i:1375917484;}}}?><?php
+<?php //netteCache[01]008246a:2:{s:4:"time";s:21:"0.21173600 1382881296";s:9:"callbacks";a:54:{i:0;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:39:"D:\Web\EduCenter\app\config\config.neon";i:2;i:1382555345;}i:1;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:45:"D:\Web\EduCenter\app\config\config.local.neon";i:2;i:1375917387;}i:2;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:62:"D:\Web\EduCenter\libs\Nette\Config\Extensions\PhpExtension.php";i:2;i:1375917484;}i:3;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:68:"D:\Web\EduCenter\libs\Nette\Config\Extensions\ConstantsExtension.php";i:2;i:1375917484;}i:4;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:64:"D:\Web\EduCenter\libs\Nette\Config\Extensions\NetteExtension.php";i:2;i:1375917484;}i:5;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:45:"D:\Web\EduCenter\libs\Nette\common\Object.php";i:2;i:1375917484;}i:6;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:57:"D:\Web\EduCenter\libs\Nette\Caching\Storages\IJournal.php";i:2;i:1375917484;}i:7;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:60:"D:\Web\EduCenter\libs\Nette\Caching\Storages\FileJournal.php";i:2;i:1375917484;}i:8;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:48:"D:\Web\EduCenter\libs\Nette\Caching\IStorage.php";i:2;i:1375917484;}i:9;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:60:"D:\Web\EduCenter\libs\Nette\Caching\Storages\FileStorage.php";i:2;i:1375917484;}i:10;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:51:"D:\Web\EduCenter\libs\Nette\Http\RequestFactory.php";i:2;i:1375917484;}i:11;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:45:"D:\Web\EduCenter\libs\Nette\Http\IRequest.php";i:2;i:1375917484;}i:12;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:44:"D:\Web\EduCenter\libs\Nette\Http\Request.php";i:2;i:1375917484;}i:13;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:46:"D:\Web\EduCenter\libs\Nette\Http\IResponse.php";i:2;i:1375917484;}i:14;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:45:"D:\Web\EduCenter\libs\Nette\Http\Response.php";i:2;i:1375917484;}i:15;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:44:"D:\Web\EduCenter\libs\Nette\Http\Context.php";i:2;i:1375917484;}i:16;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:44:"D:\Web\EduCenter\libs\Nette\Http\Session.php";i:2;i:1375917484;}i:17;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:53:"D:\Web\EduCenter\libs\Nette\Security\IUserStorage.php";i:2;i:1375917484;}i:18;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:48:"D:\Web\EduCenter\libs\Nette\Http\UserStorage.php";i:2;i:1375917484;}i:19;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:45:"D:\Web\EduCenter\libs\Nette\Security\User.php";i:2;i:1375917484;}i:20;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:55:"D:\Web\EduCenter\libs\Nette\Application\Application.php";i:2;i:1375917484;}i:21;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:61:"D:\Web\EduCenter\libs\Nette\Application\IPresenterFactory.php";i:2;i:1375917484;}i:22;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:60:"D:\Web\EduCenter\libs\Nette\Application\PresenterFactory.php";i:2;i:1375917484;}i:23;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:51:"D:\Web\EduCenter\libs\Nette\Application\IRouter.php";i:2;i:1375917484;}i:24;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:44:"D:\Web\EduCenter\libs\Nette\Mail\IMailer.php";i:2;i:1375917484;}i:25;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:51:"D:\Web\EduCenter\libs\Nette\Mail\SendmailMailer.php";i:2;i:1375917484;}i:26;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:49:"D:\Web\EduCenter\libs\Nette\DI\NestedAccessor.php";i:2;i:1375917484;}i:27;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:51:"D:\Web\EduCenter\libs\Nette\Database\Connection.php";i:2;i:1375917484;}i:28;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:41:"D:\Web\EduCenter\app\model\Repository.php";i:2;i:1381184377;}i:29;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:45:"D:\Web\EduCenter\app\model\TestRepository.php";i:2;i:1381937072;}i:30;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:52:"D:\Web\EduCenter\app\model\TestSettingRepository.php";i:2;i:1381938492;}i:31;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:51:"D:\Web\EduCenter\app\model\TestResultRepository.php";i:2;i:1382880719;}i:32;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:55:"D:\Web\EduCenter\app\model\QuestionReportRepository.php";i:2;i:1381600978;}i:33;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:47:"D:\Web\EduCenter\app\model\AnswerRepository.php";i:2;i:1380896755;}i:34;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:49:"D:\Web\EduCenter\app\model\QuestionRepository.php";i:2;i:1382476661;}i:35;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:45:"D:\Web\EduCenter\app\router\RouterFactory.php";i:2;i:1375917387;}i:36;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:45:"D:\Web\EduCenter\app\model\UserRepository.php";i:2;i:1378259766;}i:37;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:45:"D:\Web\EduCenter\app\model\UnitRepository.php";i:2;i:1382031452;}i:38;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:55:"D:\Web\EduCenter\libs\Nette\Security\IAuthenticator.php";i:2;i:1375917484;}i:39;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:44:"D:\Web\EduCenter\app\model\Authenticator.php";i:2;i:1378260494;}i:40;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:54:"D:\Web\EduCenter\libs\Nette\common\FreezableObject.php";i:2;i:1375917484;}i:41;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:49:"D:\Web\EduCenter\libs\Nette\common\IFreezable.php";i:2;i:1375917484;}i:42;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:45:"D:\Web\EduCenter\libs\Nette\DI\IContainer.php";i:2;i:1375917484;}i:43;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:44:"D:\Web\EduCenter\libs\Nette\DI\Container.php";i:2;i:1375917484;}i:44;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:68:"D:\Web\EduCenter\libs\Nette\Application\Diagnostics\RoutingPanel.php";i:2;i:1375917484;}i:45;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:42:"D:\Web\EduCenter\libs\Nette\Forms\Form.php";i:2;i:1375917484;}i:46;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:47:"D:\Web\EduCenter\libs\Nette\common\Callback.php";i:2;i:1375917484;}i:47;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:45:"D:\Web\EduCenter\libs\Nette\Caching\Cache.php";i:2;i:1375917484;}i:48;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:72:"D:\Web\EduCenter\libs\Nette\Database\Reflection\DiscoveredReflection.php";i:2;i:1375917484;}i:49;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:44:"D:\Web\EduCenter\libs\Nette\Latte\Engine.php";i:2;i:1375917484;}i:50;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:44:"D:\Web\EduCenter\libs\Nette\Mail\Message.php";i:2;i:1375917484;}i:51;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:55:"D:\Web\EduCenter\libs\Nette\Templating\FileTemplate.php";i:2;i:1375917484;}i:52;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:51:"D:\Web\EduCenter\libs\Nette\Templating\Template.php";i:2;i:1375917484;}i:53;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:62:"D:\Web\EduCenter\libs\Nette\Security\Diagnostics\UserPanel.php";i:2;i:1375917484;}}}?><?php
 // source: D:\Web\EduCenter\app/config/config.neon development
 // source: D:\Web\EduCenter\app/config/config.local.neon 
 
@@ -13,10 +13,14 @@
  * @property Nette\Http\Response $httpResponse
  * @property SystemContainer_nette $nette
  * @property Nette\DI\NestedAccessor $php
+ * @property EduCenter\QuestionReportRepository $questionReportRepository
  * @property EduCenter\QuestionRepository $questionRepository
  * @property Nette\Application\IRouter $router
  * @property RouterFactory $routerFactory
  * @property Nette\Http\Session $session
+ * @property EduCenter\TestRepository $testRepository
+ * @property EduCenter\TestResultRepository $testResultRepository
+ * @property EduCenter\TestSettingRepository $testSettingRepository
  * @property EduCenter\UnitRepository $unitRepository
  * @property Nette\Security\User $user
  * @property EduCenter\UserRepository $userRepository
@@ -25,7 +29,7 @@ class SystemContainer extends Nette\DI\Container
 {
 
 	public $classes = array(
-		'nette\\object' => FALSE, //: nette.cacheJournal, cacheStorage, nette.httpRequestFactory, httpRequest, httpResponse, nette.httpContext, session, nette.userStorage, user, application, nette.presenterFactory, nette.mailer, nette.database, questionRepository, answerRepository, unitRepository, userRepository, authenticator, container,
+		'nette\\object' => FALSE, //: nette.cacheJournal, cacheStorage, nette.httpRequestFactory, httpRequest, httpResponse, nette.httpContext, session, nette.userStorage, user, application, nette.presenterFactory, nette.mailer, nette.database, testRepository, testSettingRepository, testResultRepository, questionReportRepository, answerRepository, questionRepository, userRepository, unitRepository, authenticator, container,
 		'nette\\caching\\storages\\ijournal' => 'nette.cacheJournal',
 		'nette\\caching\\storages\\filejournal' => 'nette.cacheJournal',
 		'nette\\caching\\istorage' => 'cacheStorage',
@@ -49,12 +53,16 @@ class SystemContainer extends Nette\DI\Container
 		'nette\\di\\nestedaccessor' => 'nette.database',
 		'pdo' => 'nette.database.default',
 		'nette\\database\\connection' => 'nette.database.default',
-		'educenter\\repository' => FALSE, //: questionRepository, answerRepository, unitRepository, userRepository,
-		'educenter\\questionrepository' => 'questionRepository',
+		'educenter\\repository' => FALSE, //: testRepository, testSettingRepository, testResultRepository, questionReportRepository, answerRepository, questionRepository, userRepository, unitRepository,
+		'educenter\\testrepository' => 'testRepository',
+		'educenter\\testsettingrepository' => 'testSettingRepository',
+		'educenter\\testresultrepository' => 'testResultRepository',
+		'educenter\\questionreportrepository' => 'questionReportRepository',
 		'educenter\\answerrepository' => 'answerRepository',
-		'educenter\\unitrepository' => 'unitRepository',
-		'educenter\\userrepository' => 'userRepository',
+		'educenter\\questionrepository' => 'questionRepository',
 		'routerfactory' => 'routerFactory',
+		'educenter\\userrepository' => 'userRepository',
+		'educenter\\unitrepository' => 'unitRepository',
 		'nette\\security\\iauthenticator' => 'authenticator',
 		'educenter\\authenticator' => 'authenticator',
 		'nette\\freezableobject' => 'container',
@@ -405,6 +413,16 @@ class SystemContainer extends Nette\DI\Container
 
 
 	/**
+	 * @return EduCenter\QuestionReportRepository
+	 */
+	protected function createServiceQuestionReportRepository()
+	{
+		$service = new EduCenter\QuestionReportRepository($this->getService('nette.database.default'));
+		return $service;
+	}
+
+
+	/**
 	 * @return EduCenter\QuestionRepository
 	 */
 	protected function createServiceQuestionRepository()
@@ -444,6 +462,36 @@ class SystemContainer extends Nette\DI\Container
 	{
 		$service = new Nette\Http\Session($this->getService('httpRequest'), $this->getService('httpResponse'));
 		$service->setExpiration('30 days');
+		return $service;
+	}
+
+
+	/**
+	 * @return EduCenter\TestRepository
+	 */
+	protected function createServiceTestRepository()
+	{
+		$service = new EduCenter\TestRepository($this->getService('nette.database.default'));
+		return $service;
+	}
+
+
+	/**
+	 * @return EduCenter\TestResultRepository
+	 */
+	protected function createServiceTestResultRepository()
+	{
+		$service = new EduCenter\TestResultRepository($this->getService('nette.database.default'));
+		return $service;
+	}
+
+
+	/**
+	 * @return EduCenter\TestSettingRepository
+	 */
+	protected function createServiceTestSettingRepository()
+	{
+		$service = new EduCenter\TestSettingRepository($this->getService('nette.database.default'));
 		return $service;
 	}
 
