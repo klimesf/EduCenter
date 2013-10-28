@@ -56,3 +56,5 @@ Tasks:
     - Add option to report a problem with a question
     - Add option to response to the reported problem and mark it (un)resolved
     - For the report, make either a JS pop-up window or independent action either in QuestionDisplay or QuestionPresenter
+
+- Co takhle ukládat vylosované otázky do databáze? Model pro session? testResult presenter.

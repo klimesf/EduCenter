@@ -1,4 +1,4 @@
-<?php //netteCache[01]000354a:2:{s:4:"time";s:21:"0.45652700 1381510636";s:9:"callbacks";a:2:{i:0;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:39:"D:\Web\EduCenter\app\config\config.neon";i:2;i:1381141332;}i:1;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:45:"D:\Web\EduCenter\app\config\config.local.neon";i:2;i:1375917387;}}}?><?php
+<?php //netteCache[01]000354a:2:{s:4:"time";s:21:"0.99747600 1382616129";s:9:"callbacks";a:2:{i:0;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:39:"D:\Web\EduCenter\app\config\config.neon";i:2;i:1382555345;}i:1;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:45:"D:\Web\EduCenter\app\config\config.local.neon";i:2;i:1375917387;}}}?><?php
 // source: D:\Web\EduCenter\app/config/config.neon production
 // source: D:\Web\EduCenter\app/config/config.local.neon 
 
@@ -19,6 +19,8 @@
  * @property RouterFactory $routerFactory
  * @property Nette\Http\Session $session
  * @property EduCenter\TestRepository $testRepository
+ * @property EduCenter\TestResultRepository $testResultRepository
+ * @property EduCenter\TestSettingRepository $testSettingRepository
  * @property EduCenter\UnitRepository $unitRepository
  * @property Nette\Security\User $user
  * @property EduCenter\UserRepository $userRepository
@@ -27,7 +29,7 @@ class SystemContainer extends Nette\DI\Container
 {
 
 	public $classes = array(
-		'nette\\object' => FALSE, //: nette.cacheJournal, cacheStorage, nette.httpRequestFactory, httpRequest, httpResponse, nette.httpContext, session, nette.userStorage, user, application, nette.presenterFactory, nette.mailer, nette.database, answerRepository, testRepository, questionReportRepository, questionRepository, unitRepository, userRepository, authenticator, container,
+		'nette\\object' => FALSE, //: nette.cacheJournal, cacheStorage, nette.httpRequestFactory, httpRequest, httpResponse, nette.httpContext, session, nette.userStorage, user, application, nette.presenterFactory, nette.mailer, nette.database, testRepository, testSettingRepository, testResultRepository, questionReportRepository, answerRepository, questionRepository, userRepository, unitRepository, authenticator, container,
 		'nette\\caching\\storages\\ijournal' => 'nette.cacheJournal',
 		'nette\\caching\\storages\\filejournal' => 'nette.cacheJournal',
 		'nette\\caching\\istorage' => 'cacheStorage',
@@ -51,14 +53,16 @@ class SystemContainer extends Nette\DI\Container
 		'nette\\di\\nestedaccessor' => 'nette.database',
 		'pdo' => 'nette.database.default',
 		'nette\\database\\connection' => 'nette.database.default',
-		'educenter\\repository' => FALSE, //: answerRepository, testRepository, questionReportRepository, questionRepository, unitRepository, userRepository,
-		'educenter\\answerrepository' => 'answerRepository',
+		'educenter\\repository' => FALSE, //: testRepository, testSettingRepository, testResultRepository, questionReportRepository, answerRepository, questionRepository, userRepository, unitRepository,
 		'educenter\\testrepository' => 'testRepository',
+		'educenter\\testsettingrepository' => 'testSettingRepository',
+		'educenter\\testresultrepository' => 'testResultRepository',
 		'educenter\\questionreportrepository' => 'questionReportRepository',
+		'educenter\\answerrepository' => 'answerRepository',
 		'educenter\\questionrepository' => 'questionRepository',
-		'educenter\\unitrepository' => 'unitRepository',
 		'routerfactory' => 'routerFactory',
 		'educenter\\userrepository' => 'userRepository',
+		'educenter\\unitrepository' => 'unitRepository',
 		'nette\\security\\iauthenticator' => 'authenticator',
 		'educenter\\authenticator' => 'authenticator',
 		'nette\\freezableobject' => 'container',
@@ -450,6 +454,26 @@ class SystemContainer extends Nette\DI\Container
 	protected function createServiceTestRepository()
 	{
 		$service = new EduCenter\TestRepository($this->getService('nette.database.default'));
+		return $service;
+	}
+
+
+	/**
+	 * @return EduCenter\TestResultRepository
+	 */
+	protected function createServiceTestResultRepository()
+	{
+		$service = new EduCenter\TestResultRepository($this->getService('nette.database.default'));
+		return $service;
+	}
+
+
+	/**
+	 * @return EduCenter\TestSettingRepository
+	 */
+	protected function createServiceTestSettingRepository()
+	{
+		$service = new EduCenter\TestSettingRepository($this->getService('nette.database.default'));
 		return $service;
 	}
 

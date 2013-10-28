@@ -1,0 +1,16 @@
+{block content}
+<div class="test-results-list">
+{if $testResults->count() == 0}
+    <div class="odd">Zatím nemáte žádné výsledky testů.</div>
+{else}
+    {foreach $testResults as $result}
+	<div n:class="$iterator->isOdd() ? odd : even">
+	<span class="date">{$result->date}:</span> <a href="{plink Test:overview $result->id_test}">{$result->test->name}</a> - {$result->success_rate}%
+	</div>
+    {/foreach}
+    {if $hasLimit}
+	<a href="{plink TestResult:All}" class="showAll">Zobrazit všechny výsledky</a>
+    {/if}
+{/if}
+</div>
+{/block}

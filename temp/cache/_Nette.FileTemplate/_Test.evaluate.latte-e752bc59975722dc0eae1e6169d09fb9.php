@@ -1,25 +1,37 @@
-<?php //netteCache[01]000372a:2:{s:4:"time";s:21:"0.41532800 1382556684";s:9:"callbacks";a:2:{i:0;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:50:"D:\Web\EduCenter\app\templates\Test\evaluate.latte";i:2;i:1382556403;}i:1;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:10:"checkConst";}i:1;s:25:"Nette\Framework::REVISION";i:2;s:30:"80a7e46 released on 2013-08-08";}}}?><?php
+<?php //netteCache[01]000372a:2:{s:4:"time";s:21:"0.86005300 1382882787";s:9:"callbacks";a:2:{i:0;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:50:"D:\Web\EduCenter\app\templates\Test\evaluate.latte";i:2;i:1382882729;}i:1;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:10:"checkConst";}i:1;s:25:"Nette\Framework::REVISION";i:2;s:30:"80a7e46 released on 2013-08-08";}}}?><?php
 
 // source file: D:\Web\EduCenter\app\templates\Test\evaluate.latte
 
 ?><?php
 // prolog Nette\Latte\Macros\CoreMacros
-list($_l, $_g) = Nette\Latte\Macros\CoreMacros::initRuntime($template, 'h1ohguktqj')
+list($_l, $_g) = Nette\Latte\Macros\CoreMacros::initRuntime($template, 'jd192sso2i')
 ;
 // prolog Nette\Latte\Macros\UIMacros
 //
 // block title
 //
-if (!function_exists($_l->blocks['title'][] = '_lbfcb9e74e15_title')) { function _lbfcb9e74e15_title($_l, $_args) { extract($_args)
-?>Výsledky testu
+if (!function_exists($_l->blocks['title'][] = '_lb15a57dc6e5_title')) { function _lb15a57dc6e5_title($_l, $_args) { extract($_args)
+?>Výsledky testu - <?php echo Nette\Templating\Helpers::escapeHtml($test->name, ENT_NOQUOTES) ?>
+
 <?php
 }}
 
 //
 // block content
 //
-if (!function_exists($_l->blocks['content'][] = '_lb4024a51270_content')) { function _lb4024a51270_content($_l, $_args) { extract($_args)
-;
+if (!function_exists($_l->blocks['content'][] = '_lbdde816bd4f_content')) { function _lbdde816bd4f_content($_l, $_args) { extract($_args)
+?><h1>Výsledky testu - <?php echo Nette\Templating\Helpers::escapeHtml($test->name, ENT_NOQUOTES) ?></h1>
+<div class="test-results">
+<div>Správně zodpovězeno otázek: <span><?php echo Nette\Templating\Helpers::escapeHtml(sizeof($correctArray)-sizeof($wrongAnswers), ENT_NOQUOTES) ?>
+ z <?php echo Nette\Templating\Helpers::escapeHtml(sizeof($correctArray), ENT_NOQUOTES) ?></span></div>
+<div>Úspěšnost: <span><?php echo Nette\Templating\Helpers::escapeHtml($successRate, ENT_NOQUOTES) ?>%</span></div>
+</div>
+<h2>Posledních 5 výsledků</h2>
+<?php $_ctrl = $_control->getComponent("testResultsList"); if ($_ctrl instanceof Nette\Application\UI\IRenderable) $_ctrl->validateControl(); $_ctrl->render() ?>
+
+<p class="center"><a class="button" href="<?php echo htmlSpecialChars($_control->link("Test:wrongAnswers")) ?>
+">Procházet špatně zodpovězené otázky</a></p>
+<?php
 }}
 
 //
@@ -42,4 +54,4 @@ if ($_l->extends) {
 // main template
 //
 if ($_l->extends) { ob_end_clean(); return Nette\Latte\Macros\CoreMacros::includeTemplate($_l->extends, get_defined_vars(), $template)->render(); }
-call_user_func(reset($_l->blocks['title']), $_l, get_defined_vars()) ; call_user_func(reset($_l->blocks['content']), $_l, get_defined_vars()) ; Nette\Diagnostics\Debugger::barDump(array('$successRate' => $successRate), "Template " . str_replace(dirname(dirname($template->getFile())), "\xE2\x80\xA6", $template->getFile())) ;Nette\Diagnostics\Debugger::barDump(array('$correctArray' => $correctArray), "Template " . str_replace(dirname(dirname($template->getFile())), "\xE2\x80\xA6", $template->getFile())) ;Nette\Diagnostics\Debugger::barDump(array('$wrongAnswers' => $wrongAnswers), "Template " . str_replace(dirname(dirname($template->getFile())), "\xE2\x80\xA6", $template->getFile())) ;
+call_user_func(reset($_l->blocks['title']), $_l, get_defined_vars()) ; call_user_func(reset($_l->blocks['content']), $_l, get_defined_vars()) ; 

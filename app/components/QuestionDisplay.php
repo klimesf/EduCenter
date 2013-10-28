@@ -37,7 +37,7 @@ class QuestionDisplayControl extends Control {
      */
     private $displayNav = true;
     /**
-     * Příznak
+     * Příznak zda zobrazujeme data pro testovací účely
      */
     private $testMode = false;
     
@@ -193,11 +193,6 @@ class CheckedAnswers extends Object implements \Serializable {
      */
     private $checkedAnswers = array();
     
-    // TEMPORARYY
-    public function getArray() {
-	return $this->checkedAnswers;
-    }
-    
     /**
      * Přidá zaškrtnutou odpověď
      * @param int(11) $answerId
@@ -288,6 +283,9 @@ class CheckedAnswers extends Object implements \Serializable {
      */
     public function evaluateTest($correctArray) {
 	$answeredWrong = array();   // Pole pro správně zodpovězené otázky
+	if(!is_array($this->checkedAnswers)) {
+	    $this->checkedAnswers = array();
+	}
 	
 	// Projíždíme pole správných odpovědí
 	foreach($correctArray as $question => $answers) {
@@ -298,8 +296,8 @@ class CheckedAnswers extends Object implements \Serializable {
 		// Seřadíme, abychom mohli porovnat
 		sort($correctArray[$question], SORT_NUMERIC);
 		sort($this->checkedAnswers[$question], SORT_NUMERIC);
-		// Pokud nejsou stejné, přidáme do špatně zodpovzených
-		if($correctArray[$question] === $this->checkedAnswers[$question]) {
+		// Pokud nejsou stejné, přidáme do špatně zodpovězených
+		if(!($correctArray[$question] == $this->checkedAnswers[$question])) {
 		    $answeredWrong[$question] = $answers;
 		}
 	    }

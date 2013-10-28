@@ -8,22 +8,36 @@ use Nette\Application\UI\Form;
  */
 class UserPresenter extends BasePresenter {
 
-    /** @var Todo\UserRepository */
+    /** @var EduCenter\UserRepository */
     private $userRepository;
 
-    /** @var Todo\Authenticator */
+    /** @var EduCenter\Authenticator */
     private $authenticator;
-
-
-
-    public function inject(EduCenter\UserRepository $userRepository, EduCenter\Authenticator $authenticator)
-    {
+    
+    /** @var EduCenter\TestResultsRepository */
+    private $testResultRepository;
+    
+    /** @var int $testResultsLimit limit zobrazených výsledků testů */
+    private $testResultsLimit;
+    
+    /** @var test.id $testId */
+    private $testId;
+    
+    /**
+     * Injekce závislostí (DI)
+     * @param EduCenter\UserRepository $userRepository
+     * @param EduCenter\Authenticator $authenticator
+     * @param EduCenter\TestResultRepository $testResultRepository
+     */
+    public function inject(EduCenter\UserRepository $userRepository, EduCenter\Authenticator $authenticator, EduCenter\TestResultRepository $testResultRepository) {
 	$this->userRepository = $userRepository;
 	$this->authenticator = $authenticator;
+	$this->testResultRepository = $testResultRepository;
     }
 
-
-
+    /**
+     * Startup presenteru
+     */
     protected function startup() {
 	parent::startup();
 	// Tento presenter je nepřístupný pro nepřihlášené uživatele
@@ -32,8 +46,30 @@ class UserPresenter extends BasePresenter {
 	}
     }
 
+    /**
+     * Defaultní akce
+     */
+    public function actionDefault() {
+	// Nastavení pro TestResultsList
+	$this->testResultsLimit = 5;
+	$this->testId = null;
+    }
+    
+    /**
+     * Render defaultní akce
+     */
+    public function renderDefault() {
+	
+    }
 
-
+    /**
+     * Továrnička pro komponentu TestResultsList
+     * @return \EduCenter\TestResultsListControl
+     */
+    protected function createComponentTestResultsList() {
+	return new EduCenter\TestResultsListControl($this->testResultRepository, $this->testId, $this->testResultsLimit);
+    }
+    
     /**
      * @return Nette\Application\UI\Form
      */
@@ -53,8 +89,10 @@ class UserPresenter extends BasePresenter {
 	return $form;
     }
 
-
-
+    /**
+     * Metoda volaná při úspěšném odeslání PasswordForm
+     * @param \Nette\Application\UI\Form $form
+     */
     public function passwordFormSubmitted(Form $form) {
 	$values = $form->getValues();
 	$user = $this->getUser();

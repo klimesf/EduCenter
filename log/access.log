@@ -1,0 +1,1 @@
+[2013-10-27 20-06-23] HTTP code 404: Page not found. Missing template '…\Web\EduCenter\app\templates\Test\wrongAnswers.latte'. in D:\Web\EduCenter\libs\Nette\Application\UI\Presenter.php:664  @  http://filip-msi/EduCenter/www/test/wrong-answers

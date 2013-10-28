@@ -1,31 +1,31 @@
-<?php //netteCache[01]000366a:2:{s:4:"time";s:21:"0.82597900 1381851650";s:9:"callbacks";a:2:{i:0;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:44:"D:\Web\EduCenter\app\templates\@layout.latte";i:2;i:1381851602;}i:1;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:10:"checkConst";}i:1;s:25:"Nette\Framework::REVISION";i:2;s:30:"80a7e46 released on 2013-08-08";}}}?><?php
+<?php //netteCache[01]000366a:2:{s:4:"time";s:21:"0.43594700 1382572395";s:9:"callbacks";a:2:{i:0;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:44:"D:\Web\EduCenter\app\templates\@layout.latte";i:2;i:1382572394;}i:1;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:10:"checkConst";}i:1;s:25:"Nette\Framework::REVISION";i:2;s:30:"80a7e46 released on 2013-08-08";}}}?><?php
 
 // source file: D:\Web\EduCenter\app\templates\@layout.latte
 
 ?><?php
 // prolog Nette\Latte\Macros\CoreMacros
-list($_l, $_g) = Nette\Latte\Macros\CoreMacros::initRuntime($template, '5062hlgny9')
+list($_l, $_g) = Nette\Latte\Macros\CoreMacros::initRuntime($template, '641uj2j0rt')
 ;
 // prolog Nette\Latte\Macros\UIMacros
 //
 // block title
 //
-if (!function_exists($_l->blocks['title'][] = '_lb62ac3045bb_title')) { function _lb62ac3045bb_title($_l, $_args) { extract($_args)
+if (!function_exists($_l->blocks['title'][] = '_lbe0a9a935cb_title')) { function _lbe0a9a935cb_title($_l, $_args) { extract($_args)
 ;
 }}
 
 //
 // block head
 //
-if (!function_exists($_l->blocks['head'][] = '_lb89bc9079ae_head')) { function _lb89bc9079ae_head($_l, $_args) { extract($_args)
+if (!function_exists($_l->blocks['head'][] = '_lbb4977d46ac_head')) { function _lbb4977d46ac_head($_l, $_args) { extract($_args)
 ;
 }}
 
 //
 // block _flashMessages
 //
-if (!function_exists($_l->blocks['_flashMessages'][] = '_lb236026a2ef__flashMessages')) { function _lb236026a2ef__flashMessages($_l, $_args) { extract($_args); $_control->validateControl('flashMessages')
-;$iterations = 0; foreach ($flashes as $flash): ?>	<div class="flash <?php echo htmlSpecialChars($flash->type) ?>
+if (!function_exists($_l->blocks['_flashMessages'][] = '_lb7c25c31f05__flashMessages')) { function _lb7c25c31f05__flashMessages($_l, $_args) { extract($_args); $_control->validateControl('flashMessages')
+;$iterations = 0; foreach ($flashes as $flash): ?>	    <div class="flash <?php echo htmlSpecialChars($flash->type) ?>
 "><?php echo Nette\Templating\Helpers::escapeHtml($flash->message, ENT_NOQUOTES) ?></div>
 <?php $iterations++; endforeach ;
 }}
@@ -33,7 +33,7 @@ if (!function_exists($_l->blocks['_flashMessages'][] = '_lb236026a2ef__flashMess
 //
 // block scripts
 //
-if (!function_exists($_l->blocks['scripts'][] = '_lb5ca6fda0d8_scripts')) { function _lb5ca6fda0d8_scripts($_l, $_args) { extract($_args)
+if (!function_exists($_l->blocks['scripts'][] = '_lbd9ebb9d090_scripts')) { function _lbd9ebb9d090_scripts($_l, $_args) { extract($_args)
 ?><script src="<?php echo htmlSpecialChars($basePath) ?>/js/jquery.js"></script>
 <script src="<?php echo htmlSpecialChars($basePath) ?>/js/netteForms.js"></script>
 <script src="<?php echo htmlSpecialChars($basePath) ?>/js/nette.ajax.js"></script> 
@@ -131,8 +131,7 @@ ob_start(); call_user_func(reset($_l->blocks['title']), $_l, get_defined_vars())
     </div>
 
     <div id="container">
-<div id="<?php echo $_control->getSnippetId('flashMessages') ?>"><?php call_user_func(reset($_l->blocks['_flashMessages']), $_l, $template->getParameters()) ?>
-</div><?php if ($user->isLoggedIn()): ?>
+<?php if ($user->isLoggedIn()): ?>
 	<!-- <div id="sidebar">
 	    <ul>
 		<ul>
@@ -152,7 +151,8 @@ ob_start(); call_user_func(reset($_l->blocks['title']), $_l, get_defined_vars())
 	</div> -->
 <?php endif ?>
 	<div id="content">
-<?php Nette\Latte\Macros\UIMacros::callBlock($_l, 'content', $template->getParameters()) ?>
+<div id="<?php echo $_control->getSnippetId('flashMessages') ?>"><?php call_user_func(reset($_l->blocks['_flashMessages']), $_l, $template->getParameters()) ?>
+</div><?php Nette\Latte\Macros\UIMacros::callBlock($_l, 'content', $template->getParameters()) ?>
 	</div>
     </div>
     <div id="footer-container">

@@ -2,15 +2,37 @@
 
 namespace EduCenter;
 
-use Nette;
-
+/**
+ * Model obsluhující tabulku 'testresult', která obsahuje výsledky testů
+ * © 2013, Filip Klimeš
+ */
 class TestResultRepository extends Repository {
+    /**
+     * Vrátí výsledky testů podle zadaného testu
+     * @param test.id $testId
+     * @return Nette\Database\Table\Selection
+     */
     public function findByTest($testId) {
 	return $this->findBy(array("id_test" => $testId));
     }
     
+    /**
+     * Vrátí výsledky testů podle zadaného uživatele
+     * @param user.id $userId
+     * @return Nette\Database\Table\Selection
+     */
     public function findByUser($userId) {
 	return $this->findBy(array('id_user' => $userId));
+    }
+    
+    /**
+     * Vrátí výsledky testů podle zadaného testu a uživatele
+     * @param user.id $userId
+     * @param test.id $testId
+     * @return Nette\Database\Table\Selection
+     */
+    public function findByUserAndTest($userId, $testId) {
+	return $this->findBy(array('id_user' => $userId, 'id_test' => $testId));
     }
     
     /**

@@ -1,16 +1,16 @@
-<?php //netteCache[01]000372a:2:{s:4:"time";s:21:"0.06412300 1382019074";s:9:"callbacks";a:2:{i:0;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:50:"D:\Web\EduCenter\app\templates\Test\overview.latte";i:2;i:1382019072;}i:1;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:10:"checkConst";}i:1;s:25:"Nette\Framework::REVISION";i:2;s:30:"80a7e46 released on 2013-08-08";}}}?><?php
+<?php //netteCache[01]000372a:2:{s:4:"time";s:21:"0.03163200 1382881679";s:9:"callbacks";a:2:{i:0;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:50:"D:\Web\EduCenter\app\templates\Test\overview.latte";i:2;i:1382881676;}i:1;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:10:"checkConst";}i:1;s:25:"Nette\Framework::REVISION";i:2;s:30:"80a7e46 released on 2013-08-08";}}}?><?php
 
 // source file: D:\Web\EduCenter\app\templates\Test\overview.latte
 
 ?><?php
 // prolog Nette\Latte\Macros\CoreMacros
-list($_l, $_g) = Nette\Latte\Macros\CoreMacros::initRuntime($template, 'dg43jxwwqv')
+list($_l, $_g) = Nette\Latte\Macros\CoreMacros::initRuntime($template, 'tmgd8pqvl4')
 ;
 // prolog Nette\Latte\Macros\UIMacros
 //
 // block content
 //
-if (!function_exists($_l->blocks['content'][] = '_lb59b61553f1_content')) { function _lb59b61553f1_content($_l, $_args) { extract($_args)
+if (!function_exists($_l->blocks['content'][] = '_lb68e62242b8_content')) { function _lb68e62242b8_content($_l, $_args) { extract($_args)
 ;call_user_func(reset($_l->blocks['title']), $_l, get_defined_vars())  ?>
 <h2><?php echo $test->desc ?></h2>
 <img src="<?php echo htmlSpecialChars($basePath) ?>/images/tests/<?php echo htmlSpecialChars($test->img) ?>
@@ -33,7 +33,7 @@ if (!function_exists($_l->blocks['content'][] = '_lb59b61553f1_content')) { func
 //
 // block title
 //
-if (!function_exists($_l->blocks['title'][] = '_lb379ee7a327_title')) { function _lb379ee7a327_title($_l, $_args) { extract($_args)
+if (!function_exists($_l->blocks['title'][] = '_lb9c855565eb_title')) { function _lb9c855565eb_title($_l, $_args) { extract($_args)
 ?><h1>Přehled testu - <?php echo Nette\Templating\Helpers::escapeHtml($test->name, ENT_NOQUOTES) ?></h1>
 <?php
 }}

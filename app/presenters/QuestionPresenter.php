@@ -100,6 +100,7 @@ class QuestionPresenter extends BasePresenter {
 	    $this->redirect('Question:');
 	}
 	$this->questionId = $questionId;
+	$this->selection = $this->questionRepository->findById($questionId);
     }
     
     public function actionReports() {
@@ -114,6 +115,7 @@ class QuestionPresenter extends BasePresenter {
 	}
 	$this->questionId = $questionId;
 	$this->answered = true;
+	$this->selection = $this->questionRepository->findById($questionId);
     }
     
     public function actionAddReport($questionId) {

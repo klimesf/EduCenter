@@ -70,9 +70,6 @@
     </div>
 
     <div id="container">
-	{snippet flashMessages}
-	<div n:foreach="$flashes as $flash" class="flash {$flash->type}">{$flash->message}</div>
-	{/snippet}
 	{if $user->isLoggedIn()}
 	<!-- <div id="sidebar">
 	    <ul>
@@ -93,7 +90,10 @@
 	</div> -->
 	{/if}
 	<div id="content">
-		{include #content}
+	    {snippet flashMessages}
+	    <div n:foreach="$flashes as $flash" class="flash {$flash->type}">{$flash->message}</div>
+	    {/snippet}
+	    {include #content}
 	</div>
     </div>
     <div id="footer-container">

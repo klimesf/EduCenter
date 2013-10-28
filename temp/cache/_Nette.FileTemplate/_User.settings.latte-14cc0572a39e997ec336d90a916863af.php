@@ -1,21 +1,29 @@
-<?php //netteCache[01]000372a:2:{s:4:"time";s:21:"0.52527600 1381685790";s:9:"callbacks";a:2:{i:0;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:50:"D:\Web\EduCenter\app\templates\User\settings.latte";i:2;i:1381685789;}i:1;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:10:"checkConst";}i:1;s:25:"Nette\Framework::REVISION";i:2;s:30:"80a7e46 released on 2013-08-08";}}}?><?php
+<?php //netteCache[01]000372a:2:{s:4:"time";s:21:"0.09012000 1382602661";s:9:"callbacks";a:2:{i:0;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:50:"D:\Web\EduCenter\app\templates\User\settings.latte";i:2;i:1381851699;}i:1;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:10:"checkConst";}i:1;s:25:"Nette\Framework::REVISION";i:2;s:30:"80a7e46 released on 2013-08-08";}}}?><?php
 
 // source file: D:\Web\EduCenter\app\templates\User\settings.latte
 
 ?><?php
 // prolog Nette\Latte\Macros\CoreMacros
-list($_l, $_g) = Nette\Latte\Macros\CoreMacros::initRuntime($template, '84ze318ifd')
+list($_l, $_g) = Nette\Latte\Macros\CoreMacros::initRuntime($template, '6kh5z8hi19')
 ;
 // prolog Nette\Latte\Macros\UIMacros
 //
 // block content
 //
-if (!function_exists($_l->blocks['content'][] = '_lb316123d8fd_content')) { function _lb316123d8fd_content($_l, $_args) { extract($_args)
-?><h1><?php echo Nette\Templating\Helpers::escapeHtml($user->getIdentity()->name, ENT_NOQUOTES) ?> &gt; Nastavení</h1>
+if (!function_exists($_l->blocks['content'][] = '_lbc07ac0b43c_content')) { function _lbc07ac0b43c_content($_l, $_args) { extract($_args)
+;call_user_func(reset($_l->blocks['title']), $_l, get_defined_vars())  ?>
 
 
 <a href="<?php echo htmlSpecialChars($_control->link("User:password")) ?>">Změnit heslo</a>
 
+<?php
+}}
+
+//
+// block title
+//
+if (!function_exists($_l->blocks['title'][] = '_lb43d0220837_title')) { function _lb43d0220837_title($_l, $_args) { extract($_args)
+?><h1><?php echo Nette\Templating\Helpers::escapeHtml($user->getIdentity()->name, ENT_NOQUOTES) ?> &gt; Nastavení</h1>
 <?php
 }}
 

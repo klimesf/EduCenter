@@ -1,5 +1,8 @@
 <?php
-
+/**
+ * Presenter Test, který má na starosti obsluhovat běh testů, vyhodnocovat je a zobrazit výsledky
+ * © 2013, Filip Klimeš
+ */
 class TestPresenter extends BasePresenter {
     private $testRepository;
     private $testSettingRepository;
@@ -11,7 +14,11 @@ class TestPresenter extends BasePresenter {
     private $selection;
     private $successRate;
     private $testResultRepository;
+    private $testResultsLimit;
     
+    /**
+     * Startup presenteru
+     */
     protected function startup() {
 	parent::startup();
 	// Tento presenter je nepřístupný pro nepřihlášené uživatele
@@ -20,6 +27,15 @@ class TestPresenter extends BasePresenter {
 	}
     }
     
+    /**
+     * Akce pro injekci závislostí (DI)
+     * @param EduCenter\TestRepository $testRepository
+     * @param EduCenter\TestSettingRepository $testSettingRepository
+     * @param EduCenter\QuestionRepository $questionRepository
+     * @param EduCenter\QuestionReportRepository $questionReportRepository
+     * @param EduCenter\AnswerRepository $answerRepository
+     * @param EduCenter\TestResultRepository $testResultRepository
+     */
     public function inject(EduCenter\TestRepository $testRepository, EduCenter\TestSettingRepository $testSettingRepository, EduCenter\QuestionRepository $questionRepository,
      EduCenter\QuestionReportRepository $questionReportRepository, EduCenter\AnswerRepository $answerRepository, EduCenter\TestResultRepository $testResultRepository) {
 	$this->testRepository = $testRepository;
@@ -30,20 +46,33 @@ class TestPresenter extends BasePresenter {
 	$this->testResultRepository = $testResultRepository;
     }
     
+    /**
+     * Defaultní akce
+     */
     public function actionDefault() {
 	$this->template->tests = $this->testRepository->findAll();
     }
     
+    /**
+     * Akce pro přehled testu, před jeho spuštěním
+     * @param test.id $testId
+     */
     public function actionOverview($testId) {
 	$this->template->test = $this->testRepository->getById($testId);
 	$this->template->settings = $this->testSettingRepository->findByTest($testId);
     }
     
-    public function actionRun($testId, $question = null) {
+    /**
+     * Akce pro běh testu
+     * @param test.id $testId
+     * @param EduCenter\QuestionRepository\ActiveRow $question
+     * @param boolean $makeNew
+     */
+    public function actionRun($testId, $question = null, $makeNew = null) {
 	$this->testId = $testId;
 	// Zjistíme, zda už byl test vytvořen
 	$session = $this->session->getSection('Test');
-	if(!isset($session->questionArray) || $session->testId != $testId) {
+	if(!isset($session->questionArray) || $session->testId != $testId || $makeNew == true) {
 	    $this->assembleTest($testId);
 	}
 	
@@ -55,7 +84,13 @@ class TestPresenter extends BasePresenter {
 	$this->selection = $this->questionRepository->findById($questionArray[$question-1]);	// Kvůli počítání iterator musíme posunout o -1
     }
 
-    public function renderRun($testId, $question = null) {
+    /**
+     * Render pro akci Run - běh testu
+     * @param test.id $testId
+     * @param EduCenter\QuestionRepository\ActiveRow $question
+     * @param boolean $makeNew
+     */
+    public function renderRun($testId, $question = null, $makeNew = null) {
 	if($question == null) {
 	    $question = 1;
 	}
@@ -69,8 +104,13 @@ class TestPresenter extends BasePresenter {
 	$this->template->isLastQuestion = isset($this->session->getSection('Test')->questionArray[$question]) ? false : true; //  Kvůli počítání iterator musíme posunout o -1
     }
     
+    /**
+     * Akce vyhodnocení testu
+     * @param test.id $testId
+     */
     public function actionEvaluate($testId) {
 	$this->testId = $testId;
+	$this->testResultsLimit = 5;
 	// Načteme ze session zaškrtnuté odpovědi
 	$checkedAnswers = new \EduCenter\CheckedAnswers();
 	$checkedAnswers->unserialize($this->session->getSection('QuestionDisplay')->checkedAnswers);
@@ -107,9 +147,24 @@ class TestPresenter extends BasePresenter {
 	unset($this->session->getSection('QuestionDisplay')->checkedAnswers);
     }
     
-    public function renderEvaluate() {
+    /**
+     * Render akce Evaluate - vyhodnocení testu
+     * @param test.id $testId 
+     */
+    public function renderEvaluate($testId) {
 	$this->template->successRate = $this->successRate;
+	$this->template->test = $this->testRepository->getById($testId);
+	// Vybereme posledních 5 výsledků daného testu
+	$this->template->testresults = $this->testResultRepository->
+		findByTest($testId)->where(array("id_user" => $this->getUser()->getId()))->
+		order('date DESC')->limit(5);
     }
+    
+    
+    
+    public function actionWrongAnswers() {}
+    
+    public function renderWrongAnswers() {}
     
     /**
      * Sestaví test podle zadaného Id
@@ -141,8 +196,20 @@ class TestPresenter extends BasePresenter {
 	$session->questionArray = $questionArray;
     }
     
+    /**
+     * Továrnička pro komponentu QuestionDisplay
+     * @return \EduCenter\QuestionDisplayControl
+     */
     protected function createComponentQuestionDisplay() {
 	return new EduCenter\QuestionDisplayControl($this->answerRepository, $this->context->session, 
 		$this->questionReportRepository, $this->selection, true, false);
+    }
+    
+    /**
+     * Továrnička pro komponentu TestResultsList
+     * @return \EduCenter\TestResultsListControl
+     */
+    protected function createComponentTestResultsList() {
+	return new EduCenter\TestResultsListControl($this->testResultRepository, $this->testId, $this->testResultsLimit);
     }
 }

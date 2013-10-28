@@ -1,8 +1,14 @@
 {block title}
-Výsledky testu
+Výsledky testu - {$test->name}
 {/block}
 {block content}
+<h1>Výsledky testu - {$test->name}</h1>
+<div class="test-results">
+<div>Správně zodpovězeno otázek: <span>{sizeof($correctArray)-sizeof($wrongAnswers)} z {sizeof($correctArray)}</span></div>
+<div>Úspěšnost: <span>{$successRate}%</span></div>
+</div>
+<h2>Posledních 5 výsledků</h2>
+{control testResultsList}
+
+<p class="center"><a n:href="Test:wrongAnswers" class="button">Procházet špatně zodpovězené otázky</a></p>
 {/block}
-{dump $successRate}
-{dump $correctArray}
-{dump $wrongAnswers}
